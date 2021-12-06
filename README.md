@@ -1,4 +1,4 @@
-# Today-I-Learn
+# Today I Learn(TIL)
 
 ## 목표
 배운것을 정제해서 기록한다.
