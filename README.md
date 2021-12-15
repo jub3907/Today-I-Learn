@@ -15,3 +15,5 @@
 * [3일차 - 스프링 빈 등록](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day3.md)
 * [4일차 - Jdbc, JPA, 스프링 데이터 JPA](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day4.md)
 * [5일차 - AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day5.md)
+
+* [6일차 - 스프링의 역사와 핵심 개념](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day6.md)
