@@ -19,3 +19,4 @@
 * [6일차 - 스프링의 역사와 핵심 개념](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day6.md)
 * [7일차 - 다형성과 객체지향설계](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day7.md)
 * [8일차 - 회원 생성 및 주문 서비스 예제](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day8.md)
+* [9일차 - 관심사의 분리 / DIP, OCP를 위한 AppConfig](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)
