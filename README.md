@@ -19,4 +19,5 @@
 [7일차 - 다형성과 객체지향설계](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day7.md)\
 [8일차 - 회원 생성 및 주문 서비스 예제](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day8.md)\
 [9일차 - 관심사의 분리 / DIP, OCP를 위한 AppConfig](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)\
-[10일차 - 스프링 컨테이너, 스프링 빈 조회](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)
+[10일차 - 스프링 컨테이너, 스프링 빈 조회](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)\
+[11일차 - 싱글톤 패턴과 컨테이너, 싱글톤의 주의점](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day11.md)
