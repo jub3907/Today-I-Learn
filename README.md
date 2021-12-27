@@ -21,7 +21,8 @@
 [9일차 - 관심사의 분리 / DIP, OCP를 위한 AppConfig](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)\
 [10일차 - 스프링 컨테이너, 스프링 빈 조회](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)\
 [11일차 - 싱글톤 패턴과 컨테이너, 싱글톤의 주의점](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day11.md)\
-[12일차 - @Configuration과 싱글톤](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day12.md)
+[12일차 - @Configuration과 싱글톤](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day12.md)\
+[13일차 - 컴포넌트스캔과 의존관계 자동주입](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day13.md)
 
 
 ### NestJS
