@@ -33,4 +33,10 @@
 [Exception Filters](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/exception_filter.md)\
 [Middleware](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/middleware.md)\
 [Pipes](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/pipes.md)\
+[Interceptor](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/interceptor.md)\
+[Guard](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/guard.md)
+
+### 개발 관련 지식들
+[외부 API는 프론트, 백엔드 어디서 호출할까?](https://github.com/jub3907/Today-I-Learn/blob/main/backend/3rd_party_api_call.md)
+
 
