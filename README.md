@@ -38,5 +38,5 @@
 
 ### 개발 관련 지식들
 [외부 API는 프론트, 백엔드 어디서 호출할까?](https://github.com/jub3907/Today-I-Learn/blob/main/backend/3rd_party_api_call.md)
-
+[Nginx reverse proxy를 적용한 상태에서 SSL 적용](https://github.com/jub3907/Today-I-Learn/blob/main/ssl.md)
 
