@@ -34,7 +34,8 @@
 [Interceptor](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/interceptor.md)\
 [Guard](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/guard.md)\
 [Module Reference](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/module-reference.md)\
-[Global Prefix](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/global_prefix.md)
+[Global Prefix](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/global_prefix.md)\
+[Circular Dependency](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/circular_dependency.md)
 
 ## Frontend
 [SSR과 CSR의 차이](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/SSR_CSR.md)\
