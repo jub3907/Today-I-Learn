@@ -39,7 +39,8 @@
 
 ## Frontend
 [SSR과 CSR의 차이](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/SSR_CSR.md)\
-[브라우저 렌더링 원리](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/browser_rendering.md)
+[브라우저 렌더링 원리](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/browser_rendering.md)\
+[리액트 Concurrent](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/react-concurrent.md)
 
 ### 개발 관련 지식들
 [외부 API는 프론트, 백엔드 어디서 호출할까?](https://github.com/jub3907/Today-I-Learn/blob/main/backend/3rd_party_api_call.md)\
