@@ -6,6 +6,7 @@
 ## 디스코드 채널에 웹훅 만들기
 
 특정 채널에 웹훅을 만들기 위해선, 우선 채널 편집으로 들어가자.
+
 <image src = "https://user-images.githubusercontent.com/58246682/154058766-cc9dde50-7fb3-40bf-89b6-66180df367f9.png" width = "50%" />
 
 
@@ -39,5 +40,5 @@ Content type을 application/json으로 설정한다.\
 <image src = "https://user-images.githubusercontent.com/58246682/154059813-dabe1761-a5b6-434f-9919-a1e4c14932c8.png" width = "50%" />
 
 
-완성!
+완성!\
 ![image](https://user-images.githubusercontent.com/58246682/154060343-5ee231f7-928e-4c87-8bb6-e7cb9a953500.png)
