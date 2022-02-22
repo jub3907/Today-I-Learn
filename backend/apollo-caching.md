@@ -83,7 +83,7 @@ type Post {
 
 또한 `readByCurrentUser`의 값은 최대 10초간 캐시되며, 각 유저마다 캐시된다.
 
-### type-level Definition
+#### type-level Definition
 아래 예시는 `Post` 객체를 리턴하는 모든 스키마 Field에 대한 캐시 설정이다.
 
 ```tsx
@@ -112,4 +112,55 @@ type Comment {
 아래 예시에서, **Comment.post**는 240초가 아닌, 120초간 캐시가 된다.
 
 
+
+### In your resolver, dynamic.
+위에서는 정적으로 캐시를 지정해 줬지만, 이와는 반대로
+
+resolving중에 특정 필드의 캐시 방법을 지정할 수도 있다.
+
+이는 **모든 resolver**에 `cacheControl` 객체를 파라미터로 집어 넣어 수행할 수 있다.
+
+> 만약 필드 레벨의 캐싱을 주입했었다면, 스키마에 제공된 캐시를 오버라이딩 한다.
+
+#### `cacheControl.setCacheHint`
+`cacheControl` 객체는 `setCacheHint` 방식을 포함하고 있고, 아래와 같이 사용한다.
+```tsx
+const resolvers = {
+  Query: {
+    post: (_, { id }, _, info) => {
+
+      info.cacheControl.setCacheHint({ maxAge: 60, scope: 'PRIVATE' });
+      return find(posts, { id });
+    }
+  }
+}
+
+```
+
+`setCacheHint` 메소드는 역시 `maxAge`, `scope` 필드 객체를 받는다.
+
+#### `cacheControl.cacheHint`
+이 객체는 현재 필드의 캐시 방식을 나타내며, 객체는 아래 내용들을 필드 값으로 갖는다.
+* 필드의 현재 `maxAge`와 `scope`
+* `setCacheHint` 메소드와 유사하지만, *relax 하는?* `restrict` 메소드
+
+```tsx
+// If we call this first...
+info.cacheControl.setCacheHint({ maxAge: 60, scope: 'PRIVATE' });
+
+// ...then this changes maxAge (more restrictive) but NOT scope (less restrictive)
+info.cacheControl.cacheHint.restrict({ maxAge: 30, scope: 'PUBLIC'});
+
+```
+
+#### `cacheControl.cacheHintFromType`
+이 메소드는 특정한 객체 타입을 위한 default 캐시 방식을 리턴한다.
+
+이는 union이나 interface field와 같이 여러 객체들 중 하나를 리턴받는 요청 시 유용하다.
+
+
+### Calculation cache behavior
+보안? 안전?을 위해, 각각의 응답 캐시 방식은 *가장 규제가 강한* 캐시 방식으로 결정되어야 한다.
+* 응답의 `maxAge`는 모든 필드 중 가장 `maxAge` 값이 낮은 필드의 값과 같다.
+* 모든 필드에서 하나라도 `scope`가 `Private`로 설정되어 있다면, 해당 요청의 `scope`는 `PRIVATE` 이다.
 
