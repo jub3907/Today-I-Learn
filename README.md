@@ -38,6 +38,7 @@
 [Circular Dependency](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/circular_dependency.md)\
 [caching](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/caching.md)\
 [JWT 인증](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/authentication.md)
+[SSE](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/SSE.md)
 
 ## Frontend
 [SSR과 CSR의 차이](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/SSR_CSR.md)\
