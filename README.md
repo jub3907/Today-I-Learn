@@ -39,6 +39,7 @@
 [caching](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/caching.md)\
 [JWT 인증](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/authentication.md)
 [SSE](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/SSE.md)
+[Task Scheduling](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/task_scheduling.md)
 
 ## Frontend
 [SSR과 CSR의 차이](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/SSR_CSR.md)\
