@@ -37,8 +37,8 @@
 [Global Prefix](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/global_prefix.md)\
 [Circular Dependency](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/circular_dependency.md)\
 [caching](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/caching.md)\
-[JWT 인증](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/authentication.md)
-[SSE](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/SSE.md)
+[JWT 인증](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/authentication.md)\
+[SSE](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/SSE.md)\
 [Task Scheduling](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/task_scheduling.md)
 
 ## Frontend
