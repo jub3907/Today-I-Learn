@@ -1,13 +1,15 @@
 # Today I Learn(TIL)
 
 ## 목표
+
 배운것을 정제해서 기록한다.
 
 미흡한 부분을 보완한다.
 
-
 ## Spring
+
 ### Spring 핵심 원리 - 기본편
+
 [1일차 - JAVA 설치 및 프로젝트 생성, 빌드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day1.md)\
 [2일차 - 정적컨텐츠, MVC, API 개념과 간단한 회원관리 예제](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day2.md)\
 [3일차 - 스프링 빈 등록](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day3.md)\
@@ -22,9 +24,10 @@
 [12일차 - @Configuration과 싱글톤](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day12.md)\
 [13일차 - 컴포넌트스캔과 의존관계 자동주입](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day13.md)
 
-
 ## NestJS
+
 ### NestJS 초심찾기
+
 [Controller](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/controller.md)\
 [Provider](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/provider.md)\
 [Module](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/module.md)\
@@ -43,16 +46,19 @@
 [MVC Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/mvc.md)
 
 ## Frontend
+
 [SSR과 CSR의 차이](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/SSR_CSR.md)\
 [브라우저 렌더링 원리](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/browser_rendering.md)\
 [리액트 Concurrent](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/react-concurrent.md)
 
 ## Backend
+
 [아폴로 클라이언트 Cache](https://github.com/jub3907/Today-I-Learn/blob/main/backend/apollo-caching.md)
 
-
 ### 개발 관련 지식들
-[외부 API는 프론트, 백엔드 어디서 호출할까?](https://github.com/jub3907/Today-I-Learn/blob/main/backend/3rd_party_api_call.md)\
-[Nginx reverse proxy를 적용한 상태에서 SSL 적용](https://github.com/jub3907/Today-I-Learn/blob/main/ssl.md)\
-[Git 서브모듈](https://github.com/jub3907/Today-I-Learn/blob/main/git_sub_module.md)\
-[Github과 Discord를 웹훅으로 연결하기](https://github.com/jub3907/Today-I-Learn/blob/main/discord-webhook.md)
+
+[외부 API는 프론트, 백엔드 어디서 호출할까?](https://github.com/jub3907/Today-I-Learn/blob/main/develop/3rd_party_api_call.md)\
+[Nginx reverse proxy를 적용한 상태에서 SSL 적용](https://github.com/jub3907/Today-I-Learn/blob/main/develop/ssl.md)\
+[Git 서브모듈](https://github.com/jub3907/Today-I-Learn/blob/main/develop/git_sub_module.md)\
+[Github과 Discord를 웹훅으로 연결하기](https://github.com/jub3907/Today-I-Learn/blob/main/develop/discord-webhook.md)
+[SSH 인증 오류 발생시](https://github.com/jub3907/Today-I-Learn/blob/main/develop/ssh_fail.md)
