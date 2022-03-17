@@ -53,12 +53,13 @@
 
 ## Backend
 
-[아폴로 클라이언트 Cache](https://github.com/jub3907/Today-I-Learn/blob/main/backend/apollo-caching.md)
+[아폴로 클라이언트 Cache](https://github.com/jub3907/Today-I-Learn/blob/main/backend/apollo-caching.md)\
+[GraphQL Schema 설계시의 Antipattern들](https://github.com/jub3907/Today-I-Learn/blob/main/backend/gql-nest.md)
 
 ### 개발 관련 지식들
 
 [외부 API는 프론트, 백엔드 어디서 호출할까?](https://github.com/jub3907/Today-I-Learn/blob/main/develop/3rd_party_api_call.md)\
 [Nginx reverse proxy를 적용한 상태에서 SSL 적용](https://github.com/jub3907/Today-I-Learn/blob/main/develop/ssl.md)\
 [Git 서브모듈](https://github.com/jub3907/Today-I-Learn/blob/main/develop/git_sub_module.md)\
-[Github과 Discord를 웹훅으로 연결하기](https://github.com/jub3907/Today-I-Learn/blob/main/develop/discord-webhook.md)
+[Github과 Discord를 웹훅으로 연결하기](https://github.com/jub3907/Today-I-Learn/blob/main/develop/discord-webhook.md)\
 [SSH 인증 오류 발생시](https://github.com/jub3907/Today-I-Learn/blob/main/develop/ssh_fail.md)
