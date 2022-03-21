@@ -43,7 +43,8 @@
 [JWT 인증](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/authentication.md)\
 [SSE](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/SSE.md)\
 [Task Scheduling](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/task_scheduling.md)\
-[MVC Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/mvc.md)
+[MVC Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/mvc.md)\
+[Directive](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/directives.md)
 
 ## Frontend
 
