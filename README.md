@@ -45,6 +45,7 @@
 [Task Scheduling](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/task_scheduling.md)\
 [MVC Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/mvc.md)\
 [Directive](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/directives.md)\
+[File Upload](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/file_upload.md)\
 [Test using Graphql + TypeOrm](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/jest-test.md)
 
 ## Frontend
