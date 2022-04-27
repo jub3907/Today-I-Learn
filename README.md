@@ -46,8 +46,9 @@
 [MVC Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/mvc.md)\
 [Directive](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/directives.md)\
 [File Upload](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/file_upload.md)\
-[Test using Graphql + TypeOrm](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/jest-test.md)
-[GraphQL 구독 - 작성중](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/subscription.md)
+[Test using Graphql + TypeOrm](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/jest-test.md)\
+[GraphQL 구독 - 작성중](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/subscription.md)\
+[Redis](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/redis.md)
 
 ## Frontend
 
