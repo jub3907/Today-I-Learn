@@ -49,6 +49,7 @@
 [Test using Graphql + TypeOrm](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/jest-test.md)\
 [GraphQL 구독 - 작성중](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/subscription.md)\
 [Redis](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/redis.md)
+[Database 기본](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/database.md)
 
 ## Frontend
 
