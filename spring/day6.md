@@ -1,6 +1,3 @@
-### Spring 강의 9일차
-
-
 ### 관심사의 분리
 * 애플리케이션을 하나의 공연이라고 생각 해 보면, 각각의 인터페이스를 배역이라고 생각할 수 있다.
 * 이 때, 실제 배역에 맞는 배우는 누가 선택하는가?
@@ -233,3 +230,9 @@ public class AppConfig {
 * `ac.getBeansOfType()`을 사용하면 해당 타입의 모든 빈을 조회할 수 있다.
 * `NoUniqueBeanDefinitionException` 발생
 
+
+#### 스프링 빈 조회 - 상속
+* 부모 타입으로 조회하면, 자식 타입도 자동으로 함께 조회한다.
+* 그래서 모든 자바 객체의 부모인 `Object`타입으로 조회하면, 모든 스프링 빈을 조회한다.
+
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/94e23862-5153-4399-8037-4f1ac3f7b14a)

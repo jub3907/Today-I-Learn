@@ -8,10 +8,16 @@
 
 ## Spring
 
-### Spring 핵심 원리 - 기본편
+### Spring 입문과 핵심 원리 - 기본편
 
 [1일차 - JAVA 설치 및 프로젝트 생성, 빌드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day1.md)\
 [2일차 - 정적컨텐츠, MVC, API 개념과 간단한 회원관리 예제, 스프링 빈 등](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day2.md)\
+[3일차 - Jdbc, JPA, 스프링 데이터 JPA, AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day3.md)\
+[4일차 - 스프링의 역사와 핵심 개념, 다형성](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day4.md)\
+[5일차 - 객체 지향 설계, 회원 생성 및 주문 서비스 예제1](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day5.md)\
+[6일차 - 관심사의 분리 / DIP, OCP를 위한 AppConfig, 스프링 빈 조회](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day6.md)\
+[7일차 - BeanFactory와 Singleton Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day7.md)\
+
 
 ## NestJS
 
