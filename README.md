@@ -17,6 +17,7 @@
 [5일차 - 객체 지향 설계, 회원 생성 및 주문 서비스 예제1](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day5.md)\
 [6일차 - 관심사의 분리 / DIP, OCP를 위한 AppConfig, 스프링 빈 조회](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day6.md)\
 [7일차 - BeanFactory와 Singleton Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day7.md)\
+[8일차 - 싱글톤 패턴의 문제점, 스프링의 싱글톤](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day8.md)\
 
 
 ## NestJS
