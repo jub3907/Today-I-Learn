@@ -1,0 +1,404 @@
+## 컴포넌트 스캔
+### 컴포넌트 스캔과 의존관계 자동 주입
+* 지금까진 스프링 빈을 등록할 때는 자바 코드의 `@Bean`이나 XML을 통해서 설정 정보에 직접 등록할 스프링 빈을 나열했다.
+* 하지만, 실무에서 등록해야 할 스프링 빈의 개수가 늘어나게 되면 설정 정보도 커지고, 누락하는 문제도 발생한다.
+* 이로인해 스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.
+* 또 의존관계도 자동으로 주입하는 `@Autowired`라는 기능도 제공한다.
+
+#### 컴포넌트 스캔 등록
+* 컴포넌트 스캔을 사용하기 위해선 먼저 `ComponentScan`을 설정 정보에 붙여주면 된다.
+
+```JAVA
+@Configuration
+// Configuration이 붙은 빈은 등록하지 않기 위해. 예제 보호?
+@ComponentScan(
+        excludeFilters = @ComponentScan.Filter(type= FilterType.ANNOTATION, classes = Configuration.class)
+)
+public class AutoAppConfig {
+
+}
+```
+
+>참고 : 참고: 컴포넌트 스캔을 사용하면 @Configuration 이 붙은 설정 정보도 자동으로 등록되기 때문에, AppConfig, TestConfig 등 앞서 만들어두었던 설정 정보도 함께 등록되고, 실행되어 버린다. 그래서 excludeFilters 를 이용해서 설정정보는 컴포넌트 스캔 대상에서 제외했다. 보통 설정 정보를 컴포넌트 스캔 대상에서 제외하지는 않지만, 기존 예제 코드를 최대한 남기고 유지하기 위해서 이 방법을 선택했다.
+ 
+
+* 이후, `@Component` 애노테이션이 붙은 클래스를 자동으로 스프링 빈으로 등록 해준다.
+
+```JAVA
+@Component
+public class MemoryMemberRepository implements MemberRepository{
+    //...
+}
+```
+```JAVA
+@Component
+public class RateDiscountPolicy implements DiscountPolicy{
+    //...
+}
+```
+```JAVA
+@Component
+public class MemberServiceImpl implements MemberService {
+    //...
+}
+```
+ 
+* 이전에 AppConfig에서는 `@Bean`으로 직접 설정 정보를 작성했고, 의존관계도 직접 명시했다.
+* 이제는 이런 설정 정보 자체가 없기 때문에, 의존관계 주입도 이 클래스 안에서 해결해야 한다.
+* `@Autowired`는 의존관계를 자동으로 주입해준다.
+```JAVA
+@Component
+public class MemberServiceImpl implements MemberService {
+    //...
+    
+    private final MemberRepository memberRepository;
+
+    // 멤버 Repo 타입에 맞는 스프링 빈을 자동으로 주입해준다.
+    @Autowired //ac.getBean(MemberRepository.class)
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+    //...
+}
+```
+
+```JAVA
+
+@Component
+public class OrderServiceImpl implements OrderService{
+
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+    //...
+}
+```
+
+* 등록된 빈을 테스트 해보면, 다음과 같다.
+```JAVA
+public class AutoAppConfigTest {
+
+    @Test
+    void basicScan() {
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
+
+        MemberService memberService = ac.getBean(MemberService.class);
+        Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
+    }
+}
+```
+* 설정 정보로 `AutoAppConfig`로 넘겨줬고, 기존과 같이 잘 동작하는걸 확인할 수 있다.
+* 로그를 보면, 컴포넌트 스캔이 잘 동작하는 것을 볼 수 있다.
+```
+ClassPathBeanDefinitionScanner - Identified candidate component class:
+.. RateDiscountPolicy.class
+.. MemberServiceImpl.class
+.. MemoryMemberRepository.class
+.. OrderServiceImpl.class
+```
+
+### 컴포넌트 스캔과 자동 의존관계 주입의 동작 방식
+
+1. **@ComponentScan**
+
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/f83f9cf7-2ca6-4bea-b096-a8774b499a6c)
+* `@componentScan`은 `@Component`가 붙은 모든 클래스를 스프링 빈으로 등록한다.
+* 이 때, 스프링 빈의 깁노 이름을 클래스 명을 사용하되, 맨 앞글자만 소문자로 사용한다.
+    * ex) `MemberServiceImpl` -> `memberServiceImpl`
+    * 만약 스프링 빈의 이름을 직접 지정하고 싶으면, `@Component("이름")`로 이름을 부여할 수 있다.
+
+2. **@Autowired 의존관계 자동 주입**
+
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/83da5858-05bc-42eb-80ce-be38960ae63c)
+* 생성자에 `@Autowired`를 지정하게 되면, 스프링 컨테이너가 자동으로 해당되는 스프링 빈을 찾아 주입한다.
+* 이 때, 기본 조회 전략은 **타입이 같은 빈**을 찾아서 주입한다.
+    * `ac.getBean(MemberRepository.class)`와 같다.
+    * 타입이 안맞는 등, 더 자세한 전략은 후술.
+
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/08045aa1-5e00-41ec-b7d4-9d8e8b92f605)
+* 만약, 생성자에 파라미터가 많더라도 다 찾아서 자동으로 주입해 준다.
+
+
+### 탐색 위치와 기본 스캔 대상
+
+#### 탐색할 패키지의 시작 위치 지정
+`@ComponentScan`를 지정할 때, `basePackages`를 지정할 수 있다.
+```JAVA
+@Configuration
+@ComponentScan(
+        basePackages = "hello.core.member",
+        excludeFilters = @ComponentScan.Filter(type= FilterType.ANNOTATION, classes = Configuration.class)
+)
+public class AutoAppConfig {
+
+}
+```
+* `basePackages` : 탐색할 패키지의 시작 위치를 지정한다. 해당 패키지를 포함해, 하위 패키지들을 모두 탐색한다.
+    * `basePackages = {"hello.core", "hello.service"}` 방식을 사용해 여러 개의 시작 위치를 지정할 수도 있다.
+* `basePackageClasses` : 지정한 클래스의 패키지를 탐색 시작 위치로 지정한다.
+* 만약 지정하지 않는다면, `@ComponentScan`이 붙은 설정 정보 클래스의 패키지가 시작 위치가 된다.
+
+#### 권장 방법
+이영한님의 권장 방법은 패키지 위치를 따로 지정하지 않고, 설정 정보 클래스를 프로젝트 최상단에 두는 것이며, 스프링 부트도 이 방법을 기본으로 제공하고 있다.
+
+예를 들어, 프로젝트가 다음과 같은 구조로 되어 있다고 가정하자.
+
+* `com.hello`
+* `com.hello.service`
+* `com.hello.repository`
+
+위 프로젝트엔 `com.hello`가 프로젝트 시작 위치이므로, 이곳에 `AppConfig`와 같은 메인 설정 정보를 두고, `@ComponentScan` 애노테이션을 붙이고, `basePackages` 지정을 생략한다.
+
+이렇게 사용한다면, `com.hello`를 포함한 하위 디렉토리는 모두 자동으로 컴포넌트 스캔의 대상이 된다. 그리고 프로젝트 메인 설정 정보는 프로젝트를 대표하는 정보이기 때문에, 프로젝트 시작 루트 위치에 두는 것이 좋다고 생각된다.
+
+> 참고. 스프링 부트를 사용하면, 스프링 부트의 대표 시작 정보인 `@SpringBootApplication`을 이 프로젝트 시작 루트 위치에 두는 것이 관례이다. ( 이 설정 내부에 `@ComponentScan`이 들어 있다.)
+
+### 컴포넌트 스캔 기본 대상
+컴포넌트 스캔은 `@Component` 뿐만 아니라, 다음 내용도 추가 대상에 포함된다.
+* `@Component` : 컴포넌트 스캔에서 사용된다.
+* `@Controller` : 스프링 MVC 컨트롤러에서 사용.
+* `@Service` : 스프링 비즈니스 로직에서 사용
+* `@Repository` : 스프링 데이터 접근 계층에서 사용된다. 
+* `@Configuration` : 스프링 설정 정보에서 사용 된다.
+
+위 애노테이션들의 소스코드를 보면, `@Component`를 포함하고 있는 걸 볼 수 있다.
+
+```JAVA
+@Component
+public @interface Controller {
+}
+
+@Component
+public @interface Service {
+}
+```
+
+> 참고. 사실, 애노테이션에는 상속 관계가 존재하지 않는다. 따라서 이렇게 애노테이션이 특정 애노테이션을 들고 있는 것을 인식할 수 있는 것은 자바 언어가 지원하는 기능은 아니고, 스프링이 지원하는 기능이다.
+
+컴포넌트 스캔의 용도 뿐만 아니라 다음 애노테이션이 있으면 스프링은 부가 기능을 수행한다.
+* `@Controller` : 스프링 MVC 컨트롤러로 인식
+* `@Repository` : 스프링 데이터 접근 계층으로 인식하고, 데이터 계층의 예외를 스프링 예외로 변환해준다.
+* `@Configuration` : 앞서 보았듯이 스프링 설정 정보로 인식하고, 스프링 빈이 싱글톤을 유지하도록 추가 처리를 한다.
+* `@Service` : 사실 `@Service` 는 특별한 처리를 하지 않는다. 대신 개발자들이 핵심 비즈니스 로직이 여기에 있겠구나 라고 비즈니스 계층을 인식하는데 도움이 된다.
+
+
+### 필터
+* `includeFilters` : 컴포넌트 스캔 대상을 추가로 지정한다.
+* `excludeFilters` : 컴포넌트 스캔에서 제외할 대상을 지정한다.
+
+```JAVA
+public class ComponentFilterAppConfigTest {
+
+    @Test
+    void filterScan() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(ComponentFilterAppConfig.class);
+
+        BeanA beanA = ac.getBean("beanA", BeanA.class);
+        assertThat(beanA).isNotNull();
+
+        assertThrows(
+                NoSuchBeanDefinitionException.class,
+                () -> ac.getBean("beanB", BeanB.class)
+        );
+    }
+
+    @Configuration
+    @ComponentScan(
+            includeFilters = @Filter(type = FilterType.ANNOTATION, classes = MyIncludeComponent.class),
+            excludeFilters = @Filter(type = FilterType.ANNOTATION, classes = MyExcludeComponent.class)
+    )
+    static class ComponentFilterAppConfig {
+    }
+}
+```
+* `includeFilters` 에 `MyIncludeComponent` 애노테이션을 추가해서 BeanA가 스프링 빈에 등록된다.
+* `excludeFilters` 에 `MyExcludeComponent` 애노테이션을 추가해서 BeanB는 스프링 빈에 등록되지 않는다.
+
+#### FilterType 옵션
+
+* `ANNOTATION` : 기본 값, 애노테이션을 인식해서 동작한다.
+    * ex) `org.example.SomeAnnotation`
+* `ASSIGNABLE_TYPE`: 지정한 타입과 자식 타입을 인식해서 동작한다. 클래스를 직접 지정?
+    * ex) `org.example.SomeClass`
+* `ASPECTJ`: AspectJ 패턴 사용
+    * ex) `org.example..*Service+`
+* `REGEX`: 정규 표현식
+    * ex) `org\.example\.Default.*`
+* `CUSTOM`: `TypeFilter` 이라는 인터페이스를 구현해서 처리. 
+    * ex) `org.example.MyTypeFilter`
+
+예를 들어, BeanA도 빼고 싶다면 다음과 같이 추가하면 된다.
+```JAVA
+@ComponentScan(
+    includeFilters = {
+        @Filter(type = FilterType.ANNOTATION, classes = MyIncludeComponent.class),
+    },
+    excludeFilters = {
+        @Filter(type = FilterType.ANNOTATION, classes = MyExcludeComponent.class),
+        @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = BeanA.class)
+    }
+)
+```
+
+> 참고. @Component 면 충분하기 때문에, includeFilters 를 사용할 일은 거의 없다. excludeFilters는 여러가지 이유로 간혹 사용할 때가 있지만 많지는 않다.
+
+> 특히 최근 스프링 부트는 컴포넌트 스캔을 기본으로 제공하는데, 개인적으로는 옵션을 변경하면서 사용하기 보다는 스프링의 기본 설정에 최대한 맞추어 사용하는 것을 권장하고, 선호하는 편이다.
+
+
+### 중복 등록과 충돌
+컴포넌트 스캔에선, 다음 두 가지 상황이 존재한다.
+1. 자동 빈 등록 vs 자동 빈 등록
+2. 수동 빈 등록 vs 자동 빈 등록
+
+#### 자동 빈 등록 vs 자동 빈 등록
+컴포넌트 스캔에 의해 자동으로 스프링 빈이 등록되는데, 그 이름이 같은 경우 스프링은 오류를 발생시킨다.
+* `ConflictingBeanDefinitionException` 예외 발생
+
+#### 수동 빈 등록 vs 자동 빈 등록
+
+* 자동 등록
+```JAVA
+@Component
+public class MemoryMemberRepository implements MemberRepository{
+    //...
+}
+```
+* 수동 등록
+```JAVA
+public class AutoAppConfig {
+    @Bean(name = "memoryMemberRepository")
+    MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
+}
+```
+
+수동 빈 등록 시, 다음과 같은 로그가 남게 된다.
+```
+Overriding bean definition for bean 'memoryMemberRepository' with a different definition: replacing
+```
+즉, 이러한 경우 수동 빈 등록이 우선권을 가져가게 된다.
+물론 개발자가 의도적으로 이런 결과를 기대했다면, 자동 보다는 수동이 우선권을 가지는 것이 좋다. 하지만 현실은 개발자가 의도적으로 설정해서 이런 결과가 만들어지기 보다는 여러 설정들이 꼬여서 이런 결과가 만들어지는 경우가 대부분이다!
+
+**그러면 정말 잡기 어려운 버그가 만들어진다. 항상 잡기 어려운 버그는 애매한 버그다.**
+
+그래서 최근 스프링 부트에서는 수동 빈 등록과 자동 빈 등록이 충돌나면 오류가 발생하도록 기본 값을 바꾸었다. 스프링 부트인 `CoreApplication`을 실행해보면, 다음과 같은 오류를 볼 수 있다.
+
+* 수동 빈 등록, 자동 빈 등록 오류시 스프링 부트 에러
+```
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+```
+
+## 의존관계 자동 주입
+### 다양한 의존 관계 주입 방법
+의존 관계 주입은 크게 네 가지 방법이 존재한다.
+* 생성자 주입
+* 수정자 주입(setter 주입)
+* 필드 주입
+* 일반 메소드 주입
+
+#### 생성자 주입
+* 이름 그대로, 생성자를 통해서 의존 관계를 주입 받는 방법.
+* 지금까지 사용했던 방법이, 바로 이 생성자 주입 방법이다.
+
+* 생성자 호출 시점에 **딱 1번만 호출**되는 것이 보장되며, **불변, 필수** 의존 관계에 사용된다.
+    * 한 번만 호출 된다는건, 호출 당시에만 값을 세팅하고, 이후엔 이 값을 세팅하지 못하게 막을 수 있다는 걸 의미한다.
+
+
+```JAVA
+@Component
+public class OrderServiceImpl implements OrderService{
+    // private final -> 무조건 값이 존재해야 한다.
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+}
+```
+
+* **중요! 생성자가 딱 1개만 있으면 @Autowired를 생략해도 자동 주입 된다.**물론 스프링 빈에만 해당한다.
+
+```JAVA
+public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    this.memberRepository = memberRepository;
+    this.discountPolicy = discountPolicy;
+}
+```
+
+#### 수정자 주입 (setter 주입)
+* setter라 불리는 필드 값을 변경하는 수정자 메소드를 통해 의존 관계를 주입하는 방법이다.
+* **선택, 변경** 가능성이 있는 의존 관계에 사용하며, 자바빈 프로퍼티 규악의 수정자 메소드 방식을 사용하는 방법.
+
+* 스프링 빈은 크게 두 가지의 라이프 사이클이 존재한다.
+    * 스프링 빈 등록
+    * 연관 관계 주입
+* 생성자 주입은 어쩔 수 없이, 객체 생성 시 빈을 등록 하면서 의존 관계 주입도 같이 일어나게 된다.
+* 하지만 setter 등은 스프링 빈의 두 번쨰 단계에서 의존관계 주입을 해준다.
+
+```JAVA
+@Component
+public class OrderServiceImpl implements OrderService {
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
+    
+    @Autowired
+    public void setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+    
+    @Autowired
+    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+    }
+}
+```
+
+> 참고: `@Autowired` 의 기본 동작은 주입할 대상이 없으면 오류가 발생한다. 주입할 대상이 없어도 동작하게 하려면 `@Autowired(required = false)` 로 지정하면 된다.
+
+
+#### 필드 주입
+* 이름 그대로 필드에 바로 주입하는 방법이다.
+* 코드가 간결해서 많은 개발자들을 유혹하지만 외부에서 변경이 불가능해서 테스트 하기 힘들다는 치명 적인 단점이 있다.
+* DI 프레임워크가 없으면 아무것도 할 수 없다.
+* 필드 주입은 애플리케이션의 실제 코드와 관계 없는 테스트 코드나, 스프링 설정을 목적으로 하는 @Configuration 같은 곳에서만 특별한 용도로 사용하자.
+
+```JAVA
+@Component
+public class OrderServiceImpl implements OrderService {
+    @Autowired
+    private MemberRepository memberRepository;
+    @Autowired
+    private DiscountPolicy discountPolicy;
+}
+```
+> 참고: 순수한 자바 테스트 코드에는 당연히 `@Autowired`가 동작하지 않는다. `@SpringBootTest` 처럼 스 프링 컨테이너를 테스트에 통합한 경우에만 가능하다.
+
+
+#### 일반 메소드 주입
+* 일반 메소드를 통해 주입받을 수 있다.
+* 한번에 여러 필드를 주입받을 수 있지만, 일반적으로 잘 사용하지 않는다.
+
+```JAVA
+@Component
+public class OrderServiceImpl implements OrderService {
+    private MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
+    
+    @Autowired
+    public void init(MemberRepository memberRepository, DiscountPolicy
+            discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+}
+```
+> 참고: 어쩌면 당연한 이야기이지만 의존관계 자동 주입은 스프링 컨테이너가 관리하는 스프링 빈이어야 동작한다. 스프링 빈이 아닌 `Member` 같은 클래스에서 `@Autowired` 코드를 적용해도 아무 기능도 동작하지 않는다.
