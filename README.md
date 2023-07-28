@@ -19,6 +19,7 @@
 [7일차 - BeanFactory와 Singleton Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day7.md)\
 [8일차 - 싱글톤 패턴의 문제점, 스프링의 싱글톤](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day8.md)\
 [9일차 - 컴포넌트 스캔과 필터, 의존관계 주입 방법 4가지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)\
+[10일차 - 의존관계 주입 옵션과 롬복, 빈을 특정하는 방법들, 빈 다형성 구현](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day10.md)
 
 
 ## NestJS
