@@ -20,7 +20,9 @@
 [8일차 - 싱글톤 패턴의 문제점, 스프링의 싱글톤](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day8.md)\
 [9일차 - 컴포넌트 스캔과 필터, 의존관계 주입 방법 4가지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)\
 [10일차 - 의존관계 주입 옵션과 롬복, 빈을 특정하는 방법들, 빈 다형성 구현](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day10.md)\
-[11일차 - 빈 생명주기 콜백(@PostConstruct, @PreDestroy)](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day11.md)
+[11일차 - 빈 생명주기 콜백(@PostConstruct, @PreDestroy)](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day11.md)\
+[12일차 - 빈 스코프란?](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day12.md)\
+[13일차 - 프로토타입 스코프와 문제점, 해결방법](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day13.md)
 
 
 
