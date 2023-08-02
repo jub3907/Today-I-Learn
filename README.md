@@ -9,21 +9,36 @@
 ## Spring
 
 ### Spring 입문과 핵심 원리 - 기본편
+* [스프링 입문](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/dashboard)
+* [핵심 원리 - 기본편](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard)
 
-[1일차 - JAVA 설치 및 프로젝트 생성, 빌드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day1.md)\
-[2일차 - 정적컨텐츠, MVC, API 개념과 간단한 회원관리 예제, 스프링 빈 등](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day2.md)\
-[3일차 - Jdbc, JPA, 스프링 데이터 JPA, AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day3.md)\
-[4일차 - 스프링의 역사와 핵심 개념, 다형성](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day4.md)\
-[5일차 - 객체 지향 설계, 회원 생성 및 주문 서비스 예제1](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day5.md)\
-[6일차 - 관심사의 분리 / DIP, OCP를 위한 AppConfig, 스프링 빈 조회](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day6.md)\
-[7일차 - BeanFactory와 Singleton Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day7.md)\
-[8일차 - 싱글톤 패턴의 문제점, 스프링의 싱글톤](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day8.md)\
-[9일차 - 컴포넌트 스캔과 필터, 의존관계 주입 방법 4가지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day9.md)\
-[10일차 - 의존관계 주입 옵션과 롬복, 빈을 특정하는 방법들, 빈 다형성 구현](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day10.md)\
-[11일차 - 빈 생명주기 콜백(@PostConstruct, @PreDestroy)](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day11.md)\
-[12일차 - 빈 스코프란?](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day12.md)\
-[13일차 - 프로토타입 스코프와 문제점, 해결방법](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day13.md)\
-[13일차 - 웹 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/day14.md)
+[1. JAVA 설치 및 스프링 프로젝트 생성](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/1.start.md)\
+[2. 객체 지향 설계와 스프링](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/2.oop-and-spring.md)\
+[3. 핵심 원리 이해를 위한 예제](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/3.practice1.md)\
+[4. 스프링 컨테이너와 스프링 빈](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/4.container-and-bean.md)\
+[5. 싱글톤 컨테이너](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/5.singleton.md)\
+[6. 컴포넌트 스캔](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/6.component-scan.md)\
+[7. 의존관계 자동 주입](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/7.automatic-di.md)\
+[8. 빈 생명주기 콜백](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/8.bean-lifecycle-callback.md)\
+[9. 빈 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/9.bean-scope.md)
+
+### TIL 일자 정리
+#### 스프링 입문, 스프링 핵심 원리 - 기본편
+
+[1일차 - JAVA 설치 및 프로젝트 생성, 빌드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day1.md)\
+[2일차 - 정적컨텐츠, MVC, API 개념과 간단한 회원관리 예제, 스프링 빈 등](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day2.md)\
+[3일차 - Jdbc, JPA, 스프링 데이터 JPA, AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day3.md)\
+[4일차 - 스프링의 역사와 핵심 개념, 다형성](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day4.md)\
+[5일차 - 객체 지향 설계, 회원 생성 및 주문 서비스 예제1](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day5.md)\
+[6일차 - 관심사의 분리 / DIP, OCP를 위한 AppConfig, 스프링 빈 조회](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day6.md)\
+[7일차 - BeanFactory와 Singleton Pattern](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day7.md)\
+[8일차 - 싱글톤 패턴의 문제점, 스프링의 싱글톤](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day8.md)\
+[9일차 - 컴포넌트 스캔과 필터, 의존관계 주입 방법 4가지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day9.md)\
+[10일차 - 의존관계 주입 옵션과 롬복, 빈을 특정하는 방법들, 빈 다형성 구현](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day10.md)\
+[11일차 - 빈 생명주기 콜백(@PostConstruct, @PreDestroy)](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day11.md)\
+[12일차 - 빈 스코프란?](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day12.md)\
+[13일차 - 프로토타입 스코프와 문제점, 해결방법](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day13.md)\
+[14일차 - 웹 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day14.md)
 
 
 

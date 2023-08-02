@@ -2,7 +2,6 @@
 
 ![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/bd5086db-1e1c-41b4-b773-0d6c256f34ac)
 
-
 #### BeanFactory
 * 스프링 컨테이너의 최상위 인터페이스.
 * 스프링 빈을 관리하고 조회하는 역할을 담당한다.
