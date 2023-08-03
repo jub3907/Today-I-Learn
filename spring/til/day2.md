@@ -1,6 +1,3 @@
-## Spring 강의 2일차 [링크](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/lecture/49576?tab=curriculum&speed=1.5)
-
-
 ### 웹 개발 방법
 * 정적 컨텐츠 : 파일을 그대로 웹 브라우저에 전달.
 * MVC / Template Engine : 서버에서 HTML파일을 변형해 내려주는 방식
