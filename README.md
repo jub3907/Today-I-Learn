@@ -6,11 +6,10 @@
 
 미흡한 부분을 보완한다.
 
-## Spring
-
 ### Spring 입문과 핵심 원리 - 기본편
-* [스프링 입문](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/dashboard)
-* [핵심 원리 - 기본편](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard)
+* 수강 강의
+    * [스프링 입문](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/dashboard)
+    * [핵심 원리 - 기본편](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard)
 
 [1. JAVA 설치 및 스프링 프로젝트 생성](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/1.start.md)\
 [2. 객체 지향 설계와 스프링](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/2.oop-and-spring.md)\
@@ -22,8 +21,15 @@
 [8. 빈 생명주기 콜백](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/8.bean-lifecycle-callback.md)\
 [9. 빈 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/9.bean-scope.md)
 
-### TIL 일자 정리
-#### 스프링 입문, 스프링 핵심 원리 - 기본편
+### HTTP
+* 수강 강의
+    * [HTTP 웹 기본 지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard)
+
+[1. 인터넷 네트워크](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/1.internet-network.md)\
+[2. URI와 웹 브라우저의 요청 흐름](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/2.URI-and-browser-request.md)
+
+## TIL 일자 정리
+### 스프링 입문, 스프링 핵심 원리 - 기본편
 
 [1일차 - JAVA 설치 및 프로젝트 생성, 빌드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day1.md)\
 [2일차 - 정적컨텐츠, MVC, API 개념과 간단한 회원관리 예제, 스프링 빈 등](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day2.md)\
@@ -39,6 +45,9 @@
 [12일차 - 빈 스코프란?](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day12.md)\
 [13일차 - 프로토타입 스코프와 문제점, 해결방법](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day13.md)\
 [14일차 - 웹 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day14.md)
+
+### HTTP 웹 기본 지식
+[15일차 - 인터넷 네트워크와 URI, 웹 브라우저 요청 흐름](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day15.md)
 
 
 
