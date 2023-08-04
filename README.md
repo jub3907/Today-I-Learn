@@ -27,7 +27,8 @@
 
 [1. 인터넷 네트워크](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/1.internet-network.md)\
 [2. URI와 웹 브라우저의 요청 흐름](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/2.uri-and-browser-request.md)\
-[3. HTTP 기초](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/3.http-basic.md)
+[3. HTTP 기초](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/3.http-basic.md)\
+[4. HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/4.http-method-and-practice.md)
 
 ## TIL 일자 정리
 ### 스프링 입문, 스프링 핵심 원리 - 기본편
@@ -48,7 +49,8 @@
 [14일차 - 웹 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day14.md)
 
 ### HTTP 웹 기본 지식
-[15일차 - 인터넷 네트워크와 URI, 웹 브라우저 요청 흐름, HTTP 기초](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day15.md)
+[15일차 - 인터넷 네트워크와 URI, 웹 브라우저 요청 흐름, HTTP 기초](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day15.md)\
+[16일차 - HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day16.md)
 
 
 
