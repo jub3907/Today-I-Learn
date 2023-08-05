@@ -28,7 +28,10 @@
 [1. 인터넷 네트워크](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/1.internet-network.md)\
 [2. URI와 웹 브라우저의 요청 흐름](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/2.uri-and-browser-request.md)\
 [3. HTTP 기초](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/3.http-basic.md)\
-[4. HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/4.http-method-and-practice.md)
+[4. HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/4.http-method-and-practice.md)\
+[5. HTTP 상태 코드](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/5.http-status-code.md)\
+[6. HTTP 헤더 1 - 일반 헤더](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/6.http-header-normal.md)\
+[7. HTTP 헤더 2 - 캐시와 조건부 요청](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/7.http-cache-and-optional-request.md)
 
 ## TIL 일자 정리
 ### 스프링 입문, 스프링 핵심 원리 - 기본편
@@ -50,7 +53,8 @@
 
 ### HTTP 웹 기본 지식
 [15일차 - 인터넷 네트워크와 URI, 웹 브라우저 요청 흐름, HTTP 기초](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day15.md)\
-[16일차 - HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day16.md)
+[16일차 - HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day16.md)\
+[17일차 - HTTP 상태 코드와 헤더, 캐시](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day17.md)
 
 
 
