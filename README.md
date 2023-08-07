@@ -33,6 +33,12 @@
 [6. HTTP 헤더 1 - 일반 헤더](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/6.http-header-normal.md)\
 [7. HTTP 헤더 2 - 캐시와 조건부 요청](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/7.http-cache-and-optional-request.md)
 
+### Spring MVC
+* 수강 강의
+    * [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
+
+[1. 웹 애플리케이션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/1.web-application.md)
+
 ## TIL 일자 정리
 ### 스프링 입문, 스프링 핵심 원리 - 기본편
 
@@ -56,7 +62,8 @@
 [16일차 - HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day16.md)\
 [17일차 - HTTP 상태 코드와 헤더, 캐시](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/til/day17.md)
 
-
+### 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
+[18일차 - 웹 애플리케이션의 이해와 서블릿, HttpServletRequest](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day18.md)
 
 ## NestJS
 
