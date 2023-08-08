@@ -38,6 +38,8 @@
     * [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
 
 [1. 웹 애플리케이션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/1.web-application.md)
+[2. 서블릿](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/2.servlet-basic.md)
+[3. 회원 관리 예제와 서블릿, JSP, MVC 패턴](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/3.example-and-mvc-pattern.md)
 
 ## TIL 일자 정리
 ### 스프링 입문, 스프링 핵심 원리 - 기본편
@@ -64,6 +66,7 @@
 
 ### 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
 [18일차 - 웹 애플리케이션의 이해와 서블릿, HttpServletRequest](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day18.md)
+[19일차 - HttpServletResponse와 회원 관리 웹 예제, MVC 패턴](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day19.md)
 
 ## NestJS
 
