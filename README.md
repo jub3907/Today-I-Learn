@@ -67,6 +67,7 @@
 ### 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
 [18일차 - 웹 애플리케이션의 이해와 서블릿, HttpServletRequest](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day18.md)
 [19일차 - HttpServletResponse와 회원 관리 웹 예제, MVC 패턴](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day19.md)
+[20일차 - MVC 프레임워크 예제 - 프론트 컨트롤러, View 분리, Model 추가](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day20.md)
 
 ## NestJS
 
