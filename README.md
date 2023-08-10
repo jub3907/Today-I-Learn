@@ -6,9 +6,9 @@
 
 미흡한 부분을 보완한다.
 
-### [TIL 일지 확인](https://github.com/jub3907/Today-I-Learn/blob/main/til.md)
+## [TIL 일지 확인](https://github.com/jub3907/Today-I-Learn/blob/main/til.md)
 
-### Spring 입문과 핵심 원리 - 기본편
+## Spring 입문과 핵심 원리 - 기본편
 * 수강 강의
     * [스프링 입문](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8/dashboard)
     * [핵심 원리 - 기본편](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard)
@@ -23,7 +23,7 @@
 [8. 빈 생명주기 콜백](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/8.bean-lifecycle-callback.md)\
 [9. 빈 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/9.bean-scope.md)
 
-### HTTP
+## HTTP
 * 수강 강의
     * [HTTP 웹 기본 지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard)
 
@@ -35,7 +35,7 @@
 [6. HTTP 헤더 1 - 일반 헤더](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/6.http-header-normal.md)\
 [7. HTTP 헤더 2 - 캐시와 조건부 요청](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/7.http-cache-and-optional-request.md)
 
-### Spring MVC
+## Spring MVC
 * 수강 강의
     * [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
 
@@ -46,11 +46,7 @@
 [5. 스프링 MVC 구조 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/5.spring-mvc.md)
 
 
-
-
-## NestJS
-
-### NestJS 초심찾기
+## NestJS 초심찾기
 
 [Controller](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/controller.md)\
 [Provider](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/provider.md)\
@@ -86,7 +82,7 @@
 [아폴로 클라이언트 Cache](https://github.com/jub3907/Today-I-Learn/blob/main/backend/apollo-caching.md)\
 [GraphQL Schema 설계시의 Antipattern들](https://github.com/jub3907/Today-I-Learn/blob/main/backend/gql-nest.md)
 
-### 개발 관련 지식들
+## 개발 관련 지식들
 
 [외부 API는 프론트, 백엔드 어디서 호출할까?](https://github.com/jub3907/Today-I-Learn/blob/main/develop/3rd_party_api_call.md)\
 [Nginx reverse proxy를 적용한 상태에서 SSL 적용](https://github.com/jub3907/Today-I-Learn/blob/main/develop/ssl.md)\
