@@ -25,4 +25,5 @@
 [18일차 - 웹 애플리케이션의 이해와 서블릿, HttpServletRequest](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day18.md)\
 [19일차 - HttpServletResponse와 회원 관리 웹 예제, MVC 패턴](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day19.md)\
 [20일차 - MVC 프레임워크 예제 - 프론트 컨트롤러, View 분리, Model 추가](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day20.md)\
-[21일차 - 실용적인 컨트롤러와 어댑터, 스프링 MVC 구조 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day21.md)
+[21일차 - 실용적인 컨트롤러와 어댑터, 스프링 MVC 구조 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day21.md)\
+[22일차 - 로깅과 HTTP 요청 파라미터 다루기](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day22.md)

@@ -1,0 +1,827 @@
+## 스프링 MVC 기본 기능 프로젝트
+### Welcome 페이지 생성
+이번 장에서 학습할 내용을 편리하게 참고하기 위해 Welcome페이지를 생성하자.
+
+우리는 스프링 부트에서 `Jar`로 프로젝트를 생성했다.\
+스프링 부트에 `Jar` 를 사용하면 `/resources/static/` 위치에 `index.html` 파일을 두면 `Welcome`\
+페이지로 처리해준다. (스프링 부트가 지원하는 정적 컨텐츠 위치에 `/index.html` 이 있으면 된다.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>로그 출력
+        <ul>
+            <li><a href="/log-test">로그 테스트</a></li>
+        </ul>
+    </li>
+    <!-- -->
+    <li>요청 매핑
+        <ul>
+            <li><a href="/hello-basic">hello-basic</a></li>
+            <li><a href="/mapping-get-v1">HTTP 메서드 매핑</a></li>
+            <li><a href="/mapping-get-v2">HTTP 메서드 매핑 축약</a></li>
+            <li><a href="/mapping/userA">경로 변수</a></li>
+            <li><a href="/mapping/users/userA/orders/100">경로 변수 다중</a></li>
+            <li><a href="/mapping-param?mode=debug">특정 파라미터 조건 매핑</a></li>
+            <li><a href="/mapping-header">특정 헤더 조건 매핑(POST MAN 필요)</a></
+            li>
+            <li><a href="/mapping-consume">미디어 타입 조건 매핑 Content-Type(POST
+                MAN 필요)</a></li>
+            <li><a href="/mapping-produce">미디어 타입 조건 매핑 Accept(POST MAN
+                필요)</a></li>
+        </ul>
+    </li>
+    <li>요청 매핑 - API 예시
+        <ul>
+            <li>POST MAN 필요</li>
+        </ul>
+    </li>
+    <li>HTTP 요청 기본
+        <ul>
+            <li><a href="/headers">기본, 헤더 조회</a></li>
+        </ul>
+    </li>
+    <li>HTTP 요청 파라미터
+        <ul>
+            <li><a href="/request-param-v1?username=hello&age=20">요청 파라미터
+                v1</a></li>
+            <li><a href="/request-param-v2?username=hello&age=20">요청 파라미터
+                v2</a></li>
+            <li><a href="/request-param-v3?username=hello&age=20">요청 파라미터
+                v3</a></li>
+            <li><a href="/request-param-v4?username=hello&age=20">요청 파라미터
+                v4</a></li>
+            <li><a href="/request-param-required?username=hello&age=20">요청
+                파라미터 필수</a></li>
+            <li><a href="/request-param-default?username=hello&age=20">요청
+                파라미터 기본 값</a></li>
+            <li><a href="/request-param-map?username=hello&age=20">요청 파라미터
+                MAP</a></li>
+            <li><a href="/model-attribute-v1?username=hello&age=20">요청 파라미터
+                @ModelAttribute v1</a></li>
+            <li><a href="/model-attribute-v2?username=hello&age=20">요청 파라미터
+                @ModelAttribute v2</a></li>
+        </ul>
+    </li>
+    <li>HTTP 요청 메시지
+        <ul>
+            <li>POST MAN</li>
+        </ul>
+    </li>
+    <li>HTTP 응답 - 정적 리소스, 뷰 템플릿
+        <ul>
+            <li><a href="/basic/hello-form.html">정적 리소스</a></li>
+            <li><a href="/response-view-v1">뷰 템플릿 v1</a></li>
+            <li><a href="/response-view-v2">뷰 템플릿 v2</a></li>
+        </ul>
+    </li>
+    <li>HTTP 응답 - HTTP API, 메시지 바디에 직접 입력
+        <ul>
+            <li><a href="/response-body-string-v1">HTTP API String v1</a></li>
+            <li><a href="/response-body-string-v2">HTTP API String v2</a></li>
+            <li><a href="/response-body-string-v3">HTTP API String v3</a></li>
+            <li><a href="/response-body-json-v1">HTTP API Json v1</a></li>
+            <li><a href="/response-body-json-v2">HTTP API Json v2</a></li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
+```
+
+> 참고. [스프링 부트 Welcome페이지 지원](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-bootfeatures.html#boot-features-spring-mvc-welcome-page)
+
+## 로깅
+
+앞으로 로그를 사용할 것이기 때문에, 이번시간에는 로그에 대해서 간단히 알아보자.
+
+운영 시스템에서는 System.out.println() 같은 시스템 콘솔을 사용해서 필요한 정보를 출력하지 않고,\
+별도의 로깅 라이브러리를 사용해서 로그를 출력한다.\
+참고로 로그 관련 라이브러리도 많고, 깊게 들어가면 끝이 없기 때문에, \
+여기서는 최소한의 사용 방법만 알아본다.
+
+
+### 로깅 라이브러리
+스프링 부트 라이브러리를 사용하면 스프링 부트 로깅 라이브러리(`spring-boot-starter-logging`)가\
+함께 포함된다.
+
+스프링 부트 로깅 라이브러리는 기본으로 다음 로깅 라이브러리를 사용한다.
+* SLF4J - http://www.slf4j.org
+* Logback - http://logback.qos.ch
+
+로그 라이브러리는 Logback, Log4J, Log4J2 등등 수 많은 라이브러리가 있는데, \
+그것을 통합해서 인터페이스로 제공하는 것이 바로 SLF4J 라이브러리다.\
+쉽게 이야기해서 SLF4J는 인터페이스이고, 그 구현체로 Logback 같은 로그 라이브러리를 선택하면 된다.\
+실무에서는 스프링 부트가 기본으로 제공하는 Logback을 대부분 사용한다.
+
+#### LogTestController
+```java
+// RestController : 기존 @Controller에서 문자를 반환하면 ViewName으로 사용하는걸 방지하기 위해 사용.
+// RestController를 사용하면 문자를 리턴할 때 진짜 문자가 반환된다.
+@RestController
+public class LogTestController {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
+    @RequestMapping("/log-test")
+    public String logTest() {
+        String name = "Spring";
+
+        // trace, debug는 applications.properties에서 설정해야 한다.
+        log.trace("trace log = {}", name);
+        log.debug("debug log = {}", name);
+
+        log.info("info log = {}", name);
+        log.warn("warn log = {}", name);
+        log.error("error log = {}", name);
+
+        return "ok";
+    }
+}
+```
+* `@RestController`
+  * `@Controller` 는 반환 값이 `String` 이면 뷰 이름으로 인식된다. 그래서 **뷰를 찾고 뷰가 랜더링** 된다.
+  * `@RestController` 는 반환 값으로 뷰를 찾는 것이 아니라, **HTTP 메시지 바디에 바로 입력**한다.\
+    따라서 실행 결과로 ok 메세지를 받을 수 있다. `@ResponseBody` 와 관련이 있는데, \
+    뒤에서 더 자세히 설명한다.
+
+* 로그가 출력되는 포맷
+  * 시간, 로그 레벨, 프로세스 ID, 쓰레드 명, 클래스 명, 로그 메세지
+* 로그 레벨
+  * 로그 레벨은 `Trace > DEBUG > INFO > WARN > ERROR`
+  * 일반적으로 개발 서버는 `DEBUG`레벨, 운영 서버는 `INFO` 레벨로 설정한다.
+  * 로그 레벨은 설정 정보에서 `logging.level.hello.springmvc = trace`를 사용해 설정한다.
+
+#### 로그 레벨 설정
+```java
+# application.properties
+#전체 로그 레벨 설정(기본 info)
+logging.level.root=info
+
+#hello.springmvc 패키지와 그 하위 로그 레벨 설정
+logging.level.hello.springmvc=debug
+
+```
+
+#### 올바른 로그 사용법
+* `log.debug("data="+data)`
+  * 로그 출력 레벨을 info로 설정해도 해당 코드에 있는 "data="+data가 실제 실행이 되어 버린다.\
+  결과적으로 문자 더하기 연산이 발생한다.
+* `log.debug("data={}", data)`
+  * 로그 출력 레벨을 info로 설정하면 아무일도 발생하지 않는다.\
+  따라서 앞과 같은 의미없는 연산이 발생하지 않는다.
+
+#### 로그 사용시 장점
+* 쓰레드 정보, 클래스 이름 같은 부가 정보를 함께 볼 수 있고, 출력 모양을 조정할 수 있다.
+* 로그 레벨에 따라 개발 서버에서는 모든 로그를 출력하고, \
+  운영서버에서는 출력하지 않는 등 로그를 상황에맞게 조절할 수 있다.
+* 시스템 아웃 콘솔에만 출력하는 것이 아니라, 파일이나 네트워크 등, 로그를 별도의 위치에 남길 수 있다.\
+  특히 파일로 남길 때는 일별, 특정 용량에 따라 로그를 분할하는 것도 가능하다.
+* 성능도 일반 System.out보다 좋다. (내부 버퍼링, 멀티 쓰레드 등등) \
+  그래서 실무에서는 꼭 로그를 사용해야 한다.
+
+
+## 요청 매핑
+
+### MappingController
+```java
+@RestController
+public class MappingController {
+    private Logger log = LoggerFactory.getLogger(getClass());
+    /**
+     * 기본 요청
+     * 둘다 허용 /hello-basic, /hello-basic/
+     * HTTP 메서드 모두 허용 GET, HEAD, POST, PUT, PATCH, DELETE
+     */
+    @RequestMapping("/hello-basic")
+    public String helloBasic() {
+        log.info("helloBasic");
+        return "ok";
+    }
+}
+```
+* `@RestController`
+  * `@Controller` 는 반환 값이 `String` 이면 뷰 이름으로 인식된다. 그래서 **뷰를 찾고 뷰가 랜더링** 된다.
+  * `@RestController` 는 반환 값으로 뷰를 찾는 것이 아니라, **HTTP 메시지 바디에 바로 입력**한다.\
+    따라서 실행 결과로 ok 메세지를 받을 수 있다. `@ResponseBody` 와 관련이 있는데, \
+    뒤에서 더 자세히 설명한다.
+
+* `@RequestMapping("/hello-basic")`
+  * `/hello-basic` URL 호출이 오면 이 메서드가 실행되도록 매핑한다.
+  * 대부분의 속성을 배열[] 로 제공하므로 다중 설정이 가능하다. `{"/hello-basic", "/hello-go"}`
+
+> **스프링 부트 3.0 이후**\
+> 스프링 부트 3.0 부터는 /hello-basic , /hello-basic/ 는 서로 다른 URL 요청을 사용해야 한다.\
+> 기존에는 마지막에 있는 / (slash)를 제거했지만, 스프링 부트 3.0 부터는 마지막의 / (slash)를 유지한다.\
+> 따라서 다음과 같이 다르게 매핑해서 사용해야 한다.\
+> 매핑: `/hello-basic` -> URL 요청: `/hello-basic`\
+> 매핑: `/hello-basic/` -> URL 요청: `/hello-basic/`\
+
+### HTTP 메소드
+`@RequestMapping` 에 `method `속성으로 HTTP 메서드를 지정하지 않으면 \
+HTTP 메서드와 무관하게 호출된다.
+```java
+@RequestMapping(value = "/mapping-get-v1", method = RequestMethod.GET)
+public String mappingGetV1() {
+    log.info("mappingGetV1");
+    return "ok";
+}
+```
+`/mapping-get-v1` 경로에 POST 요청을 보내면 오류가 발생하는걸 확인할 수 있다.\
+이는 아래와 같이 축약 애노테이션으로 사용 가능하다.
+
+```java
+// URL이 오면 요청이 호출된다.
+/**
+ * 편리한 축약 애노테이션 (코드보기)
+ * @GetMapping
+ * @PostMapping
+ * @PutMapping
+ * @DeleteMapping
+ * @PatchMapping
+ */
+//    @RequestMapping(value = "/hello-basic", method = RequestMethod.GET)
+@GetMapping("/hello-basic")
+public String helloBasic() {
+
+    log.info("helloBasic");
+    return "ok";
+}
+```
+HTTP 메서드를 축약한 애노테이션을 사용하는 것이 더 직관적이다. \
+코드를 보면 내부에서 `@RequestMapping` 과 `method` 를 지정해서 사용하는 것을 확인할 수 있다.
+
+### PathVariable 사용
+```java
+/**
+ * PathVariable 사용
+ * 변수명이 같으면 생략 가능
+ * @PathVariable("userId") String userId -> @PathVariable userId
+ * /mapping/userA
+ */
+@GetMapping("/mapping/{userId}")
+public String mappingPath(@PathVariable("userId") String data) {
+    log.info("mappingPath userId = {}", data);
+
+    return "ok";
+}
+```
+최근, HTTP API는 다음과 같이 리소스 경로 자체에 식별자를 넣는 스타일을 선호한다.
+
+* `/mapping/userA`
+* `/users/kim`
+
+`@RequestMapping`은 URL 경로를 템플릿화 할 수 있는데, \
+`@PathVariable` 을 사용하면 매칭 되는 부분을 편리하게 조회할 수 있다.
+
+또한 `@PathVariable` 의 이름과 파라미터 이름이 같으면 생략할 수 있다.
+
+### PathVariable 다중 사용
+```java
+/**
+ * PathVariable 사용 다중
+ */
+@GetMapping("/mapping/users/{userId}/orders/{orderId}")
+public String mappingPath(@PathVariable String userId, @PathVariable Long orderId) {
+    log.info("mappingPath userId={}, orderId={}", userId, orderId);
+    return "ok";
+}
+```
+
+### 특정 파라미터 조건 매핑
+```java
+
+/**
+ * 파라미터로 추가 매핑
+ * params="mode",
+ * params="!mode"
+ * params="mode=debug"
+ * params="mode!=debug" (! = )
+ * params = {"mode=debug","data=good"}
+ */
+// parameter에 mode=debug가 있어야만 실행한다.
+@GetMapping(value = "/mapping-param", params = "mode=debug")
+public String mappingParam() {
+    log.info("mappingParam");
+    return "ok";
+}
+```
+특정 파라미터가 존재하거나, 없어야만 하는 조건을 추가할 수 있다. 잘 사용하진 않는다.
+
+### 특정 헤더 조건 매핑
+```java
+
+/**
+ * 특정 헤더로 추가 매핑
+ * headers="mode",
+ * headers="!mode"
+ * headers="mode=debug"
+ * headers="mode!=debug" (! = )
+ */
+// header에 mode=debug 키-값 쌍이 있어야 한다.
+@GetMapping(value = "/mapping-header", headers = "mode=debug")
+public String mappingHeader() {
+    log.info("mappingHeader");
+    return "ok";
+}
+```
+파라미터 매핑과 비슷하지만, HTTP 헤더를 사용한다.
+
+### 미디어 타입 조건 매핑 - HTTP 요청 Content-Type, consume
+```java
+/**
+ * Content-Type 헤더 기반 추가 매핑 Media Type
+ * consumes="application/json"
+ * consumes="!application/json"
+ * consumes="application/*"
+ * consumes="*\/*"
+ * MediaType.APPLICATION_JSON_VALUE
+ */
+// 미디어 타입에 따라 매핑, consumes를 사용해야 한다.
+// 컨트롤러 입장에선 Content-type을 소비하는 입장이기 때문에, consume이다.
+// PostMapping인걸 주의!
+@PostMapping(value = "/mapping-consume", consumes = "application/json")
+public String mappingConsumes() {
+    log.info("mappingConsumes");
+    return "ok";
+}
+```
+HTTP 요청의 Content-Type 헤더를 기반으로 미디어 타입으로 매핑한다.\
+만약 맞지 않으면 HTTP 415 상태코드(Unsupported Media Type)을 반환한다.
+
+### 미디어 타입 조건 매핑 - HTTP 요청 Accept, produce
+```java
+/**
+ * Accept 헤더 기반 Media Type
+ * produces = "text/html"
+ * produces = "!text/html"
+ * produces = "text/*"
+ * produces = "*\/*"
+ */
+@PostMapping(value = "/mapping-produce", produces = "text/html")
+public String mappingProduces() {
+    log.info("mappingProduces");
+    return "ok";
+}
+```
+HTTP 요청의 Accept 헤더를 기반으로 미디어 타입으로 매핑한다.\
+만약 맞지 않으면 HTTP 406 상태코드(Not Acceptable)을 반환한다
+
+## 요청 매핑, API 예시
+회원 관리를 HTTP API로 만든다 생각하고 매핑을 어떻게 하는지 알아보자.
+
+### 회원 관리 API
+회원 목록 조회: GET   `/users`\
+회원 등록:     POST   `/users`\
+회원 조회:     GET    `/users/{userId}`\
+회원 수정:     PATCH  `/users/{userId}`\
+회원 삭제:     DELETE `/users/{userId}`
+
+### MappingClassController
+```java
+@RestController
+@RequestMapping("/mapping/users")
+public class MappingClassController {
+
+    /**
+     * 회원 목록 조회  GET    /users
+     * 회원 등록      POST   /users
+     * 회원 조회      GET    /users/{userId}
+     * 회원 수정      PATCH  /users/{userId}
+     * 회원 삭제      DELETE /users/{userId}
+     */
+
+    @GetMapping
+    public String user() {
+        return "get users";
+    }
+
+    @PostMapping
+    public String addUser() {
+        return "post user";
+    }
+
+    @GetMapping("/{userId}")
+    public String findUser(@PathVariable String userId) {
+        return "get userId = " + userId;
+    }
+
+    @PatchMapping("/{userId}")
+    public String updateUser(@PathVariable String userId) {
+        return "update userId = " + userId;
+    }
+
+    @DeleteMapping("/{userId}")
+    public String deleteUser(@PathVariable String userId) {
+        return "delete userId = " + userId;
+    }
+}
+```
+* `@RequestMapping("/mapping/users")`
+  * 클래스 레벨에 매핑 정보를 두면 메서드 레벨에서 해당 정보를 조합해서 사용한다
+
+이제 매핑 방법을 이해했으니, 이제부터 HTTP 요청이 보내는 데이터를 \
+스프링 MVC로 어떻게 조회하는지 알아보자.
+
+## HTTP 요청 - 기본, 헤더 조회
+애노테이션 기반의 스프링 컨트롤러는 다양한 파라미터를 지원한다.\
+이번 시간에는 HTTP 헤더 정보를 조회하는 방법을 알아보자.
+
+### RequestHeaderController
+```java
+@Slf4j
+@RestController
+public class RequestHeaderController {
+
+    @RequestMapping("/headers")
+    public String headers(HttpServletRequest request,
+                          HttpServletResponse response,
+                          HttpMethod httpMethod,
+                          Locale locale,
+                          // multiValuemap : Map이랑 유사하지만, 하나의 키에 여러 값을 받을 수 있다.
+                          @RequestHeader MultiValueMap<String, String> headerMap,
+                          @RequestHeader("host") String host,
+                          @CookieValue(value = "myCookie", required = false) String cookie
+                          ) {
+
+        log.info("request={}", request);
+        log.info("response={}", response);
+        log.info("httpMethod={}", httpMethod);
+        log.info("locale={}", locale);
+        log.info("headerMap={}", headerMap);
+        log.info("header host={}", host);
+        log.info("myCookie={}", cookie);
+        return "ok";
+    }
+}
+```
+* `HttpServletRequest`
+* `HttpServletResponse`
+* `HttpMethod` : HTTP 메서드를 조회한다. `org.springframework.http.HttpMethod`
+* `Locale` : Locale 정보를 조회한다.
+* `@RequestHeader MultiValueMap<String, String> headerMap`
+    * 모든 HTTP 헤더를 MultiValueMap 형식으로 조회한다.
+* `@RequestHeader("host") String host`
+    * 특정 HTTP 헤더를 조회한다.
+    * 속성
+        * 필수 값 여부: `required`
+        * 기본 값 속성: `defaultValue`
+* `@CookieValue(value = "myCookie", required = false) String cookie`
+    * 특정 쿠키를 조회한다.
+    * 속성
+        * 필수 값 여부: `required`
+        * 기본 값: `defaultValue`
+
+#### MultivalueMap
+MAP과 유사한데, 하나의 키에 여러 값을 받을 수 있다.\
+HTTP header, HTTP 쿼리 파라미터와 같이 하나의 키에 여러 값을 받을 때 사용한다.\
+`keyA=value1&keyA=value2`
+
+```java
+MultiValueMap<String, String> map = new LinkedMultiValueMap();
+map.add("keyA", "value1");
+map.add("keyA", "value2");
+
+//[value1,value2]
+List<String> values = map.get("keyA");
+```
+
+> @Conroller 의 사용 가능한 파라미터 목록은 다음 공식 메뉴얼에서 확인할 수 있다.\
+> https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-annarguments
+
+> @Conroller 의 사용 가능한 응답 값 목록은 다음 공식 메뉴얼에서 확인할 수 있다.
+> https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-annreturn-types
+
+## HTTP 요청 파라미터 - 쿼리 파라미터, HTML Form
+서블릿에서 학습했던 HTTP 요청 데이터를 조회 하는 방법을 다시 떠올려보자. \
+그리고 서블릿으로 학습했던 내용을 스프링이 얼마나 깔끔하고 효율적으로 바꾸어주는지 알아보자.
+
+HTTP 요청 메시지를 통해 클라이언트에서 서버로 데이터를 전달하는 방법을 알아보자.
+
+**클라이언트에서 서버로 요청 데이터를 전달할 때는 주로 다음 3가지 방법을 사용한다.**
+
+* **GET** - 쿼리 파라미터
+    * /url**?username=hello&age=20**
+    * 메시지 바디 없이, URL의 쿼리 파라미터에 데이터를 포함해서 전달
+    * 예) 검색, 필터, 페이징등에서 많이 사용하는 방식
+* **POST** - HTML Form
+    * content-type: application/x-www-form-urlencoded
+    * 메시지 바디에 쿼리 파리미터 형식으로 전달 username=hello&age=20
+    * 예) 회원 가입, 상품 주문, HTML Form 사용
+* **HTTP message body**에 데이터를 직접 담아서 요청
+    * HTTP API에서 주로 사용, JSON, XML, TEXT
+    * 데이터 형식은 주로 JSON 사용
+    * POST, PUT, PATCH
+
+### 요청 파라미터 - 쿼리 파라미터, HTML Form
+#### GET, 쿼리 파라미터 전송
+`http://localhost:8080/request-param?username=hello&age=20`
+#### POST, HTML Form 전송
+```http
+POST /request-param ...
+content-type: application/x-www-form-urlencoded
+username=hello&age=20
+```
+
+GET 쿼리 파리미터 전송 방식이든, POST HTML Form 전송 방식이든 \
+둘다 형식이 같으므로 구분없이 조회할 수 있다.\
+이것을 간단히 **요청 파라미터(request parameter) 조회**라 한다.
+
+지금부터 스프링으로 요청 파라미터를 조회하는 방법을 단계적으로 알아보자
+
+### RequestParamController
+```java
+@Slf4j
+@Controller
+public class RequestParamController {
+
+    @RequestMapping("/request-param-v1")
+    public void requestParamV1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String username = request.getParameter("username");
+        int age = Integer.parseInt(request.getParameter("age"));
+
+        log.info("username = {}, age = {}", username, age);
+
+        response.getWriter().write("ok");
+    }
+
+}
+```
+쿼리 파라미터를 포함한 요청을 보내 보면, 정상적으로 작동하는걸 볼 수 있다.
+
+### Post Form 페이지 생성
+먼저, 테스트용 HTML Form을 만들어야 한다.\
+리소스는 `/resources/static` 아래에 두면 스프링 부트가 자동으로 인식한다.
+
+`main/resources/static/basic/hello-form.html`
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/request-param-v1" method="post">
+    username: <input type="text" name="username" />
+    age: <input type="text" name="age" />
+    <button type="submit">전송</button>
+</form>
+</body>
+</html>
+```
+Form의 데이터가 정상적으로 전달되는걸 확인할 수 있다.
+
+> Jar를 사용하면 `webapp` 경로를 사용할 수 없다.\
+> 이제 정적 리소스도 클래스 경로에 함께 포함해야 한다.
+
+
+## HTTP 요청 파라미터 - @RequestParam
+스프링이 제공하는 `@RequestParam`을 사용하면 요청 파라미터를 매우 편리하게 사용할 수 있다.
+### requestParamV2
+```java
+// ok인 문자를 반환하려면 @RestController를 사용해도 되지만,
+// 메소드에 @ResponseBody 애노테이션을 사용해도 된다.
+@ResponseBody
+@RequestMapping("/request-param-v2")
+public String requestParamV2(
+        @RequestParam("username") String memberName,
+        @RequestParam("age") int age
+) {
+
+    log.info("username = {}, age = {}", memberName, age);
+
+    return "ok";
+}
+```
+* `@RequestParam` : 파라미터 이름으로 바인딩
+* `@ResponseBody` : View 조회를 무시하고, HTTP message body에 직접 해당 내용 입력
+
+### requestParamV3
+
+```java
+// 요청 파라미터의 이름과 변수명이 같다면, @RequestParam의 매개변수를 없앨 수 있다.
+@ResponseBody
+@RequestMapping("/request-param-v3")
+public String requestParamV3(
+        @RequestParam String username,
+        @RequestParam int age
+) {
+
+    log.info("username = {}, age = {}", username, age);
+
+    return "ok";
+}
+```
+HTTP 파라미터 이름이 변수 이름과 같으면 `@RequestParam(name="xx")` 생략 가능
+
+### requestParamV4
+```java
+// 사실, 요청 파라미터와 변수명이 같은 경우 @RequestParam을 쓰지 않아도 된다.
+@ResponseBody
+@RequestMapping("/request-param-v4")
+public String requestParamV4(String username, int age) {
+
+    log.info("username = {}, age = {}", username, age);
+
+    return "ok";
+}
+```
+String , int , Integer 등의 단순 타입이면 `@RequestParam` 도 생략 가능하다.
+
+> @RequestParam 애노테이션을 생략하면 스프링 MVC는 내부에서 required=false 를 적용한다.\
+> required 옵션은 바로 다음에 설명한다.
+
+> 이렇게 애노테이션을 완전히 생략해도 되는데, 너무 없는 것도 약간 과하다는 주관적 생각이 있다.\
+> @RequestParam 이 있으면 명확하게 요청 파리미터에서 데이터를 읽는 다는 것을 알 수 있다.
+
+
+### 파라미터 필수 여부 - requestParamRequired
+```java
+/**
+     * @RequestParam.required
+     * /request-param-required -> username이 없으므로 예외
+     *
+     * /request-param-required?username= -> 빈문자로 통과
+     *
+     * /request-param-required
+     * int age -> null을 int에 입력하는 것은 불가능,
+     * 따라서 Integer 변경해야 함(또는 다음에 나오는 defaultValue 사용)
+     */
+    @ResponseBody
+    @RequestMapping("/request-param-required")
+    public String requestParamRequired(
+//            @RequestParam(required = true) String username,
+//            @RequestParam(required = false) int age
+            @RequestParam(required = false) String username,
+            @RequestParam(required = true) int age
+    ) {
+
+        log.info("username = {}, age = {}", username, age);
+
+        return "ok";
+    }
+```
+* `@RequestParam.required`
+  * 파라미터 필수 여부
+  * 기본값이 파라미터 필수( true )이다.
+* `/request-param` 요청
+  * username 이 없으므로 400 예외가 발생한다.
+
+> 주의! - 파라미터 이름만 사용\
+> `/request-param?username=`\
+> 파라미터 이름만 있고 값이 없는 경우 빈문자로 통과
+
+> 주의! - 기본형(primitive)에 null 입력\
+> `/request-param` 요청\
+> `@RequestParam(required = false) int age`
+
+null 을 int 에 입력하는 것은 불가능(500 예외 발생)\
+따라서 null 을 받을 수 있는 Integer 로 변경하거나, 또는 다음에 나오는 defaultValue 사용
+
+
+### 기본 값 적용 - requestParamDefault
+```java
+/**
+ * @RequestParam
+ * - defaultValue 사용
+ *
+ * 참고: defaultValue는 빈 문자의 경우에도 적용
+ * /request-param-default?username=
+ * -> username=guest
+ */
+@ResponseBody
+@RequestMapping("/request-param-default")
+public String requestParamDefault(
+        @RequestParam(required = true, defaultValue = "guest") String username,
+        @RequestParam(required = false, defaultValue = "-1") int age
+) {
+    log.info("username={}, age={}", username, age);
+    return "ok";
+}
+```
+파라미터에 값이 없는 경우 `defaultValue` 를 사용하면 기본 값을 적용할 수 있다.\
+이미 기본 값이 있기 때문에 `required` 는 의미가 없다.
+
+`defaultValue` 는 빈 문자의 경우에도 설정한 기본 값이 적용된다.\
+`/request-param-default?username=` -> `username = guest`
+
+### 파라미터를 Map으로 조회하기 - requestParamMap
+```java
+/**
+ * @RequestParam Map, MultiValueMap
+ * Map(key=value)
+ * MultiValueMap(key=[value1, value2, ...]) ex) (key=userIds, value=[id1, id2])
+ */
+@ResponseBody
+@RequestMapping("/request-param-map")
+public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
+    log.info("username={}, age={}",
+            paramMap.get("username"),
+            paramMap.get("age")
+    );
+    return "ok";
+}
+```
+파라미터를 Map, MultiValueMap으로 조회할 수 있다.
+* `@RequestParam Map`
+  * `Map(key=value)`
+* @`RequestParam MultiValueMap`
+  * `MultiValueMap(key=[value1, value2, ...] ex) (key=userIds, value=[id1, id2])`
+
+파라미터의 값이 1개가 확실하다면 Map 을 사용해도 되지만, 그렇지 않다면 MultiValueMap 을 사용하자.
+
+
+## HTTP 요청 파라미터 - @ModelAttribute
+
+실제 개발을 하면 요청 파라미터를 받아서 필요한 객체를 만들고 그 객체에 값을 넣어주어야 한다. \
+보통 다음과 같이 코드를 작성할 것이다.
+```java
+@RequestParam String username;
+@RequestParam int age;
+
+HelloData data = new HelloData();
+data.setUsername(username);
+data.setAge(age);
+```
+스프링은 이 과정을 완전히 자동화해주는 @ModelAttribute 기능을 제공한다.\
+먼저 요청 파라미터를 바인딩 받을 객체를 만들자.
+
+### HelloData
+```java
+// Getter, Setter 등을 자동으로 만들어둠.
+@Data
+public class HelloData {
+    private String username;
+    private int age;
+}
+
+```
+롬복 라이브러리의 `@Data`를 사용하면 `@Getter`, `@Setter`, `@ToString` 등을 자동으로 적용해준다.
+
+### @ModelAttribute 적용 - modelAttributeV1
+```java
+/**
+ * @ModelAttribute 사용
+ * 참고: model.addAttribute(helloData) 코드도 함께 자동 적용됨,
+ * 뒤에 model을 설명할 때 자세히 설명
+ */
+@ResponseBody
+@RequestMapping("/model-attribute-v1")
+public String ModelAttributeV1(@ModelAttribute HelloData helloData) {
+    log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+
+    return "ok";
+}
+```
+마치 마법처럼 HelloData 객체가 생성되고, 요청 파라미터의 값도 모두 들어가 있다.\
+스프링MVC는 @ModelAttribute 가 있으면 다음을 실행한다.
+* HelloData 객체를 생성한다.
+* 요청 파라미터의 이름으로 HelloData 객체의 프로퍼티를 찾는다. \
+  그리고 해당 프로퍼티의 setter를 호출해서 파라미터의 값을 입력(바인딩) 한다.
+* 예) 파라미터 이름이 username 이면 setUsername() 메서드를 찾아서 호출하면서 값을 입력한다.
+
+#### 프로퍼티
+객체에 `getUsername()` , `setUsername()` 메서드가 있으면, \
+이 객체는 `username` 이라는 프로퍼티를가지고 있다.
+
+`username` 프로퍼티의 값을 변경하면 `setUsername()` 이 호출되고, 조회하면 `getUsername()` 이 호출된다.
+```
+class HelloData {
+ getUsername();
+ setUsername();
+}
+```
+#### 바인딩 오류
+`age=abc` 처럼 숫자가 들어가야 할 곳에 문자를 넣으면 `BindException` 이 발생한다. \
+이런 바인딩 오류를 처리하는 방법은 검증 부분에서 다룬다
+
+
+###
+```java
+/**
+ * @ModelAttribute 생략 가능
+ * String, int 같은 단순 타입 = @RequestParam을 사용한다.
+ * argument resolver(HttpServletRequest 등)로 지정해둔 타입 외 = @ModelAttribute를 사용한다.
+ */
+@ResponseBody
+@RequestMapping("/model-attribute-v2")
+public String ModelAttributeV2(HelloData helloData) {
+    log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+
+    return "ok";
+}
+```
+`@ModelAttribute` 는 생략할 수 있다.\
+그런데 `@RequestParam` 도 생략할 수 있으니 혼란이 발생할 수 있다.
+
+스프링은 해당 생략시 다음과 같은 규칙을 적용한다.
+* `String`, `int`, `Integer` 같은 단순 타입 = `@RequestParam`
+* 나머지 = `@ModelAttribute` (argument resolver 로 지정해둔 타입 외)
+
