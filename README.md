@@ -43,7 +43,10 @@
 [2. 서블릿](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/2.servlet-basic.md)\
 [3. 회원 관리 예제와 서블릿, JSP, MVC 패턴](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/3.example-and-mvc-pattern.md)\
 [4. MVC 프레임워크 만들기](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/4.make-mvc-framework.md)\
-[5. 스프링 MVC 구조 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/5.spring-mvc.md)
+[5. 스프링 MVC 구조 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/5.spring-mvc.md)\
+[6. 스프링 기본 기능 - 로깅과 요청](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/6.mvc-basic-function-logging-and-request.md)\
+[7. 스프링 기본 기능 - 응답과 요청 매핑 핸들러 어댑터 구조](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/7.mvc-basic-function-response-and-handler-adapter-structure.md)
+
 
 
 ## NestJS 초심찾기
