@@ -38,6 +38,7 @@
 ## Spring MVC
 * 수강 강의
     * [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
+* [목차](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/index.md)
 
 [1. 웹 애플리케이션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/1.web-application.md)\
 [2. 서블릿](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/2.servlet-basic.md)\
