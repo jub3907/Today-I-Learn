@@ -29,3 +29,6 @@
 [22일차 - 로깅과 HTTP 요청 파라미터 다루기](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day22.md)\
 [23일차 - HTTP 요청 메세지와 응답, 요청 매핑 핸들러 어댑터 구조](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day23.md)\
 [24일차 - 스프링 MVC 1편 마무리, 웹페이지 예제](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day24.md)
+
+### 스프링 MVC 2편 - 백엔드 웹 개발 활용 기술
+[25일차 - 타임리프의 기본 기능](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day25.md)

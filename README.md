@@ -23,19 +23,8 @@
 [8. 빈 생명주기 콜백](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/8.bean-lifecycle-callback.md)\
 [9. 빈 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/9.bean-scope.md)
 
-## HTTP
-* 수강 강의
-    * [HTTP 웹 기본 지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard)
 
-[1. 인터넷 네트워크](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/1.internet-network.md)\
-[2. URI와 웹 브라우저의 요청 흐름](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/2.uri-and-browser-request.md)\
-[3. HTTP 기초](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/3.http-basic.md)\
-[4. HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/4.http-method-and-practice.md)\
-[5. HTTP 상태 코드](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/5.http-status-code.md)\
-[6. HTTP 헤더 1 - 일반 헤더](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/6.http-header-normal.md)\
-[7. HTTP 헤더 2 - 캐시와 조건부 요청](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/7.http-cache-and-optional-request.md)
-
-## Spring MVC
+## Spring MVC 1
 * 수강 강의
     * [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
 * [목차](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/index.md)
@@ -49,7 +38,23 @@
 [7. 스프링 기본 기능 - 응답과 요청 매핑 핸들러 어댑터 구조](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/7.mvc-basic-function-response-and-handler-adapter-structure.md)\
 [8. 스프링 MVC 마무리, 웹페이지 예제](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/8.web-page-example.md)
 
+## Spring MVC 2
+* 수강 강의
+    * [스프링 MVC 2편 - 백엔드 웹 개발 활용 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
 
+[1. 타임 리프의 기본 기능](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/1.thymeleaf-basic-function.md)
+
+## HTTP
+* 수강 강의
+    * [HTTP 웹 기본 지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard)
+
+[1. 인터넷 네트워크](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/1.internet-network.md)\
+[2. URI와 웹 브라우저의 요청 흐름](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/2.uri-and-browser-request.md)\
+[3. HTTP 기초](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/3.http-basic.md)\
+[4. HTTP 메소드와 활용](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/4.http-method-and-practice.md)\
+[5. HTTP 상태 코드](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/5.http-status-code.md)\
+[6. HTTP 헤더 1 - 일반 헤더](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/6.http-header-normal.md)\
+[7. HTTP 헤더 2 - 캐시와 조건부 요청](https://github.com/jub3907/Today-I-Learn/blob/main/HTTP/basic/7.http-cache-and-optional-request.md)
 
 
 
