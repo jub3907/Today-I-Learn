@@ -32,3 +32,4 @@
 
 ### 스프링 MVC 2편 - 백엔드 웹 개발 활용 기술
 [25일차 - 타임리프의 기본 기능](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day25.md)
+[26일차 - 타임리프가 스프링과 통합하는 여러 기능 - 입력 폼 처리와 여러 태그 사용법](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day26.md)
