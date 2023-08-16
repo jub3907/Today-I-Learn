@@ -43,7 +43,8 @@
     * [스프링 MVC 2편 - 백엔드 웹 개발 활용 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
 
 [1. 타임 리프의 기본 기능](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/1.thymeleaf-basic-function.md)\
-[2. 타임 리프의 스프링 통합과 폼](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/2.thymeleaf-spring-integration-and-form.md)
+[2. 타임 리프의 스프링 통합과 폼](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/2.thymeleaf-spring-integration-and-form.md)\
+[3. 스프링의 메세지와 국제화](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/3.message-and-global.md)
 
 ## HTTP
 * 수강 강의
