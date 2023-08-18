@@ -44,7 +44,9 @@
 
 [1. 타임 리프의 기본 기능](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/1.thymeleaf-basic-function.md)\
 [2. 타임 리프의 스프링 통합과 폼](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/2.thymeleaf-spring-integration-and-form.md)\
-[3. 스프링의 메세지와 국제화](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/3.message-and-global.md)
+[3. 스프링의 메세지와 국제화](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/3.message-and-global.md)\
+[4. 검증 1. Validation](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/4.validation.md)\
+[5. 검증 2. Bean Validation과 Form 전송 객체 분리](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/5.bean-validation.md)
 
 ## HTTP
 * 수강 강의
