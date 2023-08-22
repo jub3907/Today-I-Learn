@@ -47,7 +47,9 @@
 [3. 스프링의 메세지와 국제화](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/3.message-and-global.md)\
 [4. 검증 1. Validation](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/4.validation.md)\
 [5. 검증 2. Bean Validation과 Form 전송 객체 분리](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/5.bean-validation.md)\
-[6. 로그인 처리, 쿠키와 세션](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/6.login-cookie-session.md)
+[6. 로그인 처리, 쿠키와 세션](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/6.login-cookie-session.md)\
+[7. 로그인 처리, 필터와 인터셉터](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/7.login-filter-interceptor.md)\
+[8. 예외 처리와 오류 페이지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/8.error-and-error-page.md)
 
 ## HTTP
 * 수강 강의
