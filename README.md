@@ -36,7 +36,8 @@
 [5. 스프링 MVC 구조 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/5.spring-mvc.md)\
 [6. 스프링 기본 기능 - 로깅과 요청](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/6.mvc-basic-function-logging-and-request.md)\
 [7. 스프링 기본 기능 - 응답과 요청 매핑 핸들러 어댑터 구조](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/7.mvc-basic-function-response-and-handler-adapter-structure.md)\
-[8. 스프링 MVC 마무리, 웹페이지 예제](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/8.web-page-example.md)
+[8. 스프링 MVC 마무리, 웹페이지 예제](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/8.web-page-example.md)\
+[9. API의 예외 처리](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc1/9.api-exception.md)
 
 ## Spring MVC 2
 * 수강 강의

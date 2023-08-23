@@ -38,4 +38,5 @@
 [29일차 - Validator 분리 방법과 Bean Validation, Form 전송 객체 분리](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day29.md)\
 [30일차 - 로그인 유지를 위한 쿠키와 세션](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day30.md)\
 [31일차 - 로그인 유지를 위한 필터와 인터셉터 1](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day31.md)\
-[32일차 - 필터와 인터셉터 마무리, 예외 처리와 오류 페이지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day32.md)
+[32일차 - 필터와 인터셉터 마무리, 예외 처리와 오류 페이지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day32.md)\
+[33일차 - API 예외 처리](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day33.md)
