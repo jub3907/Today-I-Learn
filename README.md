@@ -50,7 +50,10 @@
 [5. 검증 2. Bean Validation과 Form 전송 객체 분리](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/5.bean-validation.md)\
 [6. 로그인 처리, 쿠키와 세션](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/6.login-cookie-session.md)\
 [7. 로그인 처리, 필터와 인터셉터](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/7.login-filter-interceptor.md)\
-[8. 예외 처리와 오류 페이지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/8.error-and-error-page.md)
+[8. 예외 처리와 오류 페이지](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/8.error-and-error-page.md)\
+[9. API의 예외 처리](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/9.api-exception.md)\
+[10. 스프링 타입 컨버터](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/10.type-converter.md)\
+[11. 파일 업로드와 다운로드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/11.file-upload.md)
 
 ## HTTP
 * 수강 강의
