@@ -42,3 +42,6 @@
 [33일차 - API 예외 처리](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day33.md)\
 [34일차 - 스프링 타입 컨버터 1](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day34.md)\
 [35일차 - 스프링 타입 컨버터 2, 파일 업로드와 다운로드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day35.md)
+
+### DB
+[36일차 - DB 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day36.md)

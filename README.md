@@ -55,6 +55,13 @@
 [10. 스프링 타입 컨버터](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/10.type-converter.md)\
 [11. 파일 업로드와 다운로드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/11.file-upload.md)
 
+## DB
+* 수강 강의
+    * [시니어 백엔드 개발자가 알려주는 데이터베이스 개론 & SQL](https://www.inflearn.com/course/%EB%B0%B1%EC%97%94%EB%93%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EA%B0%9C%EB%A1%A0/dashboard)
+
+[1. 데이터베이스 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/1.basic.md)\
+[2. relation과 키](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/2.relation-and-key.md)
+
 ## HTTP
 * 수강 강의
     * [HTTP 웹 기본 지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard)
