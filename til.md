@@ -44,4 +44,5 @@
 [35일차 - 스프링 타입 컨버터 2, 파일 업로드와 다운로드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day35.md)
 
 ### DB
-[36일차 - DB 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day36.md)
+[36일차 - DB 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day36.md)\
+[37일차 - 데이터베이스 생성 및 데이터 추가, 수정, 삭제](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day37.md)

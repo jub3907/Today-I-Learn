@@ -60,7 +60,9 @@
     * [시니어 백엔드 개발자가 알려주는 데이터베이스 개론 & SQL](https://www.inflearn.com/course/%EB%B0%B1%EC%97%94%EB%93%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EA%B0%9C%EB%A1%A0/dashboard)
 
 [1. 데이터베이스 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/1.basic.md)\
-[2. relation과 키](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/2.relation-and-key.md)
+[2. relation과 키](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/2.relation-and-key.md)\
+[3. 데이터베이스와 테이블 생성, PK, FK](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/3.create-database-and-table.md)\
+[4. 데이터 조회, 수정, 삭제, where](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/4.insert-update-delete.md)
 
 ## HTTP
 * 수강 강의
