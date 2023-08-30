@@ -62,7 +62,12 @@
 [1. 데이터베이스 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/1.basic.md)\
 [2. relation과 키](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/2.relation-and-key.md)\
 [3. 데이터베이스와 테이블 생성, PK, FK](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/3.create-database-and-table.md)\
-[4. 데이터 조회, 수정, 삭제, where](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/4.insert-update-delete.md)
+[4. 데이터 수정, 삭제, where](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/4.insert-update-delete.md)\
+[5. 데이터 조회, subquery](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/5.select-and-subquery.md)\
+[6. null과 three-valued logic, unknown](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/6.null-and-3-valued-logic.md)\
+[7. join을 사용한 테이블 병합](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/7.join.md)\
+[8. 정렬과 그룹화](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/8.sort-and-grouping.md)
+
 
 ## HTTP
 * 수강 강의

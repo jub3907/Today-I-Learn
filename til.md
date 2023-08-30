@@ -45,4 +45,5 @@
 
 ### DB
 [36일차 - DB 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day36.md)\
-[37일차 - 데이터베이스 생성 및 데이터 추가, 수정, 삭제](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day37.md)
+[37일차 - 데이터베이스 생성 및 데이터 추가, 수정, 삭제](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day37.md)\
+[38일차 - SELECT, NULL, three-valued logic, join, sort and grouping](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day38.md)
