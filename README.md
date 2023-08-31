@@ -66,7 +66,8 @@
 [5. 데이터 조회, subquery](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/5.select-and-subquery.md)\
 [6. null과 three-valued logic, unknown](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/6.null-and-3-valued-logic.md)\
 [7. join을 사용한 테이블 병합](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/7.join.md)\
-[8. 정렬과 그룹화](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/8.sort-and-grouping.md)
+[8. 정렬과 그룹화](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/8.sort-and-grouping.md)\
+[8. store과 trigger 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/9.store-and-trigger-basic.md)
 
 
 ## HTTP
