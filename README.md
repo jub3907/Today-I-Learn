@@ -67,7 +67,15 @@
 [6. null과 three-valued logic, unknown](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/6.null-and-3-valued-logic.md)\
 [7. join을 사용한 테이블 병합](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/7.join.md)\
 [8. 정렬과 그룹화](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/8.sort-and-grouping.md)\
-[8. store과 trigger 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/9.store-and-trigger-basic.md)
+[9. store과 trigger 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/9.store-and-trigger-basic.md)
+
+## Spring DB
+* 수강 강의
+    * [스프링 DB 1편 - 데이터 접근 핵심 원리](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1/dashboard)
+
+[1. JDBC의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/1.jdbc.md)\
+[2. 커넥션 풀과 데이터소스의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/2.connection-pool-and-datasource.md)
+
 
 
 ## HTTP

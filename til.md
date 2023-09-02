@@ -43,8 +43,11 @@
 [34일차 - 스프링 타입 컨버터 1](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day34.md)\
 [35일차 - 스프링 타입 컨버터 2, 파일 업로드와 다운로드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day35.md)
 
-### DB
+### DB(MySQL) 기초
 [36일차 - DB 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day36.md)\
 [37일차 - 데이터베이스 생성 및 데이터 추가, 수정, 삭제](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day37.md)\
 [38일차 - SELECT, NULL, three-valued logic, join, sort and grouping](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day38.md)\
 [39일차 - store와 trigger 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day39.md)
+
+### 스프링 DB 1편 - 데이터 접근 핵심 원리
+[40일차 - JDBC와 커넥션 풀, 데이터 소스 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day40.md)
