@@ -74,7 +74,8 @@
     * [스프링 DB 1편 - 데이터 접근 핵심 원리](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1/dashboard)
 
 [1. JDBC의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/1.jdbc.md)\
-[2. 커넥션 풀과 데이터소스의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/2.connection-pool-and-datasource.md)
+[2. 커넥션 풀과 데이터소스의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/2.connection-pool-and-datasource.md)\
+[3. 트랜젝션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/3.transaction-basic.md)
 
 
 

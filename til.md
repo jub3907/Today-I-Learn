@@ -50,4 +50,5 @@
 [39일차 - store와 trigger 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/til/day39.md)
 
 ### 스프링 DB 1편 - 데이터 접근 핵심 원리
-[40일차 - JDBC와 커넥션 풀, 데이터 소스 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day40.md)
+[40일차 - JDBC와 커넥션 풀, 데이터 소스 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day40.md)\
+[41일차 - 트랜젝션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day41.md)
