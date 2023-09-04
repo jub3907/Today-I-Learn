@@ -76,7 +76,7 @@
 [1. JDBC의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/1.jdbc.md)\
 [2. 커넥션 풀과 데이터소스의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/2.connection-pool-and-datasource.md)\
 [3. 트랜젝션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/3.transaction-basic.md)\
-[4. 스프링과 문제해결 - 트랜젝션](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/4.spring-and-problem-solving-transaction.md)
+[4. 트랜젝션을 사용할 때 문제 해결 - 트랜젝션 매니저, 트랜젝션 AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/4.spring-and-problem-solving-transaction.md)
 
 
 
