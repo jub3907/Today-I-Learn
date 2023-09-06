@@ -52,4 +52,8 @@
 ### 스프링 DB 1편 - 데이터 접근 핵심 원리
 [40일차 - JDBC와 커넥션 풀, 데이터 소스 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day40.md)\
 [41일차 - 트랜젝션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day41.md)\
-[42일차 - 트랜젝션을 사용할 때 문제 해결 - 트랜젝션 매니저, 트랜젝션 AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day42.md)
+[42일차 - 트랜젝션을 사용할 때 문제 해결 - 트랜젝션 매니저, 트랜젝션 AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day42.md)\
+[43일차 - 자바의 예외와 예외 문제 처리 해결 방법, JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day43.md)\
+
+### 스프링 DB 2편 - 데이터 접근 활용 기술
+[44일차 - 프로젝트 생성과 JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day44.md)

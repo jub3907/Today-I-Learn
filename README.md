@@ -55,6 +55,25 @@
 [10. 스프링 타입 컨버터](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/10.type-converter.md)\
 [11. 파일 업로드와 다운로드](https://github.com/jub3907/Today-I-Learn/blob/main/spring/mvc2/11.file-upload.md)
 
+## Spring DB 1
+* 수강 강의
+    * [스프링 DB 1편 - 데이터 접근 핵심 원리](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1/dashboard)
+
+[1. JDBC의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/1.jdbc.md)\
+[2. 커넥션 풀과 데이터소스의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/2.connection-pool-and-datasource.md)\
+[3. 트랜젝션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/3.transaction-basic.md)\
+[4. 트랜젝션을 사용할 때 문제 해결 - 트랜젝션 매니저, 트랜젝션 AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/4.spring-and-problem-solving-transaction.md)\
+[5. 자바 예외, 언체크 예외와 체크 예외](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/5.java-exception.md)\
+[6. 예외 처리 문제 해결 방법, JdbcTemplate 맛보기](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/6.spring-exception-problem-solving.md)
+
+## Spring DB 2
+* 수강 강의
+    * [스프링 DB 2편 - 데이터 접근 활용 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-2/dashboard)
+
+[1. 데이터 접근 기술 프로젝트 설명](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/1.start.md)\
+[2. 스프링 JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/2.spring-jdbc-template.md)
+
+
 ## DB
 * 수강 강의
     * [시니어 백엔드 개발자가 알려주는 데이터베이스 개론 & SQL](https://www.inflearn.com/course/%EB%B0%B1%EC%97%94%EB%93%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EA%B0%9C%EB%A1%A0/dashboard)
@@ -68,18 +87,6 @@
 [7. join을 사용한 테이블 병합](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/7.join.md)\
 [8. 정렬과 그룹화](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/8.sort-and-grouping.md)\
 [9. store과 trigger 기초](https://github.com/jub3907/Today-I-Learn/blob/main/database/database/9.store-and-trigger-basic.md)
-
-## Spring DB
-* 수강 강의
-    * [스프링 DB 1편 - 데이터 접근 핵심 원리](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1/dashboard)
-
-[1. JDBC의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/1.jdbc.md)\
-[2. 커넥션 풀과 데이터소스의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/2.connection-pool-and-datasource.md)\
-[3. 트랜젝션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/3.transaction-basic.md)\
-[4. 트랜젝션을 사용할 때 문제 해결 - 트랜젝션 매니저, 트랜젝션 AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/4.spring-and-problem-solving-transaction.md)\
-[5. 자바 예외, 언체크 예외와 체크 예외](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/5.java-exception.md)\
-[6. 예외 처리 문제 해결 방법, JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/6.spring-exception-problem-solving.md)
-
 
 
 ## HTTP
