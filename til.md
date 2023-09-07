@@ -56,4 +56,5 @@
 [43일차 - 자바의 예외와 예외 문제 처리 해결 방법, JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day43.md)\
 
 ### 스프링 DB 2편 - 데이터 접근 활용 기술
-[44일차 - 프로젝트 생성과 JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day44.md)
+[44일차 - 프로젝트 생성과 JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day44.md)\
+[45일차 - 테스트의 임베디드(메모리)DB 설정](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day45.md)

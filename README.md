@@ -71,8 +71,8 @@
     * [스프링 DB 2편 - 데이터 접근 활용 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-2/dashboard)
 
 [1. 데이터 접근 기술 프로젝트 설명](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/1.start.md)\
-[2. 스프링 JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/2.spring-jdbc-template.md)
-
+[2. 스프링 JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/2.spring-jdbc-template.md)\
+[3. 데스트 설정과 임베디드(메모리)DB](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/3.data-access-test.md)
 
 ## DB
 * 수강 강의
