@@ -72,7 +72,10 @@
 
 [1. 데이터 접근 기술 프로젝트 설명](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/1.start.md)\
 [2. 스프링 JdbcTemplate](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/2.spring-jdbc-template.md)\
-[3. 데스트 설정과 임베디드(메모리)DB](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/3.data-access-test.md)
+[3. 데스트 설정과 임베디드(메모리)DB](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/3.data-access-test.md)\
+[4. MyBatis 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/4.mybatis.md)\
+[5. JPA 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/5.jpa.md)\
+[6. Spring Data JPA 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/6.spring-data-jpa.md)
 
 ## DB
 * 수강 강의
