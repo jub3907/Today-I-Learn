@@ -76,7 +76,9 @@
 [4. MyBatis 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/4.mybatis.md)\
 [5. JPA 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/5.jpa.md)\
 [6. Spring Data JPA 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/6.spring-data-jpa.md)\
-[7. QueryDSL 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/7.querydsl.md)
+[7. QueryDSL 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/7.querydsl.md)\
+[8. 프로젝트 구조의 Trade-off와 데이터 접근 기술 조합](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/8.data-access-application.md)\
+[9. 스프링 트랜젝션의 이해와 트랜젝션중 예외 발생](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/9.spring-transaction-understand.md)
 
 ## DB
 * 수강 강의

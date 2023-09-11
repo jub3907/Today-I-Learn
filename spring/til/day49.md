@@ -1,0 +1,1910 @@
+## 스프링 데이터 JPA 예제와 트레이드 오프
+스프링 데이터 JPA 예제를 다시 한번 돌아보자.
+
+### 클래스 의존 관계
+![image](https://github.com/jub3907/Spring-study/assets/58246682/bdaf88ac-b01c-43d8-8b2f-0085dfc71888)
+<br/>
+<br/>
+
+### 런타임 객체 의존 관계
+![image](https://github.com/jub3907/Spring-study/assets/58246682/ae1e20af-ec13-4675-aba8-2dc2aeb30820)
+
+중간에서 JpaItemRepositoryV2 가 어댑터 역할을 해준 덕분에\
+ItemService 가 사용하는 ItemRepository 인터페이스를 \
+그대로 유지할 수 있고 클라이언트인 ItemService 의 \
+코드를 변경하지 않아도 되는 장점이 있다.
+<br/>
+<br/>
+
+### 고민
+구조를 맞추기 위해서, 중간에 어댑터가 들어가면서 \
+전체 구조가 너무 복잡해지고 사용하는 클래스도 많아지는 단점이 생겼다.
+
+실제 이 코드를 구현해야하는 개발자 입장에서 보면 중간에 어댑터도 만들고, \
+실제 코드까지 만들어야 하는 불편함이 생긴다.
+
+유지보수 관점에서 ItemService 를 변경하지 않고,\
+ItemRepository 의 구현체를 변경할 수 있는 장점이 있다. \
+그러니까 DI, OCP 원칙을 지킬 수 있다는 좋은 점이 분명히 있다. \
+하지만 반대로 구조가 복잡해지면서 어댑터 코드와 실제 코드까지 \
+함께 유지보수 해야 하는 어려움도 발생한다.
+<br/>
+<br/>
+
+### 다른 선택
+여기서 완전히 다른 선택을 할 수도 있다.\
+ItemService 코드를 일부 고쳐서 직접 스프링 데이터 JPA를 사용하는 방법이다.\
+DI, OCP 원칙을 포기하는 대신에, 복잡한 어댑터를 제거하고, \
+구조를 단순하게 가져갈 수 있는 장점이 있다
+<br/>
+<br/>
+
+### 클래스 의존 관계
+![image](https://github.com/jub3907/Spring-study/assets/58246682/ad75ea10-811a-41ad-b1ff-d4edf5a60774)
+
+ItemService 에서 스프링 데이터 JPA로 만든 리포지토리를 직접 참조한다.\
+물론 이 경우 ItemService 코드를 변경해야 한다.
+<br/>
+<br/>
+
+### 런타임 객체 의존 관계
+![image](https://github.com/jub3907/Spring-study/assets/58246682/3f68a2bb-ba47-4f32-9084-ae577e193f7a)
+<br/>
+<br/>
+
+### 트레이드 오프
+이것이 바로 트레이드 오프다.\
+DI, OCP를 지키기 위해 어댑터를 도입하고, 더 많은 코드를 유지한다.\
+어댑터를 제거하고 구조를 단순하게 가져가지만, DI, OCP를 포기하고, \
+ItemService 코드를 직접 변경한다. 결국 여기서 발생하는 트레이드 오프는 \
+구조의 안정성 vs 단순한 구조와 개발의 편리성 사이의 선택이다.
+
+이 둘 중에 하나의 정답만 있을까? 그렇지 않다. \
+어떤 상황에서는 구조의 안정성이 매우 중요하고, \
+어떤 상황에서는 단순한 것이 더 나은 선택일 수 있다.
+
+개발을 할 때는 항상 자원이 무한한 것이 아니다. \
+그리고 어설픈 추상화는 오히려 독이 되는 경우도 많다. \
+무엇보다 추상화도 비용이 든다. 인터페이스도 비용이 든다. \
+여기서 말하는 비용은 유지보수 관점에서 비용을 뜻한다.
+이 추상화 비용을 넘어설 만큼 효과가 있을 때 추상화를 도입하는 것이 실용적이다.
+
+이런 선택에서 하나의 정답이 있는 것은 아니지만, \
+프로젝트의 현재 상황에 맞는 더 적절한 선택지가 있다고 생각한다. \
+그리고 현재 상황에 맞는 선택을 하는 개발자가 좋은 개발자라 생각한다.
+<br/>
+<br/>
+
+## 실용적인 구조
+마지막에 Querydsl을 사용한 리포지토리는 \
+스프링 데이터 JPA를 사용하지 않는 아쉬움이 있었다. \
+물론 Querydsl을 사용하는 리포지토리가 \
+스프링 데이터 JPA 리포지토리를 사용하도록 해도 된다.
+
+이번에는 스프링 데이터 JPA의 기능은 최대한 살리면서, \
+Querydsl도 편리하게 사용할 수 있는 구조를 만들어보겠다.
+<br/>
+<br/>
+
+### 복잡한 쿼리 분리
+![image](https://github.com/jub3907/Spring-study/assets/58246682/cb1db59f-72dd-43f5-a295-f0ed47892820)
+ItemRepositoryV2 는 스프링 데이터 JPA의 기능을 제공하는 리포지토리이다.\
+ItemQueryRepositoryV2 는 Querydsl을 사용해서 \
+복잡한 쿼리 기능을 제공하는 리포지토리이다.
+
+이렇게 둘을 분리하면 기본 CRUD와 단순 조회는 스프링 데이터 JPA가 담당하고, \
+복잡한 조회 쿼리는 Querydsl이 담당하게 된다.
+
+물론 ItemService 는 기존 ItemRepository 를 사용할 수 없기 때문에 코드를 변경해야 한다.
+<br/>
+<br/>
+
+### ItemRepositoryV2
+```java
+public interface ItemRepositoryV2 extends JpaRepository<Item, Long> {
+
+}
+
+```
+ItemRepositoryV2 는 JpaRepository 를 인터페이스 상속 받아서 \
+스프링 데이터 JPA의 기능을 제공하는 리포지토리가 된다.\
+기본 CRUD는 이 기능을 사용하면 된다.\
+여기에 추가로 단순한 조회 쿼리들을 추가해도 된다.
+<br/>
+<br/>
+
+### ItemQueryRepositoryV2
+```java
+
+@Repository
+public class ItemQueryRepositoryV2 {
+
+    private final JPAQueryFactory query;
+
+    public ItemQueryRepositoryV2(EntityManager em) {
+        this.query = new JPAQueryFactory(em);
+    }
+
+    public List<Item> findAll(ItemSearchCond cond) {
+        return query.select(item)
+                .from(item)
+                .where(
+                        maxPrice(cond.getMaxPrice()),
+                        likeItemName(cond.getItemName())
+                )
+                .fetch();
+    }
+
+
+    private BooleanExpression maxPrice(Integer maxPrice) {
+        if (maxPrice != null) {
+            return item.price.loe(maxPrice);
+        }
+
+        return null;
+    }
+
+    private BooleanExpression likeItemName(String itemName) {
+        if (StringUtils.hasText(itemName)) {
+            return item.itemName.like("%" + itemName + "%");
+        }
+
+        return null;
+    }
+}
+
+```
+ItemQueryRepositoryV2 는 Querydsl을 사용해서 복잡한 쿼리 문제를 해결한다.\
+Querydsl을 사용한 쿼리 문제에 집중되어 있어서, \
+복잡한 쿼리는 이 부분만 유지보수 하면 되는 장점이 있다.
+<br/>
+<br/>
+
+### ItemServiceV2
+```java
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class ItemServiceV2 implements ItemService {
+
+    private final ItemRepositoryV2 itemRepositoryV2;
+    private final ItemQueryRepositoryV2 itemQueryRepositoryV2;
+
+
+    @Override
+    public Item save(Item item) {
+        return itemRepositoryV2.save(item);
+    }
+
+    @Override
+    public void update(Long itemId, ItemUpdateDto updateParam) {
+        Item findItem = itemRepositoryV2.findById(itemId).orElseThrow();
+        findItem.setItemName(updateParam.getItemName());
+        findItem.setPrice(updateParam.getPrice());
+        findItem.setQuantity(updateParam.getQuantity());
+
+    }
+
+    @Override
+    public Optional<Item> findById(Long id) {
+        return itemRepositoryV2.findById(id);
+    }
+
+    @Override
+    public List<Item> findItems(ItemSearchCond itemSearch) {
+        return itemQueryRepositoryV2.findAll(itemSearch);
+    }
+}
+```
+기존 ItemServiceV1 코드를 남겨두기 위해서 ItemServiceV2 를 만들었다.\
+ItemServiceV2 는 ItemRepositoryV2 와 ItemQueryRepositoryV2 를 의존한다.
+<br/>
+<br/>
+
+### V2Config
+```java
+
+@Configuration
+@RequiredArgsConstructor
+public class V2Config {
+
+    private final EntityManager em;
+    private final ItemRepositoryV2 itemRepositoryV2; // Spring Data JPA가 제공
+
+    @Bean
+    public ItemServiceV2 itemService() {
+        return new ItemServiceV2(itemRepositoryV2, itemQueryRepositoryV2());
+    }
+
+    @Bean
+    public ItemQueryRepositoryV2 itemQueryRepositoryV2() {
+        return new ItemQueryRepositoryV2(em);
+    }
+
+
+    @Bean
+    public ItemRepository itemRepository() {
+        return new JpaItemRepositoryV3(em);
+    }
+
+}
+```
+ItemServiceV2 를 등록한 부분을 주의하자. \
+ItemServiceV1 이 아니라 ItemServiceV2 이다.\
+ItemRepository 는 테스트에서 사용하므로 여전히 필요하다.
+<br/>
+<br/>
+
+### ItemServiceApplication - 변경
+```java
+//@Import(QuerydslConfig.class)
+@Import(V2Config.class)
+@SpringBootApplication(scanBasePackages = "hello.itemservice.web")
+public class ItemServiceApplication {}
+```
+V2Config 를 사용하도록 변경했다.
+<br/>
+<br/>
+
+### 테스트를 실행하자
+먼저 ItemRepositoryTest 를 통해서 리포지토리가 정상 동작하는지 확인해보자. \
+참고로 테스트는 ItemRepository 를 테스트 하는데, \
+현재 JpaItemRepositoryV3 가 스프링 빈으로 등록되어 있다.
+
+V2Config 에서 사용한 리포지토리를 테스트 하려면 ItemQueryRepositoryV2 , \
+ItemRepositoryV2 용 테스트가 별도로 필요하다.
+<br/>
+<br/>
+
+## 다양한 데이터 접근 기술 조합
+어떤 데이터 접근 기술을 선택하는 것이 좋을까?\
+이 부분은 하나의 정답이 있다기 보다는, 비즈니스 상황과, \
+현재 프로젝트 구성원의 역량에 따라서 결정하는 것이 맞다 생각한다. \
+JdbcTemplate 이나 MyBatis 같은 기술들은 SQL을 직접 작성해야 하는 단점은 있지만 \
+기술이 단순하기 때문에 SQL에 익숙한 개발자라면 금방 적응할 수 있다.
+
+JPA, 스프링 데이터 JPA, Querydsl 같은 기술들은 개발 생산성을 혁신할 수 있지만, \
+학습 곡선이 높기 때문에, 이런 부분을 감안해야 한다. \
+그리고 매우 복잡한 통계 쿼리를 주로 작성하는 경우에는 잘 맞지 않는다.
+
+개인적으로 추천하는 방향은 JPA, 스프링 데이터 JPA, Querydsl을 기본으로 사용하고, \
+만약 복잡한 쿼리를 써야 하는데, 해결이 잘 안되면 해당 부분에는 \
+JdbcTemplate이나 MyBatis를 함께 사용하는 것이다.
+
+실무에서 95% 정도는 JPA, 스프링 데이터 JPA, Querydsl 등으로 해결하고,\
+나머지 5%는 SQL을 직접 사용해야 하니 JdbcTemplate이나 MyBatis로 해결한다. \
+물론 이 비율은 프로젝트 마다 다르다. 
+
+아주 복잡한 통계 쿼리를 자주 작성해야 하면 \
+JdbcTemplate이나 MyBatis의 비중이 높아질 수 있다.
+<br/>
+<br/>
+
+### 트랜잭션 매니저 선택
+JPA, 스프링 데이터 JPA, Querydsl은 모두 JPA 기술을 사용하는 것이기 때문에 \
+트랜잭션 매니저로 JpaTransactionManager 를 선택하면 된다. 
+해당 기술을 사용하면 스프링 부트는 자동으로 \
+JpaTransactionManager 를 스프링 빈에 등록한다.
+
+그런데 JdbcTemplate , MyBatis 와 같은 기술들은 내부에서 \
+JDBC를 직접 사용하기 때문에 DataSourceTransactionManager 를 사용한다.
+
+따라서 JPA와 JdbcTemplate 두 기술을 함께 사용하면 트랜잭션 매니저가 달라진다. \
+결국 트랜잭션을 하나로 묶을 수 없는 문제가 발생할 수 있다. \
+그런데 이 부분은 걱정하지 않아도 된다.
+<br/>
+<br/>
+
+### JpaTransactionManager의 다양한 지원
+JpaTransactionManager 는 놀랍게도 DataSourceTransactionManager 가 제공하는 \
+기능도 대부분 제공한다. JPA라는 기술도 결국 내부에서는\
+DataSource와 JDBC 커넥션을 사용하기 때문이다. \
+따라서 JdbcTemplate , MyBatis 와 함께 사용할 수 있다.
+
+결과적으로 JpaTransactionManager 를 하나만 스프링 빈에 등록하면,\
+JPA, JdbcTemplate, MyBatis 모두를 하나의 트랜잭션으로 묶어서 사용할 수 있다.\
+물론 함께 롤백도 할 수 있다.
+<br/>
+<br/>
+
+### 주의점
+이렇게 JPA와 JdbcTemplate을 함께 사용할 경우 JPA의 플러시 타이밍에 주의해야 한다.\
+JPA는 데이터를 변경하면 변경 사항을 즉시 데이터베이스에 반영하지 않는다. \
+기본적으로 트랜잭션이 커밋되는 시점에 변경 사항을 데이터베이스에 반영한다. \
+그래서 하나의 트랜잭션 안에서 JPA를 통해 데이터를 변경한 다음에 \
+JdbcTemplate을 호출하는 경우 JdbcTemplate에서는 JPA가 \
+변경한 데이터를 읽기 못하는 문제가 발생한다.
+
+이 문제를 해결하려면 JPA 호출이 끝난 시점에 JPA가 제공하는 플러시라는 기능을 사용해서 \
+JPA의 변경 내역을 데이터베이스에 반영해주어야 한다. \
+그래야 그 다음에 호출되는 JdbcTemplate에서 JPA가 반영한 데이터를 사용할 수 있다.
+
+참고로 방금 설명한 JPA 플러시에 대한 부분은 JPA를 학습해야 이해할 수 있다. \
+지금은 JpaTransactionManager 를 사용해서 여러 데이터 접근 기술들을 함께 \
+사용할 수 있다는 점만 기억하자.
+<br/>
+<br/>
+
+## 정리
+ItemServiceV2 는 스프링 데이터 JPA를 제공하는 ItemRepositoryV2 도 참조하고, \
+Querydsl과 관련된 ItemQueryRepositoryV2 도 직접 참조한다. \
+덕분에 ItemRepositoryV2 를 통해서 스프링 데이터 JPA 기능을 적절히 활용할 수 있고, \
+ItemQueryRepositoryV2 를 통해서 복잡한 쿼리를 Querydsl로 해결할 수 있다.
+
+이렇게 하면서 구조의 복잡함 없이 단순하게 개발할 수 있다.\
+본인이 진행하는 프로젝트의 규모가 작고, 속도가 중요하고,\
+프로토타입 같은 시작 단계라면 이렇게 단순하면서 \
+라이브러리의 지원을 최대한 편리하게 받는 구조가 더 나은 선택일 수 있다.
+
+하지만 이 구조는 리포지토리의 구현 기술이 변경되면 수 많은 코드를 변경해야 하는 단점이 있다.\
+이런 선택에서 하나의 정답은 없다. 이런 트레이드 오프를 알고, \
+현재 상황에 더 맞는 적절한 선택을 하는 좋은 개발자가 있을 뿐이다.
+
+여러분도 이런 트레이드 오프를 고민하고, 현재 상황에 맞는 더 나은 선택을 하기 위해 \
+많이 고민하면 좋겠다. 그 시간들이 쌓이면 분명 좋은 개발자가 되어 있을 것이다.
+
+
+## 스프링 트랜잭션 소개
+우리는 앞서 DB1편 스프링과 문제 해결 - 트랜잭션을 통해 \
+스프링이 제공하는 트랜잭션 기능이 왜 필요하고, \
+어떻게 동작하는지 내부 원리를 알아보았다. 
+
+이번 시간에는 스프링 트랜잭션을 더 깊이있게 학습하고, \
+또 스프링 트랜잭션이 제공하는 다양한 기능들을 자세히 알아보자.
+
+먼저 본격적인 기능 설명에 앞서 지금까지 학습한 \
+스프링 트랜잭션을 간략히 복습하면서 정리해보자. 
+
+스프링 트랜잭션 추상화 각각의 데이터 접근 기술들은 \
+트랜잭션을 처리하는 방식에 차이가 있다. \
+예를 들어 JDBC 기술과 JPA 기술은 트랜잭션을 사용하는 코드 자체가 다르다. 
+<br/>
+<br/>
+
+### JDBC 트랜잭션 코드 예시
+```java
+public void accountTransfer(String fromId, String toId, int money) throws SLException {
+  Connection con = dataSource.getConnection();
+  try {
+    con.setAutoCommit(false); //트랜잭션 시작
+    //비즈니스 로직
+    bizLogic(con, fromId, toId, money);
+    con.commit(); //성공시 커밋
+  } catch (Exception e) {
+    con.rollback(); //실패시 롤백
+    throw new IllegalStateException(e);
+  } finally {
+    release(con);
+  }
+}
+```
+<br/>
+
+### JPA 트랜잭션 코드 예시
+```java
+public static void main(String[] args) {
+  //엔티티 매니저 팩토리 생성
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
+  EntityManager em = emf.createEntityManager(); //엔티티 매니저 생성
+  EntityTransaction tx = em.getTransaction(); //트랜잭션 기능 획득
+  try {
+    tx.begin(); //트랜잭션 시작
+    logic(em); //비즈니스 로직
+    tx.commit();//트랜잭션 커밋
+  } catch (Exception e) {
+    tx.rollback(); //트랜잭션 롤백
+  } finally {
+    em.close(); //엔티티 매니저 종료
+  }
+  emf.close(); //엔티티 매니저 팩토리 종료
+}
+```
+따라서 JDBC 기술을 사용하다가 JPA 기술로 변경하게 되면\
+트랜잭션을 사용하는 코드도 모두 함께 변경해야 한다.
+
+스프링은 이런 문제를 해결하기 위해 트랜잭션 추상화를 제공한다. \
+트랜잭션을 사용하는 입장에서는 스프링 트랜잭션 추상화를 통해\
+둘을 동일한 방식으로 사용할 수 있게 되는 것이다.
+
+스프링은 PlatformTransactionManager 라는 인터페이스를 통해 트랜잭션을 추상화한다.
+<br/>
+<br/>
+
+### PlatformTransactionManager 인터페이스
+```java
+public interface PlatformTransactionManager extends TransactionManager {
+  TransactionStatus getTransaction(@Nullable TransactionDefinition definition) throws TransactionException;
+  void commit(TransactionStatus status) throws TransactionException;
+  void rollback(TransactionStatus status) throws TransactionException;
+}
+```
+트랜잭션은 트랜잭션 시작(획득), 커밋, 롤백으로 단순하게 추상화 할 수 있다
+
+![image](https://github.com/jub3907/Spring-study/assets/58246682/1eb0e070-6b8b-4e61-9892-11e53a2c0d55)
+
+스프링은 트랜잭션을 추상화해서 제공할 뿐만 아니라, 실무에서 주로 사용하는\
+데이터 접근 기술에 대한 트랜잭션 매니저의 구현체도 제공한다.
+우리는 필요한 구현체를 스프링 빈으로 등록하고 주입 받아서 사용하기만 하면 된다.
+
+여기에 더해서 스프링 부트는 어떤 데이터 접근 기술을 사용하는지를 \
+자동으로 인식해서 적절한 트랜잭션 매니저를 선택해서 스프링 빈으로 \
+등록해주기 때문에 트랜잭션 매니저를 선택하고 등록하는 과정도 생략할 수 있다. 
+
+예를 들어서 JdbcTemplate , MyBatis 를 사용하면 \
+DataSourceTransactionManager(JdbcTransactionManager) 를 스프링 빈으로 등록하고, \
+JPA를 사용하면 JpaTransactionManager 를 스프링 빈으로 등록해준다.
+
+> 스프링 5.3부터는 JDBC 트랜잭션을 관리할 때 DataSourceTransactionManager 를 상속받아서 \
+> 약간의 기능을 확장한 JdbcTransactionManager 를 제공한다. \
+> 둘의 기능 차이는 크지 않으므로 같은 것으로 이해하면 된다.
+<br/>
+
+### 스프링 트랜잭션 사용 방식
+PlatformTransactionManager 를 사용하는 방법은 크게 2가지가 있다.
+* 선언적 트랜잭션 관리 
+* 프로그래밍 방식 트랜잭션 관리
+<br/>
+
+#### 선언적 트랜잭션 관리(Declarative Transaction Management)
+@Transactional 애노테이션 하나만 선언해서 \
+매우 편리하게 트랜잭션을 적용하는 것을 선언적 트랜잭션 관리라 한다.
+
+선언적 트랜잭션 관리는 과거 XML에 설정하기도 했다.\
+이름 그대로 해당 로직에 트랜잭션을 적용하겠다 라고 \
+어딘가에 선언하기만 하면 트랜잭션이 적용되는 방식이다.
+<br/>
+<br/>
+
+#### 프로그래밍 방식의 트랜잭션 관리(programmatic transaction management)
+트랜잭션 매니저 또는 트랜잭션 템플릿 등을 사용해서 \
+트랜잭션 관련 코드를 직접 작성하는 것을 프로그래밍 방식의 트랜잭션 관리라 한다.
+<br/>
+<br/>
+
+프로그래밍 방식의 트랜잭션 관리를 사용하게 되면, \
+애플리케이션 코드가 트랜잭션이라는 기술 코드와 강하게 결합된다.
+선언적 트랜잭션 관리가 프로그래밍 방식에 비해서 훨씬 간편하고 \
+실용적이기 때문에 실무에서는 대부분 선언적 트랜잭션 관리를 사용한다.
+
+### 선언적 트랜잭션과 AOP
+@Transactional 을 통한 선언적 트랜잭션 관리 방식을 사용하게 되면 \
+기본적으로 프록시 방식의 AOP가 적용된다.
+<br/>
+<br/>
+
+### 프록시 도입 전
+![image](https://github.com/jub3907/Spring-study/assets/58246682/a23fb0e4-de76-44d7-981d-38ea98597965)
+트랜잭션을 처리하기 위한 프록시를 도입하기 전에는 \
+서비스의 로직에서 트랜잭션을 직접 시작했다.
+<br/>
+<br/>
+
+### 서비스 계층의 트랜잭션 사용 코드 예시
+```java
+TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+try {
+    //비즈니스 로직
+    bizLogic(fromId, toId, money);
+    transactionManager.commit(status); //성공시 커밋
+} catch (Exception e) {
+    transactionManager.rollback(status); //실패시 롤백
+    throw new IllegalStateException(e);
+}
+```
+<br/>
+
+### 프록시 도입 후
+![image](https://github.com/jub3907/Spring-study/assets/58246682/470b6b1e-9b12-4325-8921-07813da4af59)
+
+트랜잭션을 처리하기 위한 프록시를 적용하면 트랜잭션을 처리하는 객체와 \
+비즈니스 로직을 처리하는 서비스 객체를 명확하게 분리할 수 있다.
+<br/>
+<br/>
+
+### 트랜잭션 프록시 코드 예시
+```java
+public class TransactionProxy {
+	private MemberService target;
+	public void logic() {
+		//트랜잭션 시작
+		TransactionStatus status = transactionManager.getTransaction(..);
+		try {
+			//실제 대상 호출
+			target.logic();
+			transactionManager.commit(status); //성공시 커밋
+		} catch (Exception e) {
+			transactionManager.rollback(status); //실패시 롤백
+			throw new IllegalStateException(e);
+		}
+	}
+}
+```
+<br/>
+
+```java
+public class Service {
+    public void logic() {
+        //트랜잭션 관련 코드 제거, 순수 비즈니스 로직만 남음
+        bizLogic(fromId, toId, money);
+    }
+}
+```
+* 프록시 도입 전: 서비스에 비즈니스 로직과 트랜잭션 처리 로직이 함께 섞여있다.
+* 프록시 도입 후: 트랜잭션 프록시가 트랜잭션 처리 로직을 모두 가져간다. \
+  그리고 트랜잭션을 시작한 후에 실제 서비스를 대신 호출한다. \
+  트랜잭션 프록시 덕분에 서비스 계층에는 순수한 비즈니즈 로직만 남길 수 있다.
+<br/>
+<br/>
+
+### 프록시 도입 후 전체 과정
+![image](https://github.com/jub3907/Spring-study/assets/58246682/f8810763-8330-4840-9e92-66d30b8abdb5)
+
+트랜잭션은 커넥션에 con.setAutocommit(false) 를 지정하면서 시작한다.\
+같은 트랜잭션을 유지하려면 같은 데이터베이스 커넥션을 사용해야 한다.\
+이것을 위해 스프링 내부에서는 트랜잭션 동기화 매니저가 사용된다.\
+JdbcTemplate 을 포함한 대부분의 데이터 접근 기술들은 트랜잭션을 유지하기 위해\
+내부에서 트랜잭션 동기화 매니저를 통해 리소스(커넥션)를 동기화 한다.
+<br/>
+<br/>
+
+### 스프링이 제공하는 트랜잭션 AOP
+스프링의 트랜잭션은 매우 중요한 기능이고, 전세계 누구나 다 사용하는 기능이다. \
+스프링은 트랜잭션 AOP 를 처리하기 위한 모든 기능을 제공한다. \
+스프링 부트를 사용하면 트랜잭션 AOP를 처리하기 위해 필요한 스프링 빈들도 자동으로 등록해준다.
+
+개발자는 트랜잭션 처리가 필요한 곳에 @Transactional 애노테이션만 붙여주면 된다. \
+스프링의 트랜잭션 AOP는 이 애노테이션을 인식해서 트랜잭션을 처리하는 프록시를 적용해준다.
+
+* @Transactional
+  * org.springframework.transaction.annotation.Transactional
+<br/>
+
+## 트랜잭션 적용 확인
+@Transactional 을 통해 선언적 트랜잭션 방식을 사용하면\
+단순히 애노테이션 하나로 트랜잭션을 적용할 수 있다. \
+그런데 이 기능은 트랜잭션 관련 코드가 눈에 보이지 않고, \
+AOP를 기반으로 동작하기 때문에, \
+실제 트랜잭션이 적용되고 있는지 아닌지를 확인하기가 어렵다.
+
+스프링 트랜잭션이 실제 적용되고 있는지 확인하는 방법을 알아보자.
+<br/>
+<br/>
+
+### TxApplyBasicTest
+```java
+@Slf4j
+@SpringBootTest
+public class TxBasicTest {
+
+    @Autowired
+    BasicService basicService;
+
+    @Test
+    void proxyCheck() {
+        log.info("aop class={}", basicService.getClass());
+        assertThat(AopUtils.isAopProxy(basicService)).isTrue();
+    }
+
+    @Test
+    void txTest() {
+        basicService.tx();
+        basicService.nonTx();
+    }
+
+
+    @TestConfiguration
+    static class TxApplyBasicConfig {
+        @Bean
+        BasicService basicService() {
+            return new BasicService();
+        }
+    }
+
+    @Slf4j
+    static class BasicService {
+        @Transactional
+        public void tx() {
+            log.info("call tx");
+            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
+            log.info("tx active={}", txActive);
+        }
+
+        public void nonTx() {
+            log.info("call tx");
+            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
+            log.info("tx active={}", txActive);
+        }
+    }
+}
+
+```
+
+<br/>
+<br/>
+
+### proxyCheck() - 실행
+* AopUtils.isAopProxy() : 선언적 트랜잭션 방식에서 스프링 트랜잭션은 \
+  AOP를 기반으로 동작한다. @Transactional 을 메서드나 클래스에 붙이면 \
+  해당 객체는 트랜잭션 AOP 적용의 대상이 되고, 결과적으로\
+  실제 객체 대신에 트랜잭션을 처리해주는 프록시 객체가 스프링 빈에 등록된다. \
+  그리고 주입을 받을 때도 실제 객체 대신에 프록시 객체가 주입된다.
+* 클래스 이름을 출력해보면 basicService$$EnhancerBySpringCGLIB... 라고 \
+  프록시 클래스의 이름이 출력되는 것을 확인할 수 있다.
+
+```
+TxBasicTest : aop class=class ..$BasicService$$EnhancerBySpringCGLIB$
+$xxxxxx
+```
+<br/>
+
+### 스프링 컨테이너에 트랜잭션 프록시 등록
+![image](https://github.com/jub3907/Spring-study/assets/58246682/51702dc7-ecb8-42cc-9f4a-fe1bc5b5619f)
+
+@Transactional 애노테이션이 특정 클래스나 메서드에 하나라도 있으면 \
+트랜잭션 AOP는 프록시를 만들어서 스프링 컨테이너에 등록한다. \
+그리고 실제 basicService 객체 대신에 프록시인 basicService$$CGLIB 를 \
+스프링 빈에 등록한다. 그리고 프록시는 내부에 실제 basicService 를 참조하게 된다.\
+여기서 핵심은 실제 객체 대신에 프록시가 스프링 컨테이너에 등록되었다는 점이다.
+
+클라이언트인 txBasicTest 는 스프링 컨테이너에\
+`@Autowired BasicService basicService` 로 의존관계 주입을 요청한다. \
+스프링 컨테이너에는 실제 객체 대신에 프록시가 스프링 빈으로 \
+등록되어 있기 때문에 프록시를 주입한다. 
+
+프록시는 BasicService 를 상속해서 만들어지기 때문에 다형성을 활용할 수 있다. \
+따라서 BasicService 대신에 프록시인 BasicService$$CGLIB 를 주입할 수 있다.
+<br/>
+<br/>
+
+### 트랜잭션 프록시 동작 방식
+![image](https://github.com/jub3907/Spring-study/assets/58246682/42cd1a63-2d0c-4511-96e8-7ea6d52f7a58)
+
+클라이언트가 주입 받은 basicService$$CGLIB 는 트랜잭션을 적용하는 프록시이다.
+<br/>
+<br/>
+
+### 로그 추가
+application.properties
+```java
+logging.level.org.springframework.transaction.interceptor=TRACE
+```
+이 로그를 추가하면 트랜잭션 프록시가 호출하는 트랜잭션의 시작과 종료를 \
+명확하게 로그로 확인할 수 있다.
+<br/>
+<br/>
+
+### basicService.tx() 호출
+클라이언트가 basicService.tx() 를 호출하면, 프록시의 tx() 가 호출된다. \
+여기서 프록시는 tx() 메서드가 트랜잭션을 사용할 수 있는지 확인해본다.\
+tx() 메서드에는 @Transactional 이 붙어있으므로 트랜잭션 적용 대상이다.
+
+따라서 트랜잭션을 시작한 다음에 실제 basicService.tx() 를 호출한다.
+
+그리고 실제 basicService.tx() 의 호출이 끝나서 프록시로 제어가(리턴) 돌아오면 \
+프록시는 트랜잭션 로직을 커밋하거나 롤백해서 트랜잭션을 종료한다. 
+<br/>
+<br/>
+
+### basicService.nonTx() 호출
+클라이언트가 basicService.nonTx() 를 호출하면, \
+트랜잭션 프록시의 nonTx() 가 호출된다. \
+여기서 nonTx() 메서드가 트랜잭션을 사용할 수 있는지 확인해본다. \
+nonTx() 에는 @Transactional 이 없으므로 적용 대상이 아니다.
+
+따라서 트랜잭션을 시작하지 않고, basicService.nonTx() 를 호출하고 종료한다.
+<br/>
+<br/>
+
+### TransactionSynchronizationManager.isActualTransactionActive()
+현재 쓰레드에 트랜잭션이 적용되어 있는지 확인할 수 있는 기능이다. \
+결과가 true 면 트랜잭션이 적용되어 있는 것이다. \
+트랜잭션의 적용 여부를 가장 확실하게 확인할 수 있다
+<br/>
+<br/>
+
+### 실행 결과
+```java
+#tx() 호출
+TransactionInterceptor : Getting transaction for [..BasicService.tx]
+y.TxBasicTest$BasicService : call tx
+y.TxBasicTest$BasicService : tx active=true
+TransactionInterceptor : Completing transaction for
+[..BasicService.tx]
+
+#nonTx() 호출
+y.TxBasicTest$BasicService : call nonTx
+y.TxBasicTest$BasicService : tx active=false
+```
+로그를 통해 tx() 호출시에는 tx active=true 를 통해 \
+트랜잭션이 적용된 것을 확인할 수 있다.
+
+TransactionInterceptor 로그를 통해 트랜잭션 프록시가 \
+트랜잭션을 시작하고 완료한 내용을 확인할 수 있다.
+
+nonTx() 호출시에는 tx active=false 를 통해 트랜잭션이 없는 것을 확인할 수 있다.
+<br/>
+<br/>
+
+## 트랜잭션 적용 위치
+이번시간에는 코드를 통해 @Transactional 의 적용 위치에 따른 우선순위를 확인해보자.\
+스프링에서 우선순위는 항상 더 구체적이고 자세한 것이 높은 우선순위를 가진다. \
+이것만 기억하면 스프링에서 발생하는 대부분의 우선순위를 쉽게 기억할 수 있다. \
+그리고 더 구체적인 것이 더 높은 우선순위를 가지는 것은 상식적으로 자연스럽다.
+
+예를 들어서 메서드와 클래스에 애노테이션을 붙일 수 있다면 \
+더 구체적인 메서드가 더 높은 우선순위를 가진다.
+
+인터페이스와 해당 인터페이스를 구현한 클래스에 애노테이션을 붙일 수 있다면 \
+더 구체적인 클래스가 더 높은 우선순위를 가진다.
+
+### TxLevelTest
+```java
+@Slf4j
+@SpringBootTest
+public class TxLevelTest {
+
+    @Autowired
+    LevelService levelService;
+
+    @Test
+    void orderTest() {
+        levelService.write();
+        levelService.read();
+    }
+
+
+    @TestConfiguration
+    static class TxLevelTestConfig {
+        @Bean
+        LevelService levelService() {
+            return new LevelService();
+        }
+    }
+
+
+    @Slf4j
+    @Transactional(readOnly = true)
+    static class LevelService {
+        @Transactional(readOnly = false)
+        public void write() {
+            log.info("call write");
+            printTxInfo();
+        }
+
+        public void read() {
+            log.info("call read");
+            printTxInfo();
+        }
+
+        private void printTxInfo() {
+            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
+            log.info("tx active={}", txActive);
+            boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
+            log.info("tx readOnly={}", readOnly);
+        }
+    }
+}
+```
+스프링의 @Transactional 은 다음 두 가지 규칙이 있다.
+1. 우선순위 규칙
+2. 클래스에 적용하면 메서드는 자동 적용
+<br/>
+<br/>
+
+### 우선순위
+트랜잭션을 사용할 때는 다양한 옵션을 사용할 수 있다. \
+그런데 어떤 경우에는 옵션을 주고, \
+어떤 경우에는 옵션을 주지 않으면 어떤 것이 선택될까? 
+
+예를 들어서 읽기 전용 트랜잭션 옵션을 사용하는 경우와 아닌 경우를 비교해보자. \
+(읽기 전용 옵션에 대한 자세한 내용은 뒤에서 다룬다. 여기서는 적용 순서에 집중하자.)
+
+* LevelService 의 타입에 @Transactional(readOnly = true) 이 붙어있다.
+* write() : 해당 메서드에 @Transactional(readOnly = false) 이 붙어있다.
+  * 이렇게 되면 타입에 있는 @Transactional(readOnly = true) 와 \
+    해당 메서드에 있는 @Transactional(readOnly = false) 둘 중 하나를 적용해야 한다.
+  * 클래스 보다는 메서드가 더 구체적이므로 메서드에 있는 \
+    @Transactional(readOnly = false) 옵션을 사용한 트랜잭션이 적용된다.
+<br/>
+
+### 클래스에 적용하면 메서드는 자동 적용
+read() : 해당 메서드에 @Transactional 이 없다. \
+이 경우 더 상위인 클래스를 확인한다.\
+클래스에 @Transactional(readOnly = true) 이 적용되어 있다. \
+따라서 트랜잭션이 적용되고 readOnly = true 옵션을 사용하게 된다.
+
+참고로 readOnly=false 는 기본 옵션이기 때문에 보통 생략한다. \
+여기서는 이해를 돕기 위해 기본 옵션을 적어주었다.\
+@Transactional == @Transactional(readOnly=false) 와 같다
+
+* TransactionSynchronizationManager.isCurrentTransactionReadOnly
+  * 현재 트랜잭션에 적용된 readOnly 옵션의 값을 반환한다.
+<br/>
+
+### 실행 결과
+```java
+# write() 호출
+TransactionInterceptor : Getting transaction for
+[..LevelService.write]
+y.TxLevelTest$LevelService : call write
+y.TxLevelTest$LevelService : tx active=true
+y.TxLevelTest$LevelService : tx readOnly=false
+TransactionInterceptor : Completing transaction for
+[..LevelService.write]
+
+# read() 호출
+TransactionInterceptor : Getting transaction for
+[..LevelService.read]
+y.TxLevelTest$LevelService : call read
+y.TxLevelTest$LevelService : tx active=true
+y.TxLevelTest$LevelService : tx readOnly=true
+TransactionInterceptor : Completing transaction for
+[..LevelService.read]
+```
+다음 결과를 확인할 수 있다.
+write() 에서는 tx readOnly=false : 읽기 쓰기 트랜잭션이 적용되었다. readOnly 가 아니다.\
+read() 에서는 tx readOnly=true : 읽기 전용 트랜잭션 옵션인 readOnly 가 적용되었다.
+<br/>
+<br/>
+
+### 인터페이스에 @Transactional 적용
+인터페이스에도 @Transactional 을 적용할 수 있다. \
+이 경우 다음 순서로 적용된다. \
+구체적인 것이 더 높은 우선순위를 가진다고 생각하면 바로 이해가 될 것이다.
+1. 클래스의 메서드 (우선순위가 가장 높다.)
+2. 클래스의 타입
+3. 인터페이스의 메서드
+4. 인터페이스의 타입 (우선순위가 가장 낮다.)
+클래스의 메서드를 찾고, 만약 없으면 클래스의 타입을 찾고 만약 없으면 \
+인터페이스의 메서드를 찾고 그래도 없으면 인터페이스의 타입을 찾는다.
+
+그런데 인터페이스에 @Transactional 사용하는 것은 \
+스프링 공식 메뉴얼에서 권장하지 않는 방법이다.
+
+AOP를 적용하는 방식에 따라서 인터페이스에 애노테이션을 두면\
+AOP가 적용이 되지 않는 경우도 있기 때문이다. \
+가급적 구체 클래스에 @Transactional 을 사용하자.
+<br/>
+<br/>
+
+## 트랜잭션 AOP 주의 사항 - 프록시 내부 호출1
+@Transactional 을 사용하면 스프링의 트랜잭션 AOP가 적용된다.\
+트랜잭션 AOP는 기본적으로 프록시 방식의 AOP를 사용한다.\
+앞서 배운 것 처럼 @Transactional 을 적용하면 프록시 객체가 \
+요청을 먼저 받아서 트랜잭션을 처리하고, 실제 객체를 호출해준다.
+
+따라서 트랜잭션을 적용하려면 항상 프록시를 통해서 대상 객체(Target)을 호출해야 한다.\
+이렇게 해야 프록시에서 먼저 트랜잭션을 적용하고, \
+이후에 대상 객체를 호출하게 된다.
+
+만약 프록시를 거치지 않고 대상 객체를 직접 호출하게 되면 AOP가 적용되지 않고, \
+트랜잭션도 적용되지 않는다.
+
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/c1d02643-6f11-43dc-b57d-71a79eb02cf4)
+
+AOP를 적용하면 스프링은 대상 객체 대신에 프록시를 스프링 빈으로 등록한다. \
+따라서 스프링은 의존관계 주입시에 항상 실제 객체 대신에 프록시 객체를 주입한다. \
+프록시 객체가 주입되기 때문에 대상 객체를 \
+직접 호출하는 문제는 일반적으로 발생하지 않는다. 
+
+하지만 **대상 객체의 내부에서 메서드 호출이 발생하면** \
+**프록시를 거치지 않고 대상 객체를 직접 호출하는 문제가 발생**한다. \
+이렇게 되면 @Transactional 이 있어도 트랜잭션이 적용되지 않는다. \
+실무에서 반드시 한번은 만나서 고생하는 문제이기 때문에 꼭 이해하고 넘어가자.
+
+예제를 통해서 내부 호출이 발생할 때 어떤 문제가 발생하는지 알아보자. \
+먼저 내부 호출이 발생하는 예제를 만들어보자.
+<br/>
+<br/>
+
+### InternalCallV1Test
+```java
+@Slf4j
+@SpringBootTest
+public class InternalCallV1Test {
+
+    @Autowired
+    CallService callService;
+
+    @Test
+    void printProxy() {
+        log.info("callService class={}", callService.getClass());
+    }
+
+    @Test
+    void internalCall() {
+        callService.internal();
+    }
+
+    @Test
+    void externalCall() {
+        callService.external();
+    }
+
+    @TestConfiguration
+    static class InternalCallV1TestConfig {
+
+        @Bean
+        CallService callService() {
+            return new CallService();
+        }
+    }
+
+
+
+    @Slf4j
+    static class CallService {
+
+        public void external() {
+            log.info("call external");
+            printTxInfo();
+            internal();
+        }
+
+        @Transactional
+        public void internal() {
+            log.info("call internal");
+            printTxInfo();
+        }
+
+
+        private void printTxInfo() {
+            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
+            log.info("tx active={}", txActive);
+//            boolean readOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
+//            log.info("tx readOnly={}", readOnly);
+        }
+    }
+}
+```
+<br/>
+<br/>
+
+### CallService
+external() 은 트랜잭션이 없다.\
+internal() 은 @Transactional 을 통해 트랜잭션을 적용한다.\
+@Transactional 이 하나라도 있으면 트랜잭션 프록시 객체가 만들어진다. \
+그리고 callService 빈을 주입 받으면 트랜잭션 프록시 객체가 대신 주입된다.
+
+다음 코드를 실행해보자.
+
+```java
+@Test
+void printProxy() {
+ log.info("callService class={}", callService.getClass());
+}
+```
+여기서는 테스트에서 callService 를 주입 받는데, \
+해당 클래스를 출력해보면 뒤에 CGLIB...이 붙은 것을 확인할 수 있다.\
+원본 객체 대신에 트랜잭션을 처리하는 프록시 객체를 주입 받은 것이다.
+
+```java
+callService class=class hello..InternalCallV1Test$CallService$$EnhancerBySpringCGLIB$$4ec3f332
+```
+<br/>
+<br/>
+
+### internalCall() 실행
+internalCall() 은 트랜잭션이 있는 코드인 internal() 을 호출한다.
+```java
+@Transactional
+public void internal() {
+    log.info("call internal");
+    printTxInfo();
+}
+```
+
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/9384f058-5378-4e10-be2d-8cd237fe72fc)
+
+1. 클라이언트인 테스트 코드는 callService.internal() 을 호출한다. \
+   여기서 callService 는 트랜잭션 프록시이다.
+3. callService 의 트랜잭션 프록시가 호출된다.
+4. internal() 메서드에 @Transactional 이 붙어 있으므로 트랜잭션 프록시는 트랜잭션을 적용한다.
+5. 트랜잭션 적용 후 실제 callService 객체 인스턴스의 internal() 을 호출한다.\
+   실제 callService 가 처리를 완료하면 응답이 트랜잭션 프록시로 돌아오고,\
+   트랜잭션 프록시는 트랜잭션을 완료한다.
+<br/>
+
+### 실행 로그 - internalCall()
+```java
+TransactionInterceptor : Getting transaction for
+[..CallService.internal]
+..rnalCallV1Test$CallService : call internal
+..rnalCallV1Test$CallService : tx active=true
+TransactionInterceptor : Completing transaction for
+[..CallService.internal]
+```
+TransactionInterceptor 가 남긴 로그를 통해 트랜잭션 프록시가 \
+트랜잭션을 적용한 것을 확인할 수 있다.
+CallService 가 남긴 tx active=true 로그를 통해 \
+트랜잭션이 적용되어 있음을 확인할 수 있다.
+
+지금까지 본 내용은 앞서 학습한 내용이어서 이해하기 어렵지 않을 것이다.\
+이제 본격적으로 문제가 되는 부분을 확인해보자.
+<br/>
+<br/>
+
+### externalCall() 실행
+externalCall() 은 트랜잭션이 없는 코드인 external() 을 호출한다.
+```java
+public void external() {
+    log.info("call external");
+    printTxInfo();
+    internal();
+}
+
+@Transactional
+public void internal() {
+    log.info("call internal");
+    printTxInfo();
+}
+```
+external() 은 @Transactional 애노테이션이 없다. 따라서 트랜잭션 없이 시작한다.\
+그런데 내부에서 @Transactional 이 있는 internal() 을 호출하는 것을 확인할 수 있다.\
+이 경우 external() 은 트랜잭션이 없지만,\
+internal() 에서는 트랜잭션이 적용되는 것 처럼 보인다.
+```java
+CallService : call external
+CallService : tx active=false
+CallService : call internal
+CallService : tx active=false
+```
+실행 로그를 보면 트랜잭션 관련 코드가 전혀 보이지 않는다. \
+프록시가 아닌 실제 callService 에서 남긴 로그만 확인된다. \
+추가로 internal() 내부에서 호출한 tx active=false 로그를 통해\
+확실히 트랜잭션이 수행되지 않은 것을 확인할 수 있다.
+
+우리의 기대와 다르게 internal() 에서 트랜잭션이 전혀 적용되지 않았다.\
+왜 이런 문제가 발생하는 것일까?
+<br/>
+<br/>
+
+### 프록시와 내부 호출
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/4b4c12f5-f734-44ea-870b-761aee14dadf)
+
+실제 호출되는 흐름을 천천히 분석해보자.
+1. 클라이언트인 테스트 코드는 callService.external() 을 호출한다. \
+   여기서 callService 는 트랜잭션 프록시이다.
+3. callService 의 트랜잭션 프록시가 호출된다.
+4. external() 메서드에는 @Transactional 이 없다. \
+   따라서 트랜잭션 프록시는 트랜잭션을 적용하지 않는다.
+6. 트랜잭션 적용하지 않고, 실제 callService 객체 인스턴스의 external() 을 호출한다.
+7. external() 은 내부에서 internal() 메서드를 호출한다. 그런데 여기서 문제가 발생한다
+<br/>
+<br/>
+
+### 문제 원인
+자바 언어에서 메서드 앞에 별도의 참조가 없으면 \
+this 라는 뜻으로 자기 자신의 인스턴스를 가리킨다. 
+
+결과적으로 자기 자신의 내부 메서드를 호출하는 this.internal() 이 되는데, \
+여기서 this 는 자기 자신을 가리키므로, 실제 대상 객체( target )의 인스턴스를 뜻한다. \
+결과적으로 이러한 내부 호출은 프록시를 거치지 않는다. \
+따라서 트랜잭션을 적용할 수 없다. \
+결과적으로 target 에 있는 internal() 을 직접 호출하게 된 것이다.
+<br/>
+<br/>
+
+### 프록시 방식의 AOP 한계
+@Transactional 를 사용하는 트랜잭션 AOP는 프록시를 사용한다. \
+프록시를 사용하면 메서드 내부 호출에 프록시를 적용할 수 없다.
+
+그렇다면 이 문제를 어떻게 해결할 수 있을까?\
+가장 단순한 방법은 내부 호출을 피하기 위해 \
+internal() 메서드를 별도의 클래스로 분리하는 것이다.
+<br/>
+<br/>
+
+## 트랜잭션 AOP 주의 사항 - 프록시 내부 호출2
+메서드 내부 호출 때문에 트랜잭션 프록시가 적용되지 않는 문제를 해결하기 위해 \
+internal() 메서드를 별도의 클래스로 분리하자.
+<br/>
+<br/>
+
+### InternalCallV2Test
+```java
+
+@Slf4j
+@SpringBootTest
+public class InternalCallV2Test {
+
+    @Autowired
+    CallService callService;
+
+    @Autowired
+    InternalService internalService;
+
+    @Test
+    void printProxy() {
+        log.info("callService class={}", callService.getClass());
+    }
+
+    @Test
+    void internalCallV2() {
+        internalService.internal();
+    }
+
+    @Test
+    void externalCallV2() {
+        callService.external();
+    }
+
+    @TestConfiguration
+    static class InternalCallV1TestConfig {
+
+        @Bean
+        CallService callService() {
+            return new CallService(internalService());
+        }
+
+        @Bean
+        InternalService internalService() {
+            return new InternalService();
+        }
+    }
+
+
+
+    @Slf4j
+    @RequiredArgsConstructor
+    static class CallService {
+
+        private final InternalService internalService;
+
+        public void external() {
+            log.info("call external");
+            printTxInfo();
+            internalService.internal();
+        }
+
+
+
+        private void printTxInfo() {
+            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
+            log.info("tx active={}", txActive);
+        }
+    }
+
+    @Slf4j
+    static class InternalService {
+
+        @Transactional
+        public void internal() {
+            log.info("call internal");
+            printTxInfo();
+        }
+
+
+        private void printTxInfo() {
+            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
+            log.info("tx active={}", txActive);
+        }
+    }
+}
+```
+InternalService 클래스를 만들고 internal() 메서드를 여기로 옮겼다.\
+이렇게 메서드 내부 호출을 외부 호출로 변경했다.\
+CallService 에는 트랜잭션 관련 코드가 전혀 없으므로 트랜잭션 프록시가 적용되지 않는다.\
+InternalService 에는 트랜잭션 관련 코드가 있으므로 트랜잭션 프록시가 적용된다.
+
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/41539041-36c6-4369-a73d-e70f1a03d6e2)
+
+실제 호출되는 흐름을 분석해보자.
+1. 클라이언트인 테스트 코드는 callService.external() 을 호출한다.
+2. callService 는 실제 callService 객체 인스턴스이다.
+3. callService 는 주입 받은 internalService.internal() 을 호출한다.
+4. internalService 는 트랜잭션 프록시이다. internal() 메서드에 @Transactional 이 붙어
+있으므로 트랜잭션 프록시는 트랜잭션을 적용한다.
+5. 트랜잭션 적용 후 실제 internalService 객체 인스턴스의 internal() 을 호출한다.
+<br/>
+<br/>
+
+### 실행 로그 - externalCallV2()
+```java
+#external()
+..InternalCallV2Test$CallService : call external
+..InternalCallV2Test$CallService : tx active=false
+
+#internal()
+TransactionInterceptor : Getting transaction for
+[..InternalService.internal]
+..rnalCallV2Test$InternalService : call internal
+..rnalCallV2Test$InternalService : tx active=true
+TransactionInterceptor : Completing transaction for
+[..InternalService.internal]
+```
+TransactionInterceptor 를 통해 트랜잭션이 적용되는 것을 확인할 수 있다.\
+InternalService 의 tx active=true 로그를 통해 internal() 호출에서\
+트랜잭션이 적용된 것을 확인할 수 있다.
+
+여러가지 다른 해결방안도 있지만, \
+실무에서는 이렇게 별도의 클래스로 분리하는 방법을 주로 사용한다.
+<br/>
+<br/>
+
+### public 메서드만 트랜잭션 적용
+스프링의 트랜잭션 AOP 기능은 public 메서드에만 \
+트랜잭션을 적용하도록 기본 설정이 되어있다.
+
+그래서 protected , private , package-visible 에는 트랜잭션이 적용되지 않는다.\
+생각해보면 protected , package-visible 도 외부에서 호출이 가능하다.\
+따라서 이 부분은 앞서 설명한 프록시의 내부 호출과는 무관하고, \
+스프링이 막아둔 것이다.
+
+스프링이 public 에만 트랜잭션을 적용하는 이유는 다음과 같다.
+```java
+@Transactional
+public class Hello {
+    public method1();
+    method2():
+    protected method3();
+    private method4();
+}
+```
+이렇게 클래스 레벨에 트랜잭션을 적용하면 모든 메서드에 트랜잭션이 걸릴 수 있다. \
+그러면 트랜잭션을 의도하지 않는 곳 까지 트랜잭션이 과도하게 적용된다.\
+트랜잭션은 주로 비즈니스 로직의 시작점에 걸기 때문에 \
+대부분 외부에 열어준 곳을 시작점으로 사용한다. \
+이런 이유로 public 메서드에만 트랜잭션을 적용하도록 설정되어 있다.
+
+앞서 실행했던 코드를 package-visible 로 변경해보면 적용되지 않는 것을 확인할 수 있다.\
+참고로 public 이 아닌곳에 @Transactional 이 붙어 있으면 
+예외가 발생하지는 않고, 트랜잭션 적용만 무시된다.
+<br/>
+<br/>
+
+## 트랜잭션 AOP 주의 사항 - 초기화 시점
+스프링 초기화 시점에는 트랜잭션 AOP가 적용되지 않을 수 있다.
+```java
+@SpringBootTest
+public class InitTxTest {
+
+    @Autowired
+    Hello hello;
+
+    @Test
+    void go() {
+//        hello.initV1();
+    }
+
+    @TestConfiguration
+    static class InitTxTestConfig {
+        @Bean
+        Hello hello() {
+            return new Hello();
+        }
+    }
+
+
+    @Slf4j
+    static class Hello {
+
+        @PostConstruct
+        @Transactional
+        public void initV1() {
+            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
+            log.info("Hello init @PostConstruct tx active={}", txActive);
+        }
+
+        @EventListener(ApplicationReadyEvent.class) // 스프링 컨테이너가 완성되었을 때
+        @Transactional
+        public void initV2() {
+            boolean txActive = TransactionSynchronizationManager.isActualTransactionActive();
+            log.info("Hello init ApplicationReady tx active={}", txActive);
+        }
+    }
+}
+```
+테스트를 실행해보자.
+
+초기화 코드(예: @PostConstruct )와 @Transactional 을 함께 사용하면 \
+트랜잭션이 적용되지 않는다.
+```java
+@PostConstruct
+@Transactional
+public void initV1() {
+    log.info("Hello init @PostConstruct");
+}
+```
+왜냐하면 초기화 코드가 먼저 호출되고, 그 다음에 트랜잭션 AOP가 적용되기 때문이다.\
+따라서 초기화 시점에는 해당 메서드에서 트랜잭션을 획득할 수 없다
+<br/>
+<br/>
+
+### initV1() 관련 로그
+```java
+Hello init @PostConstruct tx active=false
+```
+가장 확실한 대안은 ApplicationReadyEvent 이벤트를 사용하는 것이다.
+
+```java
+@EventListener(value = ApplicationReadyEvent.class)
+@Transactional
+public void init2() {
+    log.info("Hello init ApplicationReadyEvent");
+}
+```
+이 이벤트는 트랜잭션 AOP를 포함한 스프링이 컨테이너가 완전히 생성되고 난 다음에 \
+이벤트가 붙은 메서드를 호출해준다.\
+따라서 init2() 는 트랜잭션이 적용된 것을 확인할 수 있다
+<br/>
+<br/>
+
+### init2()
+ApplicationReadyEvent 이벤트가 호출하는 코드
+```java
+TransactionInterceptor : Getting transaction for [Hello.init2]
+..ply.InitTxTest$Hello : Hello init ApplicationReadyEvent tx active=true
+TransactionInterceptor : Completing transaction for [Hello.init2]
+```
+<br/>
+
+
+
+## 트랜잭션 옵션 소개
+스프링 트랜잭션은 다양한 옵션을 제공한다. \
+이번 시간에는 각각의 옵션들을 간략하게 소개하겠다.\
+그리고 주요한 옵션들은 이후 장에서 하나씩 자세히 설명하겠다.
+<br/>
+<br/>
+
+### @Transactional - 코드, 설명 순서에 따라 약간 수정했음
+```java
+public @interface Transactional {
+
+    String value() default "";
+    String transactionManager() default "";
+
+    Class<? extends Throwable>[] rollbackFor() default {};
+    Class<? extends Throwable>[] noRollbackFor() default {};
+
+    Propagation propagation() default Propagation.REQUIRED;
+    Isolation isolation() default Isolation.DEFAULT;
+    int timeout() default TransactionDefinition.TIMEOUT_DEFAULT;
+    boolean readOnly() default false;
+    String[] label() default {};
+}
+```
+<br/>
+<br/>
+
+### value, transactionManager
+트랜잭션을 사용하려면 먼저 스프링 빈에 등록된 어떤 트랜잭션 매니저를 사용할지 알아야 한다.\
+생각해보면 코드로 직접 트랜잭션을 사용할 때 분명 트랜잭션 매니저를 주입 받아서 사용했다.\
+@Transactional 에서도 트랜잭션 프록시가 사용할 트랜잭션 매니저를 지정해주어야 한다.\
+사용할 트랜잭션 매니저를 지정할 때는 value , transactionManager 둘 중 하나에 \
+트랜잭션 매니저의 스프링 빈의 이름을 적어주면 된다.
+이 값을 생략하면 기본으로 등록된 트랜잭션 매니저를 사용하기 때문에 대부분 생략한다. \
+그런데 사용하는 트랜잭션 매니저가 둘 이상이라면 다음과 같이 \
+트랜잭션 매니저의 이름을 지정해서 구분하면 된다.
+
+```java
+
+```
+참고로 애노테이션에서 속성이 하나인 경우 위 예처럼 \
+value 는 생략하고 값을 바로 넣을 수 있다.
+<br/>
+<br/>
+
+### rollbackFor
+예외 발생시 스프링 트랜잭션의 기본 정책은 다음과 같다.\
+언체크 예외인 RuntimeException , Error 와 그 하위 예외가 발생하면 롤백한다.\
+체크 예외인 Exception 과 그 하위 예외들은 커밋한다.
+
+이 옵션을 사용하면 기본 정책에 추가로 어떤 예외가 발생할 때 롤백할 지 지정할 수 있다
+```java
+@Transactional(rollbackFor = Excepti
+```
+예를 들어서 이렇게 지정하면 체크 예외인 Exception 이 발생해도 롤백하게 된다. \
+(하위 예외들도 대상에 포함된다.)\
+rollbackForClassName 도 있는데, rollbackFor 는 예외 클래스를 직접 지정하고,\
+rollbackForClassName 는 예외 이름을 문자로 넣으면 된다.
+<br/>
+<br/>
+
+### noRollbackFor
+앞서 설명한 rollbackFor 와 반대이다. \
+기본 정책에 추가로 어떤 예외가 발생했을 때 롤백하면 안되는지 지정할 수 있다.\
+예외 이름을 문자로 넣을 수 있는 noRollbackForClassName 도 있다.\
+롤백 관련 옵션에 대한 더 자세한 내용은 뒤에서 더 자세히 설명한다.
+<br/>
+<br/>
+
+### propagation
+트랜잭션 전파에 대한 옵션이다. 자세한 내용은 뒤에서 설명한다.
+<br/>
+<br/>
+
+### isolation
+트랜잭션 격리 수준을 지정할 수 있다. \
+기본 값은 데이터베이스에서 설정한 트랜잭션 격리 수준을 사용하는 DEFAULT 이다. \
+대부분 데이터베이스에서 설정한 기준을 따른다. \
+애플리케이션 개발자가 트랜잭션 격리 수준을 직접 지정하는 경우는 드물다.
+
+* DEFAULT : 데이터베이스에서 설정한 격리 수준을 따른다.
+* READ_UNCOMMITTED : 커밋되지 않은 읽기
+* READ_COMMITTED : 커밋된 읽기
+* REPEATABLE_READ : 반복 가능한 읽기
+* SERIALIZABLE : 직렬화 가능
+<br/>
+<br/>
+
+### timeout
+트랜잭션 수행 시간에 대한 타임아웃을 초 단위로 지정한다.\
+기본 값은 트랜잭션 시스템의 타임아웃을 사용한다. \
+운영 환경에 따라 동작하는 경우도 있고 그렇지 않은 경우도 있기 때문에 \
+꼭 확인하고 사용해야 한다.
+
+timeoutString 도 있는데, 숫자 대신 문자 값으로 지정할 수 있다.
+<br/>
+<br/>
+
+### label
+트랜잭션 애노테이션에 있는 값을 직접 읽어서 어떤 동작을 하고 싶을 때 사용할 수 있다.\
+일반적으로 사용하지 않는다.
+<br/>
+<br/>
+
+### readOnly
+트랜잭션은 기본적으로 읽기 쓰기가 모두 가능한 트랜잭션이 생성된다.\
+readOnly=true 옵션을 사용하면 읽기 전용 트랜잭션이 생성된다. \
+이 경우 등록, 수정, 삭제가 안되고 읽기 기능만 작동한다. \
+(드라이버나 데이터베이스에 따라 정상 동작하지 않는 경우도 있다.) \
+그리고 readOnly 옵션을 사용하면 읽기에서 다양한 성능 최적화가 발생할 수 있다.\
+readOnly 옵션은 크게 3곳에서 적용된다.
+<br/>
+<br/>
+
+#### 프레임워크
+JdbcTemplate은 읽기 전용 트랜잭션 안에서 변경 기능을 실행하면 예외를 던진다.\
+JPA(하이버네이트)는 읽기 전용 트랜잭션의 경우 커밋 시점에 플러시를 호출하지 않는다. \
+읽기 전용이니 변경에 사용되는 플러시를 호출할 필요가 없다. \
+추가로 변경이 필요 없으니 변경 감지를 위한 스냅샷 객체도 생성하지 않는다.\
+이렇게 JPA에서는 다양한 최적화가 발생한다.
+
+JPA 관련 내용은 JPA를 더 학습해야 이해할 수 있으므로 \
+지금은 이런 것이 있다 정도만 알아두자
+<br/>
+<br/>
+
+#### JDBC 드라이버
+참고로 여기서 설명하는 내용들은 DB와 드라이버 버전에 따라서 \
+다르게 동작하기 때문에 사전에 확인이 필요하다.\
+읽기 전용 트랜잭션에서 변경 쿼리가 발생하면 예외를 던진다.\
+읽기, 쓰기(마스터, 슬레이브) 데이터베이스를 구분해서 요청한다.\
+읽기 전용 트랜잭션의 경우 읽기 (슬레이브) 데이터베이스의 커넥션을 획득해서 사용한다.\
+예) https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-source-replicareplication-connection.html
+<br/>
+<br/>
+
+#### 데이터베이스
+데이터베이스에 따라 읽기 전용 트랜잭션의 경우 읽기만 하면 되므로, \
+내부에서 성능 최적화가 발생한다.
+<br/>
+<br/>
+
+## 예외와 트랜잭션 커밋, 롤백 - 기본
+예외가 발생했는데, 내부에서 예외를 처리하지 못하고, \
+트랜잭션 범위( @Transactional가 적용된 AOP ) 밖으로 예외를 던지면 어떻게 될까?
+
+![image](https://github.com/jub3907/Today-I-Learn/assets/58246682/31b787a4-33e3-4a1b-92b5-1f48b00dac9c)
+
+예외 발생시 스프링 트랜잭션 AOP는 예외의 종류에 따라 트랜잭션을 커밋하거나 롤백한다.\
+언체크 예외인 RuntimeException , Error 와 그 하위 예외가 발생하면 트랜잭션을 롤백한다.\
+체크 예외인 Exception 과 그 하위 예외가 발생하면 트랜잭션을 커밋한다.\
+물론 정상 응답(리턴)하면 트랜잭션을 커밋한다.
+
+실제 이렇게 동작하는지 코드로 확인해보자
+<br/>
+<br/>
+
+### RollbackTest
+```java
+
+@SpringBootTest
+public class RollbackTest {
+
+
+    @Autowired
+    RollbackService service;
+
+    @Test
+    void runtimeException() {
+        assertThatThrownBy(() -> service.runtimeException())
+                .isInstanceOf(RuntimeException.class);
+    }
+
+    @Test
+    void checkedException() {
+        assertThatThrownBy(() -> service.checkedException())
+                .isInstanceOf(MyException.class);
+    }
+
+    @Test
+    void rollbackFor() {
+        assertThatThrownBy(() -> service.rollbackFor())
+                .isInstanceOf(MyException.class);
+    }
+
+    @TestConfiguration
+    static class RollbackTestConfig {
+
+        @Bean
+        RollbackService rollbackService() {
+            return new RollbackService();
+        }
+    }
+
+
+    @Slf4j
+    static class RollbackService {
+
+        // 런타임 예외 발생 : 롤백
+        @Transactional
+        public void runtimeException() {
+            log.info("call runtimeException");
+            throw new RuntimeException();
+        }
+
+        // 체크 예외 발생 : 커밋
+        @Transactional
+        public void checkedException() throws MyException {
+            log.info("call checkedException");
+            throw new MyException();
+        }
+
+        // 체크 예외 rollbackFor 지정: 롤백
+        @Transactional(rollbackFor = MyException.class)
+        public void rollbackFor() throws MyException {
+            log.info("call rollbackFor");
+            throw new MyException();
+        }
+    }
+
+    static class MyException extends Exception {
+    }
+
+
+}
+```
+실행하기 전에 다음을 추가하자.\
+이렇게 하면 트랜잭션이 커밋되었는지 롤백 되었는지 로그로 확인할 수 있다.
+
+`application.properties`
+
+```java
+logging.level.org.springframework.transaction.interceptor=TRACE
+logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager=DEBUG
+
+#JPA log
+logging.level.org.springframework.orm.jpa.JpaTransactionManager=DEBUG
+logging.level.org.hibernate.resource.transaction=DEBUG
+```
+참고로 지금은 JPA를 사용하므로 트랜잭션 매니저로 JpaTransactionManager 가 실행되고, \
+여기의 로그를 출력하게 된다.
+
+이제 하나씩 실행하면서 결과를 확인해보자.
+<br/>
+<br/>
+
+### runtimeException() 실행 - 런타임 예외
+```java
+//런타임 예외 발생: 롤백
+@Transactional
+public void runtimeException() {
+    log.info("call runtimeException");
+    throw new RuntimeException();
+}
+```
+RuntimeException 이 발생하므로 트랜잭션이 롤백된다.
+
+```java
+Getting transaction for [...RollbackService.runtimeException]
+call runtimeException
+Completing transaction for [...RollbackService.runtimeException] after
+exception: RuntimeException
+Initiating transaction rollback
+Rolling back JPA transaction on EntityManager
+```
+<br/>
+
+### checkedException() 실행 - 체크 예외
+```java
+//체크 예외 발생: 커밋
+@Transactional
+public void checkedException() throws MyException {
+    log.info("call checkedException");
+    throw new MyException();
+}
+```
+MyException 은 Exception 을 상속받은 체크 예외이다. 따라서 예외가 발생해도 트랜잭션이 커밋된다.
+
+```java
+Getting transaction for [...RollbackService.checkedException]
+call checkedException
+Completing transaction for [...RollbackService.checkedException] after
+exception: MyException
+Initiating transaction commit
+Committing JPA transaction on EntityManager
+```
+<br/>
+<br/>
+
+### rollbackFor
+이 옵션을 사용하면 기본 정책에 추가로 어떤 예외가 발생할 때 롤백할 지 지정할 수 있다.
+```java
+@Transactional(rollbackFor = Exception.class)
+```
+예를 들어서 이렇게 지정하면 체크 예외인 Exception 이 발생해도 커밋 대신 롤백된다.\
+(자식 타입도 롤백된다.)
+* rollbackFor() 실행 - 체크 예외를 강제로 롤백
+  ```
+  //체크 예외 rollbackFor 지정: 롤백
+  @Transactional(rollbackFor = MyException.class)
+  public void rollbackFor() throws MyException {
+      log.info("call rollbackFor");
+      throw new MyException();
+  }
+  ```
+  * 기본 정책과 무관하게 특정 예외를 강제로 롤백하고 싶으면 rollbackFor 를 사용하면 된다. \
+    (해당 예외의자식도 포함된다.)
+  * rollbackFor = MyException.class 을 지정했기 때문에 \
+    MyException 이 발생하면 체크 예외이지만 트랜잭션이 롤백된다.
+
+  ```
+  Getting transaction for [...RollbackService.rollbackFor]
+  call rollbackFor
+  Completing transaction for [...RollbackService.rollbackFor] after exception:
+  MyException
+  Initiating transaction rollback
+  Rolling back JPA transaction on EntityManager
+  ```
+<br/>
+<br/>
+
+
+## 예외와 트랜잭션 커밋, 롤백 - 활용
+스프링은 왜 체크 예외는 커밋하고, 언체크(런타임) 예외는 롤백할까?
+스프링 기본적으로 체크 예외는 비즈니스 의미가 있을 때 사용하고, \
+런타임(언체크) 예외는 복구 불가능한 예외로 가정한다.
+
+* 체크 예외: 비즈니스 의미가 있을 때 사용
+* 언체크 예외: 복구 불가능한 예외
+
+참고로 꼭 이런 정책을 따를 필요는 없다. \
+그때는 앞서 배운 rollbackFor 라는 옵션을 사용해서 체크 예외도 롤백하면 된다.
+
+그런데 비즈니스 의미가 있는 비즈니스 예외라는 것이 무슨 뜻일까? \
+간단한 예제로 알아보자.
+<br/>
+<br/>
+
+### 비즈니스 요구사항
+주문을 하는데 상황에 따라 다음과 같이 조치한다.
+1. **정상**: 주문시 결제를 성공하면 주문 데이터를 저장하고 결제 상태를 완료 로 처리한다.
+2. **시스템 예외**: 주문시 내부에 복구 불가능한 예외가 발생하면 전체 데이터를 롤백한다.
+3. **비즈니스 예외**: 주문시 결제 잔고가 부족하면 주문 데이터를 저장하고, \
+   결제 상태를 대기 로 처리한다. 이 경우 고객에게 잔고 부족을 알리고 \
+   별도의 계좌로 입금하도록 안내한다.
+
+이때 결제 잔고가 부족하면 NotEnoughMoneyException 이라는 체크 예외가 발생한다고 가정하겠다.\
+이 예외는 시스템에 문제가 있어서 발생하는 시스템 예외가 아니다. \
+시스템은 정상 동작했지만, 비즈니스 상황에서 문제가 되기 때문에 발생한 예외이다. \
+더 자세히 설명하자면, 고객의 잔고가 부족한 것은 시스템에 문제가 있는 것이 아니다.\
+오히려 시스템은 문제 없이 동작한 것이고, 비즈니스 상황이 예외인 것이다.
+
+이런 예외를 비즈니스 예외라 한다. 그리고 비즈니스 예외는 매우 중요하고,\
+반드시 처리해야 하는 경우가 많으므로 체크 예외를 고려할 수 있다.
+
+실제 코드로 알아보자.\
+다음 부분은 테스트를 제외하고 src/main 에 작성하자.
+<br/>
+<br/>
+
+### NotEnoughMoneyException
+```java
+public class NotEnoughMoneyException extends Exception{
+    public NotEnoughMoneyException(String message) {
+        super(message);
+    }
+}
+```
+결제 잔고가 부족하면 발생하는 비즈니스 예외이다. \
+Exception 을 상속 받아서 체크 예외가 된다
+<br/>
+<br/>
+
+### Order
+```java
+@Entity
+@Table(name = "orders")
+@Getter
+@Setter
+public class Order {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String username;  // 정상,
+    private String payStatus; // 대기, 완료
+}
+```
+JPA를 사용하는 Order 엔티티이다.\
+예제를 단순하게 하기 위해 @Getter , @Setter 를 사용했다. \
+참고로 실무에서 엔티티에 @Setter 를 남발해서 \
+불필요한 변경 포인트를 노출하는 것은 좋지 않다.
+
+주의! @Table(name = "orders") 라고 했는데,\
+테이블 이름을 지정하지 않으면 테이블 이름이 클래스 이름인 order 가 된다. \
+order 는 데이터베이스 예약어( order by )여서 사용할 수 없다. \
+그래서 orders 라는 테이블 이름을 따로 지정해주었다.
+<br/>
+<br/>
+
+### OrderRepository
+```java
+public interface OrderRepository extends JpaRepository<Order, Long> {
+}
+```
+스프링 데이터 JPA를 사용한다.
+<br/>
+<br/>
+
+### OrderService
+```java
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class OrderService {
+    private final OrderRepository orderRepository;
+
+    // JPA는 트랜젝션 커밋 시점에 Order 데이터를 DB에 반영
+    @Transactional
+    public void order(Order order) throws NotEnoughMoneyException {
+        log.info("order 호출");
+        orderRepository.save(order);
+
+        log.info("결제 프로세스 진입");
+        if (order.getUsername().equals("예외")) {
+            log.info("시스템 예외 발생");
+            throw new RuntimeException();
+        } else if (order.getUsername().equals("잔고부족")) {
+            log.info("잔고 부족 비즈니스 예외 발생");
+            order.setPayStatus("대기");
+            throw new NotEnoughMoneyException("잔고가 부족합니다.");
+        } else {
+            log.info("정상 승인");
+            order.setPayStatus("완료");
+        }
+        log.info("결제 프로세스 완료");
+    }
+
+```
+여러 상황을 만들기 위해서 사용자 이름( username )에 따라서 처리 프로세스를 다르게 했다.
+* 기본 : payStatus 를 완료 상태로 처리하고 정상 처리된다.
+* 예외 : RuntimeException("시스템 예외") 런타임 예외가 발생한다.
+* 잔고부족 :
+  * payStatus 를 대기 상태로 처리한다.
+  * NotEnoughMoneyException("잔고가 부족합니다") 체크 예외가 발생한다.
+  * 잔고 부족은 payStatus 를 대기 상태로 두고, 체크 예외가 발생하지만, \
+    order 데이터는 커밋되기를 기대한다.
+<br/>
+
+### OrderServiceTest
+```java
+@Slf4j
+@SpringBootTest
+class OrderServiceTest {
+
+    @Autowired OrderService orderService;
+    @Autowired OrderRepository orderRepository;
+
+    @Test
+    void complete() throws NotEnoughMoneyException {
+        // given
+        Order order = new Order();
+        order.setUsername("정상");
+        // when
+        orderService.order(order);
+
+        // then
+        Order findOrder = orderRepository.findById(order.getId()).get();
+        assertThat(findOrder.getPayStatus()).isEqualTo("완료");
+    }
+
+    @Test
+    void runtimeException() throws NotEnoughMoneyException {
+        // given
+        Order order = new Order();
+        order.setUsername("예외");
+        // when
+        assertThatThrownBy(() -> orderService.order(order))
+                .isInstanceOf(RuntimeException.class);
+
+        // then
+        Optional<Order> orderOptional = orderRepository.findById(order.getId());
+        assertThat(orderOptional.isEmpty()).isTrue();
+    }
+
+    @Test
+    void bizException() {
+        //given
+        Order order = new Order();
+        order.setUsername("잔고부족");
+
+        //when
+        try {
+            orderService.order(order);
+        } catch (NotEnoughMoneyException e) {
+            log.info("고객에게 잔고 부족을 알리고 별도의 계좌로 입금하도록 안내");
+        }
+
+        //then
+        Order findOrder = orderRepository.findById(order.getId()).get();
+        assertThat(findOrder.getPayStatus()).isEqualTo("대기");
+    }
+}
+```
+실행하기 전에 다음을 추가하자. \
+이렇게 하면 JPA(하이버네이트)가 실행하는 SQL을 로그로 확인할 수 있다.
+```
+logging.level.org.hibernate.SQL=DEBUG
+```
+* application.properties
+  ```
+  logging.level.org.springframework.transaction.interceptor=TRACE
+  logging.level.org.springframework.jdbc.datasource.DataSourceTransactionManager=DEBUG
+  #JPA log
+  logging.level.org.springframework.orm.jpa.JpaTransactionManager=DEBUG
+  logging.level.org.hibernate.resource.transaction=DEBUG
+  #JPA SQL
+  logging.level.org.hibernate.SQL=DEBUG
+  ```
+그런데 아직 테이블을 생성한 기억이 없을 것이다. \
+지금처럼 메모리 DB를 통해 테스트를 수행하면 테이블 자동 생성 옵션이 활성화 된다.\
+JPA는 엔티티 정보를 참고해서 테이블을 자동으로 생성해준다.
+
+* 참고로 테이블 자동 생성은 application.properties 에\
+  spring.jpa.hibernate.ddl-auto 옵션을 조정할 수 있다.
+  * none : 테이블을 생성하지 않는다.
+  * create : 애플리케이션 시작 시점에 테이블을 생성한다
+<br/>
+<br/>
+
+### complete()
+사용자 이름을 정상 으로 설정했다. 모든 프로세스가 정상 수행된다.\
+다음을 통해서 데이터가 완료 상태로 저장 되었는지 검증한다.\
+`assertThat(findOrder.getPayStatus()).isEqualTo("완료");`
+<br/>
+<br/>
+
+### runtimeException()
+사용자 이름을 예외 로 설정했다. RuntimeException("시스템 예외") 이 발생한다.\
+런타임 예외로 롤백이 수행되었기 때문에 Order 데이터가 비어 있는 것을 확인할 수 있다.
+<br/>
+<br/>
+
+### bizException()
+사용자 이름을 잔고부족 으로 설정했다.\
+NotEnoughMoneyException("잔고가 부족합니다") 이 발생한다.\
+체크 예외로 커밋이 수행되었기 때문에 Order 데이터가 저장된다.\
+다음을 통해서 데이터가 대기 상태로 잘 저장 되었는지 검증한다.\
+`assertThat(findOrder.getPayStatus()).isEqualTo("대기");`
+<br/>
+<br/>
+
+### 정리
+NotEnoughMoneyException 은 시스템에 문제가 발생한 것이 아니라,\
+비즈니스 문제 상황을 예외를 통해 알려준다. 마치 예외가 리턴 값 처럼 사용된다. \
+따라서 이 경우에는 트랜잭션을 커밋하는 것이 맞다. 이 경우 롤백하면\
+생성한 Order 자체가 사라진다. 그러면 고객에게 잔고 부족을 알리고 \
+별도의 계좌로 입금하도록 안내해도 주문( Order ) 자체가 사라지기 때문에 문제가 된다.
+
+그런데 비즈니스 상황에 따라 체크 예외의 경우에도 트랜잭션을 커밋하지 않고,\
+롤백하고 싶을 수 있다. 이때는 rollbackFor 옵션을 사용하면 된다.
+
+런타임 예외는 항상 롤백된다. \
+체크 예외의 경우 rollbackFor 옵션을 사용해서 비즈니스 상황에 따라서 커밋과 롤백을 선택하면 된다.
+
+
