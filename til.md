@@ -61,4 +61,5 @@
 [46일차 - MyBatis와 JPA 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day46.md)\
 [47일차 - Spring Data JPA 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day47.md)\
 [48일차 - QueryDSL 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day48.md)\
-[49일차 - 스프링 트랜젝션의 이해와 프로젝트 구조의 trade off](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day49.md)
+[49일차 - 스프링 트랜젝션의 이해와 프로젝트 구조의 trade off](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day49.md)\
+[50일차 - 스프링 트랜젝션 전파 기본과 활용](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day50.md)

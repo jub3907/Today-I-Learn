@@ -78,7 +78,10 @@
 [6. Spring Data JPA 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/6.spring-data-jpa.md)\
 [7. QueryDSL 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/7.querydsl.md)\
 [8. 프로젝트 구조의 Trade-off와 데이터 접근 기술 조합](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/8.data-access-application.md)\
-[9. 스프링 트랜젝션의 이해와 트랜젝션중 예외 발생](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/9.spring-transaction-understand.md)
+[9. 스프링 트랜젝션의 이해와 트랜젝션중 예외 발생](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/9.spring-transaction-understand.md)\
+[10. 스프링 트랜젝션 전파 기본](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/10.spring-transaction-propagation-basic.md)\
+[11. 스프링 트랜젝션 전파 활용](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/11.spring-transaction-propagation-application.md)
+
 
 ## DB
 * 수강 강의
