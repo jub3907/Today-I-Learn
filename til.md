@@ -63,3 +63,7 @@
 [48일차 - QueryDSL 기초](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day48.md)\
 [49일차 - 스프링 트랜젝션의 이해와 프로젝트 구조의 trade off](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day49.md)\
 [50일차 - 스프링 트랜젝션 전파 기본과 활용](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day50.md)
+
+
+### 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발
+[51일차 - 스프링 JPA 활용 1편 프로젝트 세팅](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day51.md)

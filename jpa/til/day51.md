@@ -1,0 +1,243 @@
+## 기본 View 환경 설정
+### thymeleaf 템플릿 엔진
+* thymeleaf 공식 사이트: https://www.thymeleaf.org/
+* 스프링 공식 튜토리얼: https://spring.io/guides/gs/serving-web-content/
+* 스프링부트 메뉴얼: https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/boot-features-developing-web-applications.html#boot-features-spring-mvc-templateengines
+
+* 스프링 부트 thymeleaf viewName 매핑
+  * resources:templates/ +{ViewName}+ .html
+<br/>
+
+#### jpabook.jpashop.HelloController
+```java
+@Controller
+public class HelloController {
+
+    @GetMapping("hello")
+    public String hello(Model model) {
+        model.addAttribute("data", "hello!!!");
+
+        return "hello";
+    }
+}
+
+```
+<br/>
+
+#### thymeleaf 템플릿엔진 동작 확인(hello.html)
+```html
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <title>Hello</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+  <p th:text="'안녕하세요. ' + ${data}" >안녕하세요. 손님</p>
+  </body>
+</html>
+```
+위치: resources/templates/hello.html
+
+* index.html 하나 만들기
+  * static/index.html
+  ```html
+  <!DOCTYPE HTML>
+  <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <title>Hello</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+  Hello
+  <a href="/hello">hello</a>
+  </body>
+  </html>
+  ```
+
+> spring-boot-devtools 라이브러리를 추가하면, html 파일을 컴파일만 해주면 \
+> 서버 재시작 없이 View 파일 변경이 가능하다.\
+> 인텔리J 컴파일 방법: 메뉴 - build - Recompile
+<br/>
+
+## H2 DB 사용
+<br/>
+<br/>
+
+## JPA와 DB 설정, 동작확인
+  main/resources/application.yml
+
+```
+spring:
+  datasource:
+  url: jdbc:h2:tcp://localhost/~/jpashop
+  username: sa
+  password:
+  driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true  
+logging.level:
+  org.hibernate.SQL: debug
+#  org.hibernate.type: trace #스프링 부트 2.x, hibernate5
+#  org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
+```
+* spring.jpa.hibernate.ddl-auto: create
+  * 이 옵션은 애플리케이션 실행 시점에 테이블을 drop 하고, 다시 생성한다.
+
+> 참고: 모든 로그 출력은 가급적 로거를 통해 남겨야 한다.\
+> show_sql : 옵션은 System.out 에 하이버네이트 실행 SQL을 남긴다.\
+> org.hibernate.SQL : 옵션은 logger를 통해 하이버네이트 실행 SQL을 남긴다.
+<br/>
+
+#### 주의할 점
+application.yml 같은 yml 파일은 띄어쓰기(스페이스) 2칸으로 계층을 만듭니다. \
+따라서 띄어쓰 기 2칸을 필수로 적어주어야 합니다.
+
+예를 들어서 아래의 datasource 는 spring: 하위에 있고 \
+앞에 띄어쓰기 2칸이 있으므로 spring.datasource 가 됩니다. \
+다음 코드에 주석으로 띄어쓰기를 적어두었습니다.
+<br/>
+<br/>
+
+#### yml 띄어쓰기 주의
+
+```
+spring: #띄어쓰기 없음
+  datasource: #띄어쓰기 2칸
+    url: jdbc:h2:tcp://localhost/~/jpashop #4칸
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa: #띄어쓰기 2칸
+    hibernate: #띄어쓰기 4칸
+      ddl-auto: create #띄어쓰기 6칸
+    properties: #띄어쓰기 4칸
+      hibernate: #띄어쓰기 6칸
+#       show_sql: true #띄어쓰기 8칸
+        format_sql: true #띄어쓰기 8칸
+logging.level: #띄어쓰기 없음
+  org.hibernate.SQL: debug #띄어쓰기 2칸
+#  org.hibernate.type: trace #띄어쓰기 2칸
+```
+<br/>
+
+### 실제 동작 확인
+
+#### 회원 엔티티
+```java
+@Entity
+@Getter
+@Setter
+public class Member {
+
+    @Id @GeneratedValue
+    private Long id;
+    private String username;
+
+}
+
+```
+<br/>
+
+#### 회원 리포지토리
+```java
+@Repository
+public class MemberRepository {
+
+    @PersistenceContext
+    private EntityManager em;
+
+    public Long save(Member member) {
+        em.persist(member);
+        // command와 return을 분리해라.
+        return member.getId();
+    }
+
+    public Member find(Long id) {
+        return em.find(Member.class, id);
+    }
+
+}
+```
+<br/>
+ㅇ
+#### @PersistenceContext 란?
+EntityManager를 빈으로 주입할 때 사용하는 어노테이션이다.\
+스프링에서는 영속성 관리를 위해 EntityManager가 존재한다.\
+그래서 스프링 컨테이너가 시작될 때 EntityManager를 만들어서 빈으로 등록해준다.\
+이 때 스프링이 만들어둔 EntityManager를 주입받을 때 사용한다.
+
+@PersistenceContext로 지정된 프로퍼티에 \
+아래 두 가지 중 한 가지로 EntityManager를 주입해준다.
+* EntityManagerFactory에서 새로운 EntityManager를 생성
+* Transaction에 의해 기존에 생성된 EntityManager를 반환
+
+EntityManager를 사용할 때 주의해야 할 점은 \
+여러 쓰레드가 동시에 접근하면 동시성 문제가 발생하여 \
+쓰레드 간에는 EntityManager를 공유해서는 안된다.
+
+일반적으로 스프링은 싱글톤 기반으로 동작하기에 빈은 모든 쓰레드가 공유된다.\
+그러나 @PersistenceContext으로 EntityManager를 주입받아도 \
+동시성 문제가 발생하지 않는다. 스프링 컨테이너가 초기화되면서 \
+@PersistenceContext으로 주입받은 EntityManager를 Proxy로 감싸고,
+그리고 EntityManager 호출 시 마다 Proxy를 통해 EntityManager를 생성하여 \
+Thread-Safe를 보장한다.
+<br/>
+<br/>
+
+
+#### 테스트
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+class MemberRepositoryTest {
+
+    @Autowired
+    MemberRepository memberRepository;
+
+    @Test
+    @Transactional
+    public void testMember() {
+
+        // given
+        Member member = new Member();
+        member.setUsername("memberA");
+
+        // when
+        Long savedId = memberRepository.save(member);
+        Member findMember = memberRepository.find(savedId);
+
+        // then
+        assertThat(findMember.getId()).isEqualTo(member.getId());
+        assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+        assertThat(findMember).isEqualTo(member);
+    }
+}
+```
+<br/>
+
+
+### 쿼리 파라미터 로그 남기기
+* 로그에 다음을 추가하기: SQL 실행 파라미터를 로그로 남긴다.
+  * 스프링 부트 2.x, hibernate5
+    * `org.hibernate.type: trace`
+  * 스프링 부트 3.x, hibernate6
+    * `org.hibernate.orm.jdbc.bind: trace`
+
+* 스프링 부트를 사용하면, 이 라이브러리만 추가하면 된다.
+  ```
+  implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
+  ```
+> 참고: 쿼리 파라미터를 로그로 남기는 외부 라이브러리는 시스템 자원을 사용하므로, \
+> 개발 단계에서는 편하게 사용해도 된다. \
+> 하지만 운영시스템에 적용하려면 꼭 성능테스트를 하고 사용하는 것이 좋다.
+<br/> 
+
