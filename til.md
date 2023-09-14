@@ -66,4 +66,5 @@
 
 
 ### 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발
-[51일차 - 스프링 JPA 활용 1편 프로젝트 세팅](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day51.md)
+[51일차 - 스프링 JPA 활용 1편 프로젝트 세팅](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day51.md)\
+[52일차 - 도메인 분석 설계](https://github.com/jub3907/Today-I-Learn/blob/main/spring/til/day52.md)\
