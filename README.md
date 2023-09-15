@@ -93,7 +93,8 @@
     * [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/dashboard)
 
 [1. 프로젝트 환경 설정](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/1.basic-setting-and-test.md)\
-[2. 프로젝트 도메인 분석 및 설계, 엔티티 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/2.domain-analyze-and-design.md)
+[2. 프로젝트 도메인 분석 및 설계, 엔티티 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/2.domain-analyze-and-design.md)\
+[3. 회원, 상품 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/3.member-domain.md)
 
 ## DB
 * 수강 강의
