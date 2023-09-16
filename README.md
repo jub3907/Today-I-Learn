@@ -28,7 +28,6 @@
 [8. 빈 생명주기 콜백](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/8.bean-lifecycle-callback.md)\
 [9. 빈 스코프](https://github.com/jub3907/Today-I-Learn/blob/main/spring/core-basic/9.bean-scope.md)
 
-
 ## Spring MVC 1
 * 수강 강의
     * [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard)
@@ -94,7 +93,9 @@
 
 [1. 프로젝트 환경 설정](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/1.basic-setting-and-test.md)\
 [2. 프로젝트 도메인 분석 및 설계, 엔티티 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/2.domain-analyze-and-design.md)\
-[3. 회원, 상품 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/3.member-domain.md)
+[3. 회원, 상품 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/3.member-domain.md)\
+[4. 주문 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/4.order-domain.md)\
+웹 계층은 생략.
 
 ## DB
 * 수강 강의
