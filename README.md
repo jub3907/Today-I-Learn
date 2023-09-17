@@ -86,6 +86,11 @@
 [10. 스프링 트랜젝션 전파 기본](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/10.spring-transaction-propagation-basic.md)\
 [11. 스프링 트랜젝션 전파 활용](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db2/11.spring-transaction-propagation-application.md)
 
+## Spring JPA Basic
+* 수강 강의
+    * [자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/dashboard)
+
+[1. JPA 소개](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/1.introduce-jpa.md)
 
 ## Spring JPA, Web Application project
 * 수강 강의
@@ -94,8 +99,8 @@
 [1. 프로젝트 환경 설정](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/1.basic-setting-and-test.md)\
 [2. 프로젝트 도메인 분석 및 설계, 엔티티 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/2.domain-analyze-and-design.md)\
 [3. 회원, 상품 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/3.member-domain.md)\
-[4. 주문 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/4.order-domain.md)\
-웹 계층은 생략.
+[4. 주문 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/4.order-domain.md)\\
+[etc. 변경 감지와 병합](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/etc-dirty-check-and-merge.md)\
 
 ## DB
 * 수강 강의
