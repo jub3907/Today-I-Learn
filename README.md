@@ -90,7 +90,9 @@
 * 수강 강의
     * [자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/dashboard)
 
-[1. JPA 소개](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/1.introduce-jpa.md)
+[1. JPA 소개](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/1.introduce-jpa.md)\
+[2. 영속성 관리](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/2.persistence-context.md)\
+[3. 엔티티 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/3.entity-mapping.md)
 
 ## Spring JPA, Web Application project
 * 수강 강의

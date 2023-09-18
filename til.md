@@ -72,4 +72,5 @@
 [54일차 - 주문 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day54.md)
 
 ### 자바 ORM 표준 JPA 프로그래밍 - 기본편
-[55일차 - JPA 기본편 시작](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day55.md)
+[55일차 - JPA 기본편 시작](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day55.md)\
+[56일차 - 영속성 관리, 엔티티 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day56.md)
