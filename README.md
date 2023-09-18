@@ -92,7 +92,8 @@
 
 [1. JPA 소개](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/1.introduce-jpa.md)\
 [2. 영속성 관리](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/2.persistence-context.md)\
-[3. 엔티티 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/3.entity-mapping.md)
+[3. 엔티티 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/3.entity-mapping.md)\
+[4. 연관관계 매핑 기초](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/4.relation-mapping-basic.md)
 
 ## Spring JPA, Web Application project
 * 수강 강의
