@@ -68,7 +68,8 @@
 [3. 트랜젝션의 이해](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/3.transaction-basic.md)\
 [4. 트랜젝션을 사용할 때 문제 해결 - 트랜젝션 매니저, 트랜젝션 AOP](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/4.spring-and-problem-solving-transaction.md)\
 [5. 자바 예외, 언체크 예외와 체크 예외](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/5.java-exception.md)\
-[6. 예외 처리 문제 해결 방법, JdbcTemplate 맛보기](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/6.spring-exception-problem-solving.md)
+[6. 예외 처리 문제 해결 방법, JdbcTemplate 맛보기](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/6.spring-exception-problem-solving.md)\
+[7. 프록시와 연관관계 관리, 로딩](https://github.com/jub3907/Today-I-Learn/blob/main/spring/db1/7.proxy-and-loading.md)
 
 ## Spring DB 2
 * 수강 강의
@@ -94,7 +95,9 @@
 [2. 영속성 관리](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/2.persistence-context.md)\
 [3. 엔티티 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/3.entity-mapping.md)\
 [4. 연관관계 매핑 기초](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/4.relation-mapping-basic.md)\
-[5. 다양한 연관관계 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/5.several-relation-mapping.md)
+[5. 다양한 연관관계 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/5.several-relation-mapping.md)\
+[6. 상속관계 매핑과 MappedSuperClass](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/6.inheritance-mapping-and-mapped-superclass.md)
+
 
 ## Spring JPA, Web Application project
 * 수강 강의
