@@ -97,7 +97,8 @@
 [5. 다양한 연관관계 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/5.several-relation-mapping.md)\
 [6. 상속관계 매핑과 MappedSuperClass](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/6.inheritance-mapping-and-mapped-superclass.md)\
 [7. 프록시와 연관관계 관리, 로딩](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/7.proxy-and-loading.md)\
-[8. 값 타입](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/8.value-type.md)
+[8. 값 타입](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/8.value-type.md)\
+[9. JPQL 기본 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/9.jpql-basic-grammer.md)
 
 
 ## Spring JPA, Web Application project

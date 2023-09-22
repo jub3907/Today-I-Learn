@@ -76,4 +76,5 @@
 [56일차 - 영속성 관리, 엔티티 매핑, 연관관계 매핑 기초](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day56.md)\
 [57일차 - 다양한 연관관계 매핑](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day57.md)\
 [58일차 - 상속관계 매핑과 MappedSuperClass, 프록시, 로딩](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day58.md)\
-[58일차 - 값 타입](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day59.md)
+[59일차 - 값 타입](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day59.md)\
+[60일차 - JPQL 기본 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day60.md)
