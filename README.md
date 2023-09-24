@@ -99,7 +99,8 @@
 [7. 프록시와 연관관계 관리, 로딩](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/7.proxy-and-loading.md)\
 [8. 값 타입](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/8.value-type.md)\
 [9. JPQL 기본 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/9.jpql-basic-grammer.md)\
-[10. JPQL 중급 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/10.jpql-middle-grammer.md)
+[10. JPQL 중급 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/10.jpql-middle-grammer.md)\
+[etc. 정리](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/etc-summary.md)
 
 
 ## Spring JPA, Web Application project
@@ -109,8 +110,9 @@
 [1. 프로젝트 환경 설정](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/1.basic-setting-and-test.md)\
 [2. 프로젝트 도메인 분석 및 설계, 엔티티 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/2.domain-analyze-and-design.md)\
 [3. 회원, 상품 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/3.member-domain.md)\
-[4. 주문 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/4.order-domain.md)\\
+[4. 주문 도메인 개발](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/4.order-domain.md)\
 [etc. 변경 감지와 병합](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/etc-dirty-check-and-merge.md)\
+[etc. 정리](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application1/etc-summary.md)
 
 ## DB
 * 수강 강의
