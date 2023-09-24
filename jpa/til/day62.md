@@ -634,3 +634,315 @@ public class MemberService {
 ### 도메인 주도 설계 vs 서비스 위주 개발
 어느쪽이 정답인가.. 아직 잘 모르겠음.\
 https://www.inflearn.com/questions/117315/%EB%B9%84%EC%A7%80%EB%8B%88%EC%8A%A4-%EB%A1%9C%EC%A7%81%EA%B5%AC%ED%98%84-entity-vs-service
+
+
+
+# API 개발 기본
+## 회원 등록 API
+```java
+@RestController
+@RequiredArgsConstructor
+public class MemberApiController {
+
+    private final MemberService memberService;
+
+    @PostMapping("/api/v1/members")
+    public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member) {
+        Long id = memberService.join(member);
+        return new CreateMemberResponse(id);
+    }
+
+    @Data
+    static class CreateMemberResponse {
+        public CreateMemberResponse(Long id) {
+            this.id = id;
+        }
+
+        private Long id;
+    }
+}
+```
+추가로, `Member` 엔티티의 name필드에 `@NotEmpty` 추가.
+```java
+@Entity
+@Getter
+@Setter
+public class Member {
+    @NotEmpty
+    private String name;
+}
+```
+
+이처럼, 우리는 Member 엔티티를 Request Body에 직접 매핑했고, Validation까지 진행했다.\
+멀쩡하게 동작하는 것처럼 보이지만, 실은 많은 문제가 존재한다.
+
+* 문제점
+  * 엔티티에 프레젠테이션 계층을 위한 로직이 추가된다.
+  * 엔티티에 API 검증을 위한 로직이 들어간다. (@NotEmpty 등등)
+  * 실무에서는 회원 엔티티를 위한 API가 다양하게 만들어지는데, \
+    한 엔티티에 각각의 API를 위한 모든 요청 요구사항을 담기는 어렵다.
+  * 엔티티가 변경되면 API 스펙이 변한다.
+<br/>
+
+이 중 가장 큰 문제점은 **엔티티가 변경되면 API 스펙이 변한다**는 점이다.\
+엔티티는 많은 곳에서 사용되며, 또한 자주 변경되는 클래스이다.\
+하지만 이렇게 API에서 엔티티를 직접 사용할 경우,\
+API의 스펙이 엔티티에 종속되는 결과로 이어지어, 장애가 발생할 확률이 매우 높다.
+
+따라서, API 요청 스펙에 맞추어, 별도의 DTO를 파라미터로 받아야 한다.
+<br/>
+<br/>
+
+### 수정된 API 개발 스펙
+```java
+@RestController
+@RequiredArgsConstructor
+public class MemberApiController {
+
+    private final MemberService memberService;
+
+    @PostMapping("/api/v2/members")
+    public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberRequest request) {
+
+        Member member = new Member();
+        member.setName(request.getName());
+
+        Long id = memberService.join(member);
+        return new CreateMemberResponse(id);
+    }
+
+    @Data
+    static class CreateMemberRequest {
+        @NotEmpty
+        private String name;
+    }
+
+    @Data
+    static class CreateMemberResponse {
+        public CreateMemberResponse(Long id) {
+            this.id = id;
+        }
+
+        private Long id;
+    }
+}
+```
+* 기존 Member 엔티티에 넣어준 `@NotEmpty`는 제거한다.
+위 코드를 통해, `Member` 엔티티 대신 `CreateMemberRequest`를 RequestBody와 매핑했다.\
+이를 통해 엔티티와 프레젠테이션 계층을 위한 로직을 분리할 수 있었고,\
+엔티티와 API 스펙을 명확하게 분리할 수 있게 되었다.
+
+또한, 가장 중요한, 엔티티가 변해도 API 스펙이 변하지 않게 되었다.
+
+> 참고, 실무에선 엔티티를 API 스펙에 노출해선 안된다.
+<br/>
+
+
+## 회원 수정 API
+```java
+/**
+ * 회원 수정
+ */
+@PostMapping("/api/v2/members/{id}")
+public UpdateMemberResponse updateMemberV2(
+        @PathVariable("id") Long id,
+        @RequestBody @Valid UpdateMemberRequest request) {
+
+    memberService.update(id, request.getName());
+    Member findMember = memberService.findOne(id);
+    return new UpdateMemberResponse(findMember.getId() , findMember.getName());
+}
+
+@Data
+static class UpdateMemberRequest {
+    private String name;
+}
+
+@Data
+@AllArgsConstructor
+static class UpdateMemberResponse {
+    private Long id;
+    private String name;
+
+}
+```
+회원 수정도 DTO를 요청 파라미터에 매핑해서 구현한다.\
+추가로, memberService에 update 메소드를 구현한다.
+```java
+@Service
+@Transactional(readOnly = true)  // 데이터 변경 -> transactional
+@RequiredArgsConstructor
+public class MemberService {
+
+    private final MemberRepository memberRepository;
+
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
+    }
+
+}
+```
+update메소드는 Dirty Check(변경 감지)를 사용해 데이터를 수정했다.
+
+`updateMemberV2`에서 update 쿼리를 수행한 뒤, \
+다시 조회하는 방식이 다소 의아할 수 있다.
+
+강의자님 개인적인 의견이라고 하셨지만, 업데이트 쿼리는 업데이트만 진행하고, \
+조회 쿼리를 따로 날리는 것이 좀 더 명확해보인다고 하신다.\
+조회 쿼리 한 번은 다소 무리가 가지 않기 때문에 위와 같이 구현.\
+생각 좀 해볼 여지가 있을 듯.
+<br/>
+<br/>
+
+## 회원 조회 API
+### 회원조회 V1: 응답 값으로 엔티티를 직접 외부에 노출
+```java
+/**
+ * 회원 조회
+ */
+@GetMapping("/api/v1/members")
+public List<Member> membersV1() {
+    return memberService.findMembers();
+}
+```
+V1 버전에선 응답 값으로 엔티티를 직접 외부에 노출한다.\
+즉, 엔티티에 프레젠테이션 계층을 위한 로직이 추가되고, \
+기본적으로 엔티티의 모든 값이 노출되며, \
+응답 스펙을 맞추기 위한 로직이 추가된다. (@JsonIgnore 등)
+
+실무에선 같은 엔티티에 대해, API가 용도에 따라 다양하게 만들어진다.\
+이로 인해, 한 엔티티에 각각의 API를 위한 프레젠테이션 응답 로직을 담기는 어렵다.
+
+가장 중요한 문제점으로, 엔티티가 변경되면 API 스펙이 변하고,\
+컬렉션을 직접 반환하게 되므로 향후 API스펙을 변경하기 어려워진다.
+<br/>
+<br/>
+
+### 회원조회 V2: 응답 값으로 엔티티가 아닌 별도의 DTO 사용
+```java
+/**
+ * 조회 V2: 응답 값으로 엔티티가 아닌 별도의 DTO를 반환한다.
+ */
+@GetMapping("/api/v2/members")
+public Result MembersV2() {
+    List<Member> findMembers = memberService.findMembers();
+
+    List<MemberDto> collect = findMembers.stream()
+            .map(m -> new MemberDto(m.getName()))
+            .collect(Collectors.toList());
+
+    // List를 바로 반환하는 것이 아닌, Result로 감싸서 반환해야 유연성이 증가한다.
+    return new Result(collect);
+}
+
+@Data
+@AllArgsConstructor
+static class MemberDto {
+    private String name;
+}
+
+
+@Data
+@AllArgsConstructor
+public class Result<T> {
+    private T data;
+}
+```
+엔티티를 DTO로 변환해서 반환했다.\
+따라서 엔티티가 변해도 API 스펙이 변경되지 않는다.
+
+추가로 Result 클래스로 컬렉션을 감싸서 향후 필요한 필드를 추가할 수 있다.
+<br/>
+<br/>
+
+## API 개발 고급 - 준비
+### 조회용 샘플 데이터 입력
+```java
+/**
+ * userA
+     * JPA1 BOOK
+     * JPA2 BOOK
+ * userB
+     * SPRING1 BOOK
+     * SPRING2 BOOK
+ */
+@Component
+@RequiredArgsConstructor
+public class InitDB {
+
+    private final InitService initService;
+
+    @PostConstruct
+    public void init() {
+        initService.dbInit1();
+        initService.dbInit2();
+    }
+
+    @Component
+    @Transactional
+    @RequiredArgsConstructor
+    static class InitService {
+        private final EntityManager em;
+
+        public void dbInit1() {
+            Member member = createMember("userA", "서울", "도로", "zipcode");
+            em.persist(member);
+
+            Book book1 = createBook("JPA1 BOOK", 10000, 100);
+            em.persist(book1);
+
+            Book book2 = createBook("JPA2 BOOK", 20000, 200);
+            em.persist(book2);
+
+            OrderItem orderItem1 = OrderItem.createOrderItem(book1, 10000, 1);
+            OrderItem orderItem2 = OrderItem.createOrderItem(book2, 20000, 2);
+
+            Delivery delivery = createDelivery(member);
+            Order order = Order.createOrder(member, delivery, orderItem1, orderItem2);
+            em.persist(order);
+        }
+
+        private static Delivery createDelivery(Member member) {
+            Delivery delivery = new Delivery();
+            delivery.setAddress(member.getAddress());
+            return delivery;
+        }
+
+        public void dbInit2() {
+            Member member = createMember("userB", "서울", "도로", "zipcode");
+            em.persist(member);
+
+            Book book1 = createBook("SPRING1 BOOK", 20000, 200);
+            em.persist(book1);
+
+            Book book2 = createBook("SPRING2 BOOK", 40000, 300);
+            em.persist(book2);
+
+            OrderItem orderItem1 = OrderItem.createOrderItem(book1, 20000, 3);
+            OrderItem orderItem2 = OrderItem.createOrderItem(book2, 40000, 4);
+
+            Delivery delivery = createDelivery(member);
+            Order order = Order.createOrder(member, delivery, orderItem1, orderItem2);
+            em.persist(order);
+        }
+
+        private static Book createBook(String name, int price, int stockQuantity) {
+            Book book1 = new Book();
+            book1.setName(name);
+            book1.setPrice(price);
+            book1.setStockQuantity(stockQuantity);
+            return book1;
+        }
+
+        private static Member createMember(String name, String city, String street, String zipcode) {
+            Member member = new Member();
+            member.setName(name);
+            member.setAddress(new Address(city, street, zipcode));
+            return member;
+        }
+    }
+}
+
+```

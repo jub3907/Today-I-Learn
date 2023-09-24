@@ -79,4 +79,4 @@
 [59일차 - 값 타입](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day59.md)\
 [60일차 - JPQL 기본 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day60.md)\
 [61일차 - JPQL 중급 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day61.md)\
-[62일차 - JPA 기본, JPA활용1편 정리](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day62.md)
+[62일차 - JPA 기본, JPA활용1편 정리, API 개발 기본](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day62.md)

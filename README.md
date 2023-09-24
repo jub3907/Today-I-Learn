@@ -102,8 +102,14 @@
 [10. JPQL 중급 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/10.jpql-middle-grammer.md)\
 [etc. 정리](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/etc-summary.md)
 
+## Spring JPA application 2, API
+* 수강 강의
+    * [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94/dashboard)
 
-## Spring JPA, Web Application project
+[1. API 개발 기본](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application2/1.api-dev-basic.md)\
+[2-0. API 개발 고급 준비, 조회용 데이터 준비](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application2/2-0.api-dev-advanced-build-up.md)
+
+## Spring JPA application 1, Web
 * 수강 강의
     * [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/dashboard)
 
@@ -143,7 +149,7 @@
 
 
 
-## NestJS 초심찾기
+## NestJS
 
 [Controller](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/controller.md)\
 [Provider](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/provider.md)\
@@ -165,8 +171,10 @@
 [File Upload](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/file_upload.md)\
 [Test using Graphql + TypeOrm](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/jest-test.md)\
 [GraphQL 구독 - 작성중](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/subscription.md)\
-[Redis](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/redis.md)
-[Database 기본](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/database.md)
+[Redis](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/redis.md)\
+[Database 기본](https://github.com/jub3907/Today-I-Learn/blob/main/nestjs/database.md)\
+[아폴로 클라이언트 Cache](https://github.com/jub3907/Today-I-Learn/blob/main/backend/apollo-caching.md)\
+[GraphQL Schema 설계시의 Antipattern들](https://github.com/jub3907/Today-I-Learn/blob/main/backend/gql-nest.md)
 
 ## Frontend
 
@@ -174,10 +182,6 @@
 [브라우저 렌더링 원리](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/browser_rendering.md)\
 [리액트 Concurrent](https://github.com/jub3907/Today-I-Learn/blob/main/frontend/react-concurrent.md)
 
-## Backend
-
-[아폴로 클라이언트 Cache](https://github.com/jub3907/Today-I-Learn/blob/main/backend/apollo-caching.md)\
-[GraphQL Schema 설계시의 Antipattern들](https://github.com/jub3907/Today-I-Learn/blob/main/backend/gql-nest.md)
 
 ## 개발 관련 지식들
 
