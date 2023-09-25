@@ -107,7 +107,8 @@
     * [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94/dashboard)
 
 [1. API 개발 기본](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application2/1.api-dev-basic.md)\
-[2-0. API 개발 고급 준비, 조회용 데이터 준비](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application2/2-0.api-dev-advanced-build-up.md)
+[2. API 개발 고급 준비, 조회용 데이터 준비](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application2/2.api-dev-advanced-build-up.md)\
+[!!중요!! 3.API 개발 고급, 지연 로딩과 조회 성능 최적화](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/application2/3.api-dev-advanced-lazy-loading-and-performance-tuning.md)
 
 ## Spring JPA application 1, Web
 * 수강 강의
