@@ -102,6 +102,13 @@
 [10. JPQL 중급 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/10.jpql-middle-grammer.md)\
 [etc. 정리](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/basic/etc-summary.md)
 
+## Spring Data JPA
+* 수강 강의
+    * [실전! 스프링 데이터 JPA](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84)
+
+[0. 강의 시작 프로젝트 생성 및 예제 도메인 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/0.start.md)\
+[1. 공통 인터페이스 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/1.common-interface.function.md)
+
 ## Spring JPA application 2, API
 * 수강 강의
     * [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94/dashboard)
