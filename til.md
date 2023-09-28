@@ -86,4 +86,5 @@
 [64일차 - API 개발 고급- 컬렉션 조회 최적화, osiv](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day64.md)
 
 ### 실전! 스프링 데이터 JPA
-[65일차 - 프로젝트 생성 및 예제 도메인 구현, 공통 인터페이스 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day65.md)
+[65일차 - 프로젝트 생성 및 예제 도메인 구현, 공통 인터페이스 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day65.md)\
+[66일차 - 스프링 데이터 JPA 쿼리 메소드 기능들](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day66.md)
