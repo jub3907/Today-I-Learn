@@ -88,4 +88,5 @@
 ### 실전! 스프링 데이터 JPA
 [65일차 - 프로젝트 생성 및 예제 도메인 구현, 공통 인터페이스 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day65.md)\
 [66일차 - 스프링 데이터 JPA 쿼리 메소드 기능들](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day66.md)\
-[67일차 - 확장 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day67.md)
+[67일차 - 확장 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day67.md)\
+[68일차 - 스프링 데이터 JPA 분석과 나머지 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day67.md)
