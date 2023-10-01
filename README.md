@@ -109,9 +109,14 @@
 [0. 강의 시작 프로젝트 생성 및 예제 도메인 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/0.start.md)\
 [1. 공통 인터페이스 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/1.common-interface.function.md)\
 [2. 스프링 데이터 JPA 쿼리 메소드 기능들](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/2.query-method-function.md)\
-[3. 스프링 데이터 JPA 확장 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/jpa/spring-data-jpa/3.extension-func.md)\
-[4. 스프링 데이터 JPA 분석과 나머지 기능들](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/jpa/spring-data-jpa/jpa/spring-data-jpa/4.spring-data-jpa-analysis-and-remains.md)
+[3. 스프링 데이터 JPA 확장 기능](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/3.extension-func.md)\
+[4. 스프링 데이터 JPA 분석과 나머지 기능들](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/spring-data-jpa/4.spring-data-jpa-analysis-and-remains.md)
 
+## 실전! Querydsl
+* 수강 강의
+    * [실전! Querydsl](https://www.inflearn.com/course/querydsl-%EC%8B%A4%EC%A0%84/dashboard)
+[1. 강의 프로젝트 생성 및 예제 도메인 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/querydsl/1.start.md)\
+[2. QueryDSL 기본 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/querydsl/2.basic-grammer.md)
 
 ## Spring JPA application 2, API
 * 수강 강의
