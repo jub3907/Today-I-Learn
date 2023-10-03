@@ -117,7 +117,8 @@
     * [실전! Querydsl](https://www.inflearn.com/course/querydsl-%EC%8B%A4%EC%A0%84/dashboard)
 [1. 강의 프로젝트 생성 및 예제 도메인 구현](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/querydsl/1.start.md)\
 [2. QueryDSL 기본 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/querydsl/2.basic-grammer.md)\
-[3. QueryDSL 중급 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/querydsl/3.mid-level-grammer.md)
+[3. QueryDSL 중급 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/querydsl/3.mid-level-grammer.md)\
+[4. 실무 활용- 순수 JPA와 Querydsl](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/querydsl/4.JPA-and-querydsl.md)
 
 ## Spring JPA application 2, API
 * 수강 강의
