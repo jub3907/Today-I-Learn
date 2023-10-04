@@ -94,4 +94,5 @@
 ### 실전! QueryDSL
 [69일차 - QueryDSL 프로젝트 생성 및 예제 도메인 구현, 기본 문법 파악](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day69.md)\
 [70일차 - QueryDSL 중급 문법](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day70.md)\
-[71일차 - 순수 JPA와 Querydsl](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day71.md)
+[71일차 - 순수 JPA와 Querydsl](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day71.md)\
+[72일차 - 스프링 데이터 JPA와 QueryDSL](https://github.com/jub3907/Today-I-Learn/blob/main/jpa/til/day72.md)
