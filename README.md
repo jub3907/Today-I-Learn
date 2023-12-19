@@ -9,8 +9,6 @@
 ## [TIL 일지 확인](https://github.com/jub3907/Today-I-Learn/blob/main/til.md)
 
 <br/>
-<br/>
-<br/>
 
 # 내용 정리
 
@@ -18,6 +16,7 @@
 
 [Basic](https://github.com/jub3907/Today-I-Learn/blob/main/interview/basic.md)\
 [Network](https://github.com/jub3907/Today-I-Learn/blob/main/interview/network.md)\
+[OS](https://github.com/jub3907/Today-I-Learn/blob/main/interview/os.md)
 
 ## Spring 입문과 핵심 원리 - 기본편
 
