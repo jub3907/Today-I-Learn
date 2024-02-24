@@ -223,4 +223,5 @@
 [Git 서브모듈](https://github.com/jub3907/Today-I-Learn/blob/main/develop/git_sub_module.md)\
 [Github과 Discord를 웹훅으로 연결하기](https://github.com/jub3907/Today-I-Learn/blob/main/develop/discord-webhook.md)\
 [SSH 인증 오류 발생시](https://github.com/jub3907/Today-I-Learn/blob/main/develop/ssh_fail.md)\
-[Index](https://github.com/jub3907/Today-I-Learn/blob/main/develop/index.md)
+[Index](https://github.com/jub3907/Today-I-Learn/blob/main/develop/index.md)\
+[AWS EC2에 MySQL 설치](https://github.com/jub3907/Today-I-Learn/blob/main/develop/mysql_in_ec2.md)
