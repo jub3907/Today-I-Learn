@@ -16,10 +16,7 @@
 [클래스](#클래스)\
 [객체](#객체)\
 [생성자](#생성자)\
-[Wrapper Class](#Wrapper-Class)\
 [Synchronized](#Synchronized)\
-[String, StringBuffer, StringBuilder](#String,-StringBuffer,-StringBuilder)\
-[String 객체가 불변인 이유](#String-객체가-불변인-이유)\
 [접근제한자](#접근제한자)\
 [static](#static)\
 [Error와 Exception](#Error와-Exception)\
@@ -51,7 +48,8 @@
 [mysql과 mongodb의 차이](#mysql과-mongodb의-차이)\
 [mysql, nosql의 장단점](#mysql,-nosql의-장단점)\
 [DB 트렌젝션 Transaction](#DB-트렌젝션-Transaction)\
-[프라이머리 키, 컴파운드 키](#프라이머리-키,-컴파운드-키)\
+[프라이머리 키(기본키), 컴파운드 키](<#프라이머리-키(기본키),-컴파운드-키>)\
+[외래 키](#Foreign-Key)\
 [db procedure](#db-procedure)\
 [SQL Injection](#SQL-Injection)\
 [SQL Injection 방어 및 방지 방법](#SQL-Injection-방어-및-방지-방법)\
@@ -115,6 +113,10 @@
 [Servlet](#Servlet)\
 [@Transactional의 동작 원리](#@Transactional의-동작-원리)\
 [@Transactional의 readOnly를 사용하는 이유](#@Transactional의-readOnly를-사용하는-이유)\
+
+[Wrapper Class](#Wrapper-Class)\
+[String, StringBuffer, StringBuilder](#String,-StringBuffer,-StringBuilder)\
+[String 객체가 불변인 이유](#String-객체가-불변인-이유)\
 
 ### Java의 특징
 
@@ -208,8 +210,7 @@ HTTP Method(post, get, put, delete)를 통해 \
 
 ### 객체지향
 
-프로그램 구현에 필요한 데이터를 추상화시켜 상태와 행위를 가진 객체를 만들고,\
-그 객체간의 상호작용을 통해 하나의 프로그램을 만드는 개발 방법론을 의미한다.
+하나의 소프트웨어를 여러 객체간의 상호작용으로 정의하고, 이에 따라 객체를 중심으로 소프트웨어를 설계하는 개발 방법론
 
 객체지향의 특성은 캡슐화, 상속, 추상화, 다형성 등이 있음.
 
@@ -217,7 +218,7 @@ HTTP Method(post, get, put, delete)를 통해 \
 
 캡슐화 : 데이터 보호와 은닉을 위해, 서로 연관있는 속성과 기능을 하나의 캡슐로 만들어 외부로부터 보호하는 것
 
-추상화 : 불필요한 정보는 숨기고, 중요한 정보들만 표현하여 공통의 속성, 혹은 기능을 묶어 정의하는 것
+추상화 : 어떤 대상을 구현할 때, 이 대상의 본질적인 특징을 정의하고, 이것에 기반하여 대상을 객체로 구현하는 것
 
 상속 : 자식 클래스에서 부모 클래스의 속성과 기능을 그대로 이어받되, 변경이 필요한 경우 해당 기능만 수정해서 사용할 수 있게 하는 것.
 
@@ -249,12 +250,6 @@ HTTP Method(post, get, put, delete)를 통해 \
 클래스와 같은 이름의 메소드로, 객체를 생성할 때 자동으로 호출되는 메소드.\
 생성자는 오버로딩이 가능하다.
 
-### Wrapper Class
-
-기본 자료형에 대한 객체 표현 방식을 Wrapper Class라고 한다. \
-기본 자료형을 래퍼 클래스로 변환하는걸 Boxing, \
-그 반대를 UnBoxing이라 한다.
-
 ### Synchronized
 
 여러 개의 쓰레드가 한 개의 자원을 사용하고자 할 때, \
@@ -263,23 +258,6 @@ HTTP Method(post, get, put, delete)를 통해 \
 
 자바에서 Synchronized 키워드를 제공해 멀티 쓰레드 환경에서 \
 쓰레드간 동기화를 시켜 데이터의 thread-safe를 보장.
-
-### String, StringBuffer, StringBuilder
-
-- String은 불변의 속성을 가지며, StringBuffer와 StringBuilder는 가변의 속성을 가짐.
-- StringBuffer는 동기화를 지원하여 멀티 쓰레드 환경에서 주로 사용.
-- StringBuilder는 동기화를 지원하지 않아 싱글 쓰레드 환경에서 주로 사용.
-
-### String 객체가 불변인 이유
-
-1. 캐싱 기능에 의한 메모리 절약과 속도 향상
-   - JAVA에서 String 객체들은 Heap의 String Pool이라는 공간에 저장된다. \
-     참조하려는 문자열이 String Pool에 존재하는 경우, Pool에 있는 객체를 사용한다.
-2. thread-safe
-   - String 객체를 불변으로 두어, 여러 쓰레드에서 동시에 \
-     특정 String 객체를 참조하더라도 안전함을 보장한다.
-3. 보안기능
-   - 강제로 해당 참조에 대한 문자열을 변경하는것이 불가능하다.
 
 ### 접근제한자
 
@@ -510,8 +488,8 @@ NoSQL은 SQL과 반대되는 접근 방식을 따르는데, \
 
 ### DB 트렌젝션 Transaction
 
-데이터베이스의 일관성 있는 상태를 다른 상태로 변경하는 작업 순서를 의미합니다. \
-트렌젝션 완료 후, 성공적인 완료가 시스템에 반영되거나, \
+데이터베이스의 상태를 변화시키기 위해 수행하는 작업의 단위를 의미.\
+트렌젝션이 성공하면 변경 사항이 시스템에 반영되고, \
 트렌젝션이 실패하고 변경사항이 반영되지 않습니다.
 
 - 원자성 : 트렌젝션의 연산이 DB에 모두 반영되거나, 전혀 반영되지 않거나 둘 중 하나만 수행되어야 한다
@@ -519,13 +497,19 @@ NoSQL은 SQL과 반대되는 접근 방식을 따르는데, \
 - 독립성 : 수행중인 트랜젝션이 완전히 완료되기 전에는 다른 트랜젝션에서 수행 결과를 참조할 수 없습니다.
 - 지속성 : 성공한 트렌젝션의 결과는 시스템이 고장나더라도, 영구적으로 반영되어야 합니다.
 
-### 프라이머리 키, 컴파운드 키
+### 프라이머리 키(기본키), 컴파운드 키
 
 primary key는 모든 행 데이터가 고유하게 식별되는 열을 의미합니다. \
 테이블의 모든 행에는 프라이머리 키가 존재해야 하고, \
 두 개의 행이 동일한 프라이머리 키를 가질 수는 없습니다.
 
 컴파운드 키는 두 개 이상의 열을 키로 지정하는 것을 의미합니다.
+
+### Foreign Key
+
+외래키는 두 테이블을 서로 연결하는 데 사용되는 키이다.
+
+외래키가 포함된 테이블을 자식 테이블이라고 하고 외래키 값을 제공하는 테이블을 부모 테이블이라한다.
 
 ### db procedure
 
@@ -1035,6 +1019,29 @@ Proxy 객체의 메소드를 호출하면 Target 메소드 전, 후로 트랜젝
 트랜젝션 안에서 수정/삭제 작업이 아닌 조회 목적인 경우에 주로 사용하며,\
 영속성 컨텍스트에서 엔티티를 관리할 필요가 없기 때문에, \
 메모리 성능을 높일 수 있다는 장점이 존재한다.
+
+### Wrapper Class
+
+기본 자료형에 대한 객체 표현 방식을 Wrapper Class라고 한다. \
+기본 자료형을 래퍼 클래스로 변환하는걸 Boxing, \
+그 반대를 UnBoxing이라 한다.
+
+### String, StringBuffer, StringBuilder
+
+- String은 불변의 속성을 가지며, StringBuffer와 StringBuilder는 가변의 속성을 가짐.
+- StringBuffer는 동기화를 지원하여 멀티 쓰레드 환경에서 주로 사용.
+- StringBuilder는 동기화를 지원하지 않아 싱글 쓰레드 환경에서 주로 사용.
+
+### String 객체가 불변인 이유
+
+1. 캐싱 기능에 의한 메모리 절약과 속도 향상
+   - JAVA에서 String 객체들은 Heap의 String Pool이라는 공간에 저장된다. \
+     참조하려는 문자열이 String Pool에 존재하는 경우, Pool에 있는 객체를 사용한다.
+2. thread-safe
+   - String 객체를 불변으로 두어, 여러 쓰레드에서 동시에 \
+     특정 String 객체를 참조하더라도 안전함을 보장한다.
+3. 보안기능
+   - 강제로 해당 참조에 대한 문자열을 변경하는것이 불가능하다.
 
 ## 참고
 
