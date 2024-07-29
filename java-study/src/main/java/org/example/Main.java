@@ -20,8 +20,32 @@ public class Main {
 //        System.out.println(age == 3? "3" : "4");
 
         //array
-        Array array = new Array();
-        array.createRandomArray();
+/*        Array array = new Array();
+        array.createRandomArray();*/
+
+        // parent, child
+        Car car = new Car();
+        Car car2 = new Ambulance();
+
+        Ambulance ambulance = new Ambulance();
+        // 자식 타입을 부모 타입으로 다운캐스팅 하는건 불가능
+        //Ambulance ambulance2 = new Car();
+
+        if (ambulance instanceof Ambulance) {
+            System.out.println("ambulance is instance of Ambulance");
+        }
+
+        if (ambulance instanceof Car) {
+            System.out.println("ambulance is instance of Car");
+        }
+
+        if (car instanceof Ambulance) {
+            System.out.println("car is instance of Ambulance");
+        }
+
+        if (car2 instanceof Ambulance) {
+            System.out.println("car2 is instance of Ambulance");
+        }
 
     }
 }
