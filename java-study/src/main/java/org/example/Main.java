@@ -3,6 +3,8 @@ package org.example;
 // https://github.com/castello/javajungsuk_basic/blob/master/javajungsuk_basic_%EC%9A%94%EC%95%BD%EC%A7%91.pdf
 // java의 정석을 사용한 독학
 
+import java.sql.Time;
+
 public class Main {
     public static void main(String[] args) {
         // variable
@@ -69,5 +71,9 @@ public class Main {
         int j = Integer.parseInt("100");
         int j2 = Integer.valueOf("100");
         char c = "A".charAt(0);*/
+
+        //Time
+        TimeClass t = new TimeClass();
+        t.printCalendarTime();
     }
 }
