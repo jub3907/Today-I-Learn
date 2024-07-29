@@ -52,5 +52,13 @@ public class Main {
         // Player player = new Player();
 /*        PlayerExtend player = new PlayerExtend();
         player.play(3);*/
+
+        //Object
+        Obj o = new Obj();
+        try {
+            o.getClassInfo();
+        } catch (Exception e) {
+            System.out.println("e = " + e);
+        }
     }
 }
