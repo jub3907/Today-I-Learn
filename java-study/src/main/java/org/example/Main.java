@@ -5,9 +5,15 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        // variable
+/*        System.out.println("Hello world!");
         Variable v = new Variable();
         v.printCharVariable();
-        v.changeType();
+        v.changeType();*/
+
+        // scanner
+        Scan scan = new Scan();
+        scan.scanner();
+
     }
 }
