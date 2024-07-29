@@ -12,8 +12,16 @@ public class Main {
         v.changeType();*/
 
         // scanner
-        Scan scan = new Scan();
-        scan.scanner();
+/*        Scan scan = new Scan();
+        scan.scanner();*/
+
+        // operator
+//        int age = 20;
+//        System.out.println(age == 3? "3" : "4");
+
+        //array
+        Array array = new Array();
+        array.createRandomArray();
 
     }
 }
