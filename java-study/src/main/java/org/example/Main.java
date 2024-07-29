@@ -73,7 +73,13 @@ public class Main {
         char c = "A".charAt(0);*/
 
         //Time
-        TimeClass t = new TimeClass();
-        t.printCalendarTime();
+/*        TimeClass t = new TimeClass();
+        t.printCalendarTime();*/
+
+        // formatiing
+        Formatting f = new Formatting();
+        f.printNumberFormat();
+
     }
+
 }
