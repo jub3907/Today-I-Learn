@@ -24,7 +24,7 @@ public class Main {
         array.createRandomArray();*/
 
         // parent, child
-        Car car = new Car();
+/*        Car car = new Car();
         Car car2 = new Ambulance();
 
         Ambulance ambulance = new Ambulance();
@@ -45,7 +45,12 @@ public class Main {
 
         if (car2 instanceof Ambulance) {
             System.out.println("car2 is instance of Ambulance");
-        }
+        }*/
 
+        // abstract
+        // Player 클래스는 추상 클래스이므로, 기본 생성 불가
+        // Player player = new Player();
+        PlayerExtend player = new PlayerExtend();
+        player.play(3);
     }
 }
