@@ -1,6 +1,6 @@
 package org.example;
 
-public abstract class Player {
+abstract class Player {
 
     int currentPosition;
 
