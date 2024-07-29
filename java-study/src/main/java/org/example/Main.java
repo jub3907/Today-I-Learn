@@ -54,11 +54,20 @@ public class Main {
         player.play(3);*/
 
         //Object
-        Obj o = new Obj();
+/*        Obj o = new Obj();
         try {
             o.getClassInfo();
         } catch (Exception e) {
             System.out.println("e = " + e);
-        }
+        }*/
+
+        //String
+/*        int i = 100;
+        String str1 = i + "";
+        String str2 = String.valueOf(i);
+
+        int j = Integer.parseInt("100");
+        int j2 = Integer.valueOf("100");
+        char c = "A".charAt(0);*/
     }
 }
