@@ -4,6 +4,7 @@ package org.example;
 // java의 정석을 사용한 독학
 
 import java.sql.Time;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -89,25 +90,42 @@ public class Main {
 
 
         // enum
-        Kind kind = Kind.CLOVER;
-        if (kind == Kind.CLOVER) {
-            System.out.println("kind is clover ");
-            System.out.println("kind.name() = " + kind.name());
-        }
-    }
-    enum Kind {CLOVER, HEART, DIAMOND, SPADE}
+//        Kind kind = Kind.CLOVER;
+//        if (kind == Kind.CLOVER) {
+//            System.out.println("kind is clover ");
+//            System.out.println("kind.name() = " + kind.name());
+//        }
+//    }
+//    enum Kind {CLOVER, HEART, DIAMOND, SPADE}
+//
+//    enum Direction {
+//        EAST(1), SOUTH(2), WEST(-1);
+//
+//        private final int value;
+//        Direction(int value) {
+//            this.value = value;
+//        }
+//
+//        public int getValue() {
+//            return value;
+//        }
 
-    enum Direction {
-        EAST(1), SOUTH(2), WEST(-1);
+        StreamExample se = new StreamExample();
+        List<Integer> integers = se.filterStream1();
+        System.out.println("integers = " + integers);
 
-        private final int value;
-        Direction(int value) {
-            this.value = value;
-        }
+        List<String> strings = se.filterStream2();
+        System.out.println("strings = " + strings);
 
-        public int getValue() {
-            return value;
-        }
+        List<Integer> integers1 = se.filterStream3();
+        System.out.println("integers1 = " + integers1);
+
+        Integer reductionResult = se.getReductionResult();
+        System.out.println("reductionResult = " + reductionResult);
+
+        se.printList();
+
+
     }
 
 
