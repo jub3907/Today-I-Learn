@@ -73,13 +73,19 @@ public class Main {
         char c = "A".charAt(0);*/
 
         //Time
-        TimeClass t = new TimeClass();
+/*        TimeClass t = new TimeClass();
 //        t.printCalendarTime();
-        t.printDateTime();
+        t.printDateTime();*/
 
         // formatiing
 /*        Formatting f = new Formatting();
         f.printNumberFormat();*/
+
+        // generic
+        Generic<String> box = new Generic<String>();
+        box.setItem("box");
+        String b = box.getItem();
+        System.out.println("b = " + b);
 
     }
 
