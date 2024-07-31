@@ -82,11 +82,33 @@ public class Main {
         f.printNumberFormat();*/
 
         // generic
-        Generic<String> box = new Generic<String>();
-        box.setItem("box");
-        String b = box.getItem();
-        System.out.println("b = " + b);
+//        Generic<String> box = new Generic<String>();
+//        box.setItem("box");
+//        String b = box.getItem();
+//        System.out.println("b = " + b);
 
+
+        // enum
+        Kind kind = Kind.CLOVER;
+        if (kind == Kind.CLOVER) {
+            System.out.println("kind is clover ");
+            System.out.println("kind.name() = " + kind.name());
+        }
     }
+    enum Kind {CLOVER, HEART, DIAMOND, SPADE}
+
+    enum Direction {
+        EAST(1), SOUTH(2), WEST(-1);
+
+        private final int value;
+        Direction(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
 
 }
