@@ -110,22 +110,28 @@ public class Main {
 //            return value;
 //        }
 
-        StreamExample se = new StreamExample();
-        List<Integer> integers = se.filterStream1();
-        System.out.println("integers = " + integers);
+        //stream
 
-        List<String> strings = se.filterStream2();
-        System.out.println("strings = " + strings);
+//        StreamExample se = new StreamExample();
+//        List<Integer> integers = se.filterStream1();
+//        System.out.println("integers = " + integers);
+//
+//        List<String> strings = se.filterStream2();
+//        System.out.println("strings = " + strings);
+//
+//        List<Integer> integers1 = se.filterStream3();
+//        System.out.println("integers1 = " + integers1);
+//
+//        Integer reductionResult = se.getReductionResult();
+//        System.out.println("reductionResult = " + reductionResult);
+//
+//        se.printList();
 
-        List<Integer> integers1 = se.filterStream3();
-        System.out.println("integers1 = " + integers1);
 
-        Integer reductionResult = se.getReductionResult();
-        System.out.println("reductionResult = " + reductionResult);
-
-        se.printList();
-
-
+        //optional
+        OptionalExample oe = new OptionalExample();
+        String ofNullableResult = oe.getOfNullableResult();
+        System.out.println("ofNullableResult = " + ofNullableResult);
     }
 
 
